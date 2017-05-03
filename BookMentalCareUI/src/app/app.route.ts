@@ -2,7 +2,7 @@ import {RouterModule} from '@angular/router';
 
 import {EmployeeListComponent} from './employeeList.component';
 import {EmployeeComponent} from './employee.component';
-
+import {NewEmployeeComponent} from './newEmployee.component';
 import {RessourceListComponent} from './ressourceList.component';
 import {RessourceComponent} from './ressource.component';
 
@@ -19,6 +19,10 @@ const routes = [{
 },{
     path:'employee/:initials',
     component: EmployeeComponent
+
+},{
+    path:'employeeCreate',
+    component: NewEmployeeComponent
 
 }
 ]

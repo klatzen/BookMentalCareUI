@@ -8,6 +8,7 @@ import { EmployeeComponent } from './employee.component';
 import { EmployeeListComponent } from './employeeList.component';
 import {RessourceComponent} from './ressource.component';
 import {RessourceListComponent} from './ressourceList.component';
+import {NewEmployeeComponent} from './newEmployee.component';
 
 import {EmployeeService} from './services/employee.service';
 import {RessourceService} from './services/ressource.service';
@@ -23,7 +24,8 @@ import {routing} from './app.route';
     EmployeeComponent,
     EmployeeListComponent,
     RessourceComponent,
-    RessourceListComponent
+    RessourceListComponent,
+    NewEmployeeComponent
   ],
   imports: [
     BrowserModule,
