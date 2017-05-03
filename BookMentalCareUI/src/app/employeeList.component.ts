@@ -4,6 +4,7 @@ import {EmployeeService} from './services/employee.service';
 @Component({
     selector: 'empList',
     template: `
+    <input type="text" [(ngModel)]="userFilter.INITIALS" placeholder="name">
     <table>
     <thead>
         <tr>
@@ -15,12 +16,13 @@ import {EmployeeService} from './services/employee.service';
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let Employee of _Employees">
+        <tr *ngFor="let Employee of _Employees | filterBy: userFilter">
+        <a [routerLink]="['employee',Employee.ID]">
             <td>{{Employee.ID}}</td>
             <td>{{Employee.FNAME}}</td>
             <td>{{Employee.LNAME}}</td>
             <td>{{Employee.TITLE}}</td>
-            <td>{{Employee.INITIALS}}</td>
+            <td>{{Employee.INITIALS}}</td></a>
         </tr>
     </tbody>
     </table>
@@ -28,7 +30,7 @@ import {EmployeeService} from './services/employee.service';
 })
 export class EmployeeListComponent{
         _Employees = [];
-
+        userFilter: any = { INITIALS: '' };
 
         constructor(private employeeService : EmployeeService){
             this._Employees = employeeService.findEmployees();

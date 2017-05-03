@@ -1,6 +1,5 @@
 import {Component} from '@angular/core';
 import {EmployeeService} from './services/employee.service';
-
 @Component({
     selector: 'emp',
     template: ''
@@ -8,7 +7,7 @@ import {EmployeeService} from './services/employee.service';
 export class EmployeeComponent{
 
         constructor(private employeeService : EmployeeService){
-
+            
         }
 
         
