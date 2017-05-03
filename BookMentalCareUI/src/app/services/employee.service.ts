@@ -1,11 +1,11 @@
 import {Http} from '@angular/http';
-import {Injectable} from '@angular/core';
+import {Injectable, Output} from '@angular/core';
 import 'rxjs/add/operator/map';
 
 @Injectable()
 export class EmployeeService{
-    _Employess = [];
-    Employee;
+    @Output() _Employess = [];
+    @Output() Employee;
 
     constructor(private http: Http){
 
@@ -15,7 +15,6 @@ export class EmployeeService{
         this.http.get('http://localhost:2026/api/Employee/' + initials)
         .map(response => response.json())
         .subscribe(data => this.Employee = data)
-
         return this.Employee;
     }
 
