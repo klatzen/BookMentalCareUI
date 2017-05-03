@@ -6,14 +6,19 @@ import { HttpModule } from '@angular/http';
 import { AppComponent } from './app.component';
 import { EmployeeComponent } from './employee.component';
 import { EmployeeListComponent } from './employeeList.component';
+import {RessourceComponent} from './ressource.component';
+import {RessourceListComponent} from './ressourceList.component';
 
 import {EmployeeService} from './services/employee.service';
+import {RessourceService} from './services/ressource.service';
 
 @NgModule({
   declarations: [
     AppComponent,
     EmployeeComponent,
-    EmployeeListComponent
+    EmployeeListComponent,
+    RessourceComponent,
+    RessourceListComponent
   ],
   imports: [
     BrowserModule,
@@ -21,7 +26,8 @@ import {EmployeeService} from './services/employee.service';
     HttpModule
   ],
   providers: [
-    EmployeeService
+    EmployeeService,
+    RessourceService
   ],
   bootstrap: [AppComponent]
 })
