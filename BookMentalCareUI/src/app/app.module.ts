@@ -6,7 +6,6 @@ import { HttpModule } from '@angular/http';
 import { AppComponent } from './app.component';
 import { EmployeeComponent } from './employee.component';
 import { EmployeeListComponent } from './employeeList.component';
-import { EmployeeInputComponent } from './employeeInput.component';
 
 import {EmployeeService} from './services/employee.service';
 
@@ -19,15 +18,15 @@ import {routing} from './app.route';
   declarations: [
     AppComponent,
     EmployeeComponent,
-    EmployeeListComponent,
-    EmployeeInputComponent
+    EmployeeListComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
-    Ng2FilterPipeModule,
-    routing
+    routing,
+    Ng2FilterPipeModule
+    
   ],
   providers: [
     EmployeeService

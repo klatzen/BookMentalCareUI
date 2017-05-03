@@ -7,7 +7,7 @@ const routes = [{
     path: '',
     component: EmployeeListComponent
 },{
-    path:'employee/:id',
+    path:'employee/:initials',
     component: EmployeeComponent
 }
 ]
