@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
+import {routing} from './app.route';
 
 import { AppComponent } from './app.component';
 import { EmployeeComponent } from './employee.component';
@@ -23,7 +24,8 @@ import {RessourceService} from './services/ressource.service';
   imports: [
     BrowserModule,
     FormsModule,
-    HttpModule
+    HttpModule,
+    routing
   ],
   providers: [
     EmployeeService,

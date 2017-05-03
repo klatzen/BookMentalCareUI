@@ -13,7 +13,7 @@ import {RessourceService} from './services/ressource.service';
         <tbody>
             <tr *ngFor="let ressource of _Ressources">
                 <td>{{ressource.Id}}</td>
-                <td>{{ressource.Name}}</td>
+                <a [routerLink]="['ressource',ressource.Id]"><td>{{ressource.Name}}</td></a>
                 <td>{{ressource.Type}}</td>
             </tr>
         </tbody>
