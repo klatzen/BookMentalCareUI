@@ -5,6 +5,7 @@ import 'rxjs/add/operator/map';
 @Injectable()
 export class EmployeeService{
     _Employess = [];
+    Employee;
 
     constructor(private http: Http){
 
@@ -13,9 +14,9 @@ export class EmployeeService{
     findEmployee(initials){
         this.http.get('http://localhost:2026/api/Employee/' + initials)
         .map(response => response.json())
-        .subscribe(data => {this._Employess = data})
+        .subscribe(data => this.Employee = data)
 
-        return this._Employess;
+        return this.Employee;
     }
 
     findEmployees(){

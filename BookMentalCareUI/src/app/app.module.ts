@@ -6,6 +6,7 @@ import { HttpModule } from '@angular/http';
 import { AppComponent } from './app.component';
 import { EmployeeComponent } from './employee.component';
 import { EmployeeListComponent } from './employeeList.component';
+import { EmployeeInputComponent } from './employeeInput.component';
 
 import {EmployeeService} from './services/employee.service';
 
@@ -18,7 +19,8 @@ import {routing} from './app.route';
   declarations: [
     AppComponent,
     EmployeeComponent,
-    EmployeeListComponent
+    EmployeeListComponent,
+    EmployeeInputComponent
   ],
   imports: [
     BrowserModule,
