@@ -11,9 +11,10 @@ import {RessourceService} from './services/ressource.service';
             <td>Type</td>
         </thead>
         <tbody>
-            <tr *ngFor="let ressource of _Ressources">
+            <tr *ngFor="let ressource of _Ressources | filterBy: userFilter">
                 <td>{{ressource.Id}}</td>
-                <a [routerLink]="['ressource',ressource.Id]"><td>{{ressource.Name}}</td></a>
+                <a [routerLink]="['ressource',ressource.Id]">
+                <td>{{ressource.Name}}</td></a>
                 <td>{{ressource.Type}}</td>
             </tr>
         </tbody>
@@ -26,6 +27,7 @@ export class RessourceListComponent{
 
     _Ressources = [];
 
+    userFilter : any = {Id: ''};
 
     constructor(private resService:RessourceService){
         this._Ressources = resService.findRessources();

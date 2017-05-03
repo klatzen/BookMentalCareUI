@@ -12,11 +12,11 @@ const routes = [{
     component: EmployeeListComponent
 },{
     path:'ressource',
-    component: RessourceComponent
+    component: RessourceListComponent
 },{
     path:'ressource/:id',
-    component: RessourceListComponent},
-    {
+    component: RessourceComponent
+},{
     path:'employee/:initials',
     component: EmployeeComponent
 
