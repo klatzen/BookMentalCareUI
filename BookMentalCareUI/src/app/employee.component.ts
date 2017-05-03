@@ -1,9 +1,6 @@
 import {Component, Input} from '@angular/core';
 import {EmployeeService} from './services/employee.service';
-<<<<<<< HEAD
-=======
 import {ActivatedRoute} from '@angular/router';
->>>>>>> origin/master
 @Component({
     selector: 'emp',
     template: ` 
@@ -30,18 +27,12 @@ export class EmployeeComponent{
         constructor(private employeeService : EmployeeService,private activatedRoute: ActivatedRoute){
             
         }
-
-<<<<<<< HEAD
-        constructor(private employeeService : EmployeeService){
-            
-=======
         ngOnInit(){
             this.activatedRoute.params.map(params => params['initials']).subscribe(initals => {
             this.employeeService.findEmployee(initals);
             this.employeeService.empEvent.subscribe(data => this._Employee = data);
                 
             })
->>>>>>> origin/master
         }
 
         

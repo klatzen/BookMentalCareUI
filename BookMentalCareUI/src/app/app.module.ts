@@ -2,7 +2,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
-import {routing} from './app.route';
 
 import { AppComponent } from './app.component';
 import { EmployeeComponent } from './employee.component';
@@ -30,13 +29,8 @@ import {routing} from './app.route';
     BrowserModule,
     FormsModule,
     HttpModule,
-<<<<<<< HEAD
-    routing
-=======
     routing,
     Ng2FilterPipeModule
-    
->>>>>>> origin/master
   ],
   providers: [
     EmployeeService,
