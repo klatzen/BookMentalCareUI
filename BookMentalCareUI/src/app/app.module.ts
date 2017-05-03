@@ -9,6 +9,11 @@ import { EmployeeListComponent } from './employeeList.component';
 
 import {EmployeeService} from './services/employee.service';
 
+import { Ng2FilterPipeModule } from 'ng2-filter-pipe';
+
+
+import {routing} from './app.route';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -18,7 +23,9 @@ import {EmployeeService} from './services/employee.service';
   imports: [
     BrowserModule,
     FormsModule,
-    HttpModule
+    HttpModule,
+    Ng2FilterPipeModule,
+    routing
   ],
   providers: [
     EmployeeService
