@@ -17,7 +17,11 @@ import {EmployeeService} from './services/employee.service';
     </thead>
     <tbody>
         <tr *ngFor="let Employee of _Employees | filterBy: userFilter">
+<<<<<<< HEAD
         <a [routerLink]="['employee',Employee.ID]">
+=======
+        <a [routerLink]="['employee',Employee.INITIALS]">
+>>>>>>> origin/master
             <td>{{Employee.ID}}</td>
             <td>{{Employee.FNAME}}</td>
             <td>{{Employee.LNAME}}</td>

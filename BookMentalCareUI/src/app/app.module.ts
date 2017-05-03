@@ -13,6 +13,11 @@ import {RessourceListComponent} from './ressourceList.component';
 import {EmployeeService} from './services/employee.service';
 import {RessourceService} from './services/ressource.service';
 
+import { Ng2FilterPipeModule } from 'ng2-filter-pipe';
+
+
+import {routing} from './app.route';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -25,7 +30,13 @@ import {RessourceService} from './services/ressource.service';
     BrowserModule,
     FormsModule,
     HttpModule,
+<<<<<<< HEAD
     routing
+=======
+    routing,
+    Ng2FilterPipeModule
+    
+>>>>>>> origin/master
   ],
   providers: [
     EmployeeService,
