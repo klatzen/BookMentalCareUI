@@ -5,36 +5,38 @@ import {ActivatedRoute} from '@angular/router';
 @Component({
     selector: 'unitList',
     template: `
+    <div *ngIf="_Units">
         <table>
             <thead>
                 <td>Unit ID</td>
                 <td>Serial Number</td>
             </thead>
         <tbody>
-            <tr *ngFor="let unit of _Units | filterBy : userFilter">
+        
+            <tr *ngFor="let unit of _Units">
                 <td>{{unit.Id}}</td>
                 <td>{{unit.SerialNo}}</td>
             </tr>
+            
         </tbody>
      </table>
+     </div>
     `
 })
 
 export class UnitListComponent{
 
-   _Units = [];
+   @Input() _Units = [];
    userFilter : any = {id: ''};
-
     constructor(private resService : RessourceService, private activatedRouter : ActivatedRoute ) {
     }
 
     ngOnInit() {
         this.activatedRouter.params.map(params => params['id']).subscribe(id => {
-            this.resService.findUnits(id);
-            this.resService.unitEvent.subscribe(()=> console.log("Request"),()=>console.log("Error"),
-            data => this._Units = data);
+        this._Units  = this.resService.findUnits(id);
+           console.log(this._Units);
         }) 
-        console.log(this._Units)
     }
+    
 
 }
