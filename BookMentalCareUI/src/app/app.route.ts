@@ -5,12 +5,11 @@ import {EmployeeComponent} from './employee.component';
 import {NewEmployeeComponent} from './newEmployee.component';
 import {RessourceListComponent} from './ressourceList.component';
 import {RessourceComponent} from './ressource.component';
-<<<<<<< HEAD
 import {NewRessourceComponent} from './newRessource.component';
-=======
 import {PatientListComponent} from './patientList.component';
 import {PatientComponent} from './patient.component';
->>>>>>> origin/master
+import {UnitListComponent} from './unitList.component';
+
 
 
 const routes = [{
@@ -25,11 +24,11 @@ const routes = [{
 },{
     path:'employee/:initials',
     component: EmployeeComponent
-<<<<<<< HEAD
+
 },{
     path:'createRessource',
     component: NewRessourceComponent
-=======
+
 
 },{
     path:'employeeCreate',
@@ -43,7 +42,10 @@ const routes = [{
     path:'patient/:id',
     component: PatientComponent
 
->>>>>>> origin/master
+},{
+    path:'ressource/unit/:id',
+    component: UnitListComponent
+
 }
 ]
 

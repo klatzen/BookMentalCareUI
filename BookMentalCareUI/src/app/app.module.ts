@@ -8,14 +8,11 @@ import { EmployeeComponent } from './employee.component';
 import { EmployeeListComponent } from './employeeList.component';
 import {RessourceComponent} from './ressource.component';
 import {RessourceListComponent} from './ressourceList.component';
-<<<<<<< HEAD
 import {NewRessourceComponent} from './newRessource.component';
-=======
 import {NewEmployeeComponent} from './newEmployee.component';
 import {PatientListComponent} from './patientList.component';
 import {PatientComponent} from './patient.component';
->>>>>>> origin/master
-
+import {UnitListComponent} from './unitList.Component';
 import {EmployeeService} from './services/employee.service';
 import {RessourceService} from './services/ressource.service';
 import {PatientService} from './services/patient.service';
@@ -32,13 +29,11 @@ import {routing} from './app.route';
     EmployeeListComponent,
     RessourceComponent,
     RessourceListComponent,
-<<<<<<< HEAD
-    NewRessourceComponent
-=======
+    UnitListComponent,
+    NewRessourceComponent,
     NewEmployeeComponent,
     PatientListComponent,
     PatientComponent
->>>>>>> origin/master
   ],
   imports: [
     BrowserModule,

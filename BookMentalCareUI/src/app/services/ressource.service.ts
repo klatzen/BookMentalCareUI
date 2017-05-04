@@ -7,6 +7,10 @@ import 'rxjs/add/operator/map';
         @Output() _Ressources = [];
         @Output() Ressource;
         @Output() resEvent = new EventEmitter();
+        
+        @Output() _Units = [];
+        @Output() Unit;
+        @Output() unitEvent = new EventEmitter();
 
         constructor(private http: Http){
 
@@ -35,6 +39,13 @@ import 'rxjs/add/operator/map';
         deleteRessource(id:number){
             this.http.delete('http://localhost:2026/api/ressource' + id)
             .subscribe(()=>console.log("Done"),()=>console.log("error"));
+        }
+
+        findUnits(resId : number) {
+            this.http.get('http://localhost:2026/api/ressource/unit' + resId)
+            .map(response => response.json())
+            .subscribe(data => {data.forEach(unit => this._Units.push(unit))})
+            return this._Units;
         }
 
         

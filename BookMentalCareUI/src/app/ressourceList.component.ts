@@ -15,7 +15,7 @@ import {RessourceService} from './services/ressource.service';
                 <td>{{ressource.Id}}</td>
                 <td>{{ressource.Name}}</td>
                 <td>{{ressource.Type}}</td>
-                <button [routerLink]="['/ressource',ressource.Id]">Details</button>
+                <button [routerLink]="['/ressource/unit',ressource.Id]">Se Eksemplarer</button>
             </tr>
             <button [routerLink]="['/createRessource']">Opret ny</button>
         </tbody>
