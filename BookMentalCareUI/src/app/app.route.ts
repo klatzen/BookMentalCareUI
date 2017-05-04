@@ -9,6 +9,9 @@ import {NewRessourceComponent} from './newRessource.component';
 import {PatientListComponent} from './patientList.component';
 import {PatientComponent} from './patient.component';
 import {UnitListComponent} from './unitList.component';
+import {RoomComponent} from './room.component';
+import {RoomListComponent} from './roomList.component';
+import {NewRoomComponent} from './newRoom.component';
 
 
 
@@ -45,6 +48,19 @@ const routes = [{
 },{
     path:'unit/:Id',
     component: UnitListComponent
+
+},{
+    path:'room',
+    component: RoomListComponent
+
+},{
+    path:'room/:id',
+    component: RoomComponent
+
+},
+{
+    path:'roomCreate',
+    component: NewRoomComponent
 
 }
 ]
