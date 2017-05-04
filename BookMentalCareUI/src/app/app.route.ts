@@ -43,7 +43,7 @@ const routes = [{
     component: PatientComponent
 
 },{
-    path:'unit/:id',
+    path:'unit/:Id',
     component: UnitListComponent
 
 }

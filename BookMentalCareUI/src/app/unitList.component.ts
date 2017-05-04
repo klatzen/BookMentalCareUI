@@ -32,7 +32,8 @@ export class UnitListComponent{
         this.activatedRouter.params.map(params => params['Id']).subscribe(Id => {
             this.resService.findUnits(Id);
             this.resService.unitEvent.subscribe(data => this._Units = data);
-        })
+        }) 
+        console.log(this._Units)
     }
 
 }

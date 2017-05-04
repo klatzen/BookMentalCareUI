@@ -42,7 +42,7 @@ import 'rxjs/add/operator/map';
         }
 
         findUnits(Id : number) {
-            this.http.get('http://localhost:2026/api/unit/units' + Id)
+            this.http.get('http://localhost:2026/api/unit/units/' + Id)
             .map(response => response.json())
             .subscribe(data => {data.forEach(unit => this._Units.push(unit))})
             return this._Units;
