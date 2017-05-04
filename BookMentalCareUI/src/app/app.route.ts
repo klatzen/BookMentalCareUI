@@ -9,6 +9,9 @@ import {NewRessourceComponent} from './newRessource.component';
 import {PatientListComponent} from './patientList.component';
 import {PatientComponent} from './patient.component';
 import {NewPatientComponent} from './newPatient.component';
+import {DepartmentListComponent} from './departmentList.component';
+import {DepartmentComponent} from './department.component';
+import {NewDepartmentComponent} from './newDepartment.component';
 
 
 const routes = [{
@@ -41,6 +44,16 @@ const routes = [{
 ,{
     path:'patientCreate',
     component: NewPatientComponent
+}
+,{
+    path:'department',
+    component: DepartmentListComponent
+},{
+    path:'department/:id',
+    component: DepartmentComponent
+},{
+    path:'departmentCreate',
+    component: NewDepartmentComponent
 }
 ]
 
