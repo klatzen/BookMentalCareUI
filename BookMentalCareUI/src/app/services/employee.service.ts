@@ -1,4 +1,4 @@
-import {Http} from '@angular/http';
+import {Http,RequestOptions} from '@angular/http';
 import {Injectable, Output,EventEmitter} from '@angular/core';
 import 'rxjs/add/operator/map';
 
@@ -17,6 +17,7 @@ export class EmployeeService{
         .map(response => response.json())
         .subscribe(data => this.Employee = data,()=> console.log("error"),()=>{
             this.empEvent.emit(this.Employee);  
+            console.log(this.Employee);
         })
     }
 
@@ -28,11 +29,11 @@ export class EmployeeService{
         return this._Employess;
     }
 
-    saveEmployee(){
-
+    saveEmployee(tempEmployee){
+        this.http.post('http://localhost:2026/api/Employee',tempEmployee).subscribe(()=>console.log("Done"),()=> console.log('Error'));
     }
 
-    deleteEmployee(){
-
+    deleteEmployee(id){
+        this.http.delete('http://localhost:2026/api/Employee/'+ id).subscribe(()=>console.log("Done"),()=> console.log('Error'));
     }
 }

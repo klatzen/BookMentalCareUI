@@ -8,10 +8,17 @@ import { EmployeeComponent } from './employee.component';
 import { EmployeeListComponent } from './employeeList.component';
 import {RessourceComponent} from './ressource.component';
 import {RessourceListComponent} from './ressourceList.component';
+<<<<<<< HEAD
 import {NewRessourceComponent} from './newRessource.component';
+=======
+import {NewEmployeeComponent} from './newEmployee.component';
+import {PatientListComponent} from './patientList.component';
+import {PatientComponent} from './patient.component';
+>>>>>>> origin/master
 
 import {EmployeeService} from './services/employee.service';
 import {RessourceService} from './services/ressource.service';
+import {PatientService} from './services/patient.service';
 
 import { Ng2FilterPipeModule } from 'ng2-filter-pipe';
 
@@ -25,7 +32,13 @@ import {routing} from './app.route';
     EmployeeListComponent,
     RessourceComponent,
     RessourceListComponent,
+<<<<<<< HEAD
     NewRessourceComponent
+=======
+    NewEmployeeComponent,
+    PatientListComponent,
+    PatientComponent
+>>>>>>> origin/master
   ],
   imports: [
     BrowserModule,
@@ -36,7 +49,8 @@ import {routing} from './app.route';
   ],
   providers: [
     EmployeeService,
-    RessourceService
+    RessourceService,
+    PatientService
   ],
   bootstrap: [AppComponent]
 })
