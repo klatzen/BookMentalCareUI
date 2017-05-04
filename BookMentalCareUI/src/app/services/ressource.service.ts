@@ -4,7 +4,7 @@ import 'rxjs/add/operator/map';
 
 @Injectable()
     export class RessourceService{
-        @Output() _Ressource = [];
+        @Output() _Ressources = [];
         @Output() Ressource;
         @Output() resEvent = new EventEmitter();
 
@@ -15,16 +15,26 @@ import 'rxjs/add/operator/map';
         findRessources(){
             this.http.get('http://localhost:2026/api/ressource')
             .map(response => response.json())
-            .subscribe(data => {data.forEach(ressource => this._Ressource.push(ressource))})
-            return this._Ressource;
+            .subscribe(data => {data.forEach(ressource => this._Ressources.push(ressource))})
+            return this._Ressources;
         }
 
         findRessource(id:number){
             this.http.get('http://localhost:2026/api/ressource/' + id)
             .map(response => response.json())
-            .subscribe(data => this._Ressource = data,()=> console.log("error"),()=>{
+            .subscribe(data => this.Ressource = data,()=> console.log("error"),()=>{
                 this.resEvent.emit(this.Ressource);
             })
+        }
+
+        saveRessource(ressource){
+            this.http.post('http://localhost:2026/api/ressource/',ressource)
+            .subscribe(()=>console.log("Done"),()=>console.log("error"));
+        }
+
+        deleteRessource(id:number){
+            this.http.delete('http://localhost:2026/api/ressource' + id)
+            .subscribe(()=>console.log("Done"),()=>console.log("error"));
         }
 
         

@@ -13,10 +13,11 @@ import {RessourceService} from './services/ressource.service';
         <tbody>
             <tr *ngFor="let ressource of _Ressources | filterBy: userFilter">
                 <td>{{ressource.Id}}</td>
-                <a [routerLink]="['ressource',ressource.Id]">
-                <td>{{ressource.Name}}</td></a>
+                <td>{{ressource.Name}}</td>
                 <td>{{ressource.Type}}</td>
+                <button [routerLink]="['/ressource',ressource.Id]">Details</button>
             </tr>
+            <button [routerLink]="['/createRessource']">Opret ny</button>
         </tbody>
     </table>
 

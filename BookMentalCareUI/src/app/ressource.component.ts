@@ -4,20 +4,21 @@ import {ActivatedRoute} from '@angular/router';
 @Component({
     selector: 'ressource',
     template: `
-    <div ngIf="_ressource != null">
+    <div *ngIf="_ressource != null; else error ">
     <form>
     <div class="form-group">
-    <label for="_ressource.Id">Id</label>
-    {{_ressource.Id}}
+    <label for="_ressource.Id">Id : {{_ressource.Id}}</label>
     </div>
     <div class="form-group">
     <label for="_ressource.Name">Name</label>
-    {{_ressource.Name}}
+    <input value="{{_ressource.Name}}" [(ngModel)]="_ressource.Name" name="name">
     </div>
     <div class="form-group">
     <label for="_ressource.Type">Type</label>
-    {{_ressource.Type}}
+    <input value="{{_ressource.Type}}" [(ngModel)]="_ressource.Type" name="type">
     </div>
+    <button (click)="saveUpdate()">Redigér</button>
+    <button (click)="deleteRes()">Slet</button>
     </form>
     </div>
     `
@@ -26,7 +27,8 @@ import {ActivatedRoute} from '@angular/router';
 export class RessourceComponent{
 
      @Input() _ressource : any;
-    
+     error : any = console.log("not found");
+         
     constructor(private resService:RessourceService, private activatedRoute: ActivatedRoute){
     }
 
@@ -37,7 +39,12 @@ export class RessourceComponent{
         })
     }
 
+    saveUpdate(){
+        this.resService.saveRessource(this._ressource);
+    }
 
-
+    deleteRes(){
+        this.resService.deleteRessource(this._ressource.Id);
+    }
 
 }

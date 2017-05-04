@@ -5,6 +5,7 @@ import {EmployeeComponent} from './employee.component';
 
 import {RessourceListComponent} from './ressourceList.component';
 import {RessourceComponent} from './ressource.component';
+import {NewRessourceComponent} from './newRessource.component';
 
 
 const routes = [{
@@ -19,7 +20,9 @@ const routes = [{
 },{
     path:'employee/:initials',
     component: EmployeeComponent
-
+},{
+    path:'createRessource',
+    component: NewRessourceComponent
 }
 ]
 
