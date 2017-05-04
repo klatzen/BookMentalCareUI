@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, Input} from '@angular/core';
 import {RessourceService} from './services/ressource.service';
 import {ActivatedRoute} from '@angular/router';
 
@@ -11,7 +11,7 @@ import {ActivatedRoute} from '@angular/router';
                 <td>Serial Number</td>
             </thead>
         <tbody>
-            <tr *ngFor="let unit of _Units">
+            <tr *ngFor="let unit of _Units | filterBy : userFilter">
                 <td>{{unit.Id}}</td>
                 <td>{{unit.SerialNo}}</td>
             </tr>
@@ -22,14 +22,15 @@ import {ActivatedRoute} from '@angular/router';
 
 export class UnitListComponent{
 
-    _Units = [];
+   _Units = [];
+   userFilter : any = {Id: ''};
 
     constructor(private resService : RessourceService, private activatedRouter : ActivatedRoute ) {
     }
 
     ngOnInit() {
-        this.activatedRouter.params.map(params => params['resId']).subscribe(resId => {
-            this.resService.findUnits(resId);
+        this.activatedRouter.params.map(params => params['Id']).subscribe(Id => {
+            this.resService.findUnits(Id);
             this.resService.unitEvent.subscribe(data => this._Units = data);
         })
     }

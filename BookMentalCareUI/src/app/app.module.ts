@@ -12,7 +12,7 @@ import {NewRessourceComponent} from './newRessource.component';
 import {NewEmployeeComponent} from './newEmployee.component';
 import {PatientListComponent} from './patientList.component';
 import {PatientComponent} from './patient.component';
-import {UnitListComponent} from './unitList.Component';
+import {UnitListComponent} from './unitList.component';
 import {EmployeeService} from './services/employee.service';
 import {RessourceService} from './services/ressource.service';
 import {PatientService} from './services/patient.service';
