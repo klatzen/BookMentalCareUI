@@ -24,13 +24,18 @@ import {EmployeeService} from './services/employee.service';
         <input  [(ngModel)]="_Employee.INITIALS" name ="initials">
         
         </div>
+        <div class="form-group">
+        <label for="_Employee.PASSWORD"> Password </label>
+        <input  [(ngModel)]="_Employee.PASSWORD" name ="password" type="password">
+        
+        </div>
         </form>
         <button (click)="createEmployee()">Create Employee </button>
   `
 
 })
 export class NewEmployeeComponent {
-  _Employee:Employee = {FNAME:'',LNAME:'',TITLE:'',INITIALS:''};
+  _Employee:Employee = {FNAME:'',LNAME:'',TITLE:'',INITIALS:'', PASSWORD:''};
         constructor(private employeeService:EmployeeService){
             
         }
@@ -43,5 +48,6 @@ interface Employee{
   FNAME,
   LNAME,
   TITLE,
-  INITIALS
+  INITIALS,
+  PASSWORD
 }
