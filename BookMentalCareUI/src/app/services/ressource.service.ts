@@ -41,11 +41,13 @@ import 'rxjs/add/operator/map';
             .subscribe(()=>console.log("Done"),()=>console.log("error"));
         }
 
-        findUnits(Id : number) {
-            this.http.get('http://localhost:2026/api/unit/units/' + Id)
+        findUnits(id:number) {
+            this.http.get('http://localhost:2026/api/unit/GetUnits/' + id)
             .map(response => response.json())
-            .subscribe(data => {data.forEach(unit => this._Units.push(unit))})
-            return this._Units;
+            .subscribe(data => {data.forEach(unit => this._Units.push(unit)),()=> console.log("error"),()=>{
+                this.unitEvent.emit(this._Units);
+                console.log(this._Units);
+            }})
         }
 
         

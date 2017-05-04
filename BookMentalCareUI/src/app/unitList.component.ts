@@ -23,15 +23,16 @@ import {ActivatedRoute} from '@angular/router';
 export class UnitListComponent{
 
    _Units = [];
-   userFilter : any = {Id: ''};
+   userFilter : any = {id: ''};
 
     constructor(private resService : RessourceService, private activatedRouter : ActivatedRoute ) {
     }
 
     ngOnInit() {
-        this.activatedRouter.params.map(params => params['Id']).subscribe(Id => {
-            this.resService.findUnits(Id);
-            this.resService.unitEvent.subscribe(data => this._Units = data);
+        this.activatedRouter.params.map(params => params['id']).subscribe(id => {
+            this.resService.findUnits(id);
+            this.resService.unitEvent.subscribe(()=> console.log("Request"),()=>console.log("Error"),
+            data => this._Units = data);
         }) 
         console.log(this._Units)
     }
