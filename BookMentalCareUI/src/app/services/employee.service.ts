@@ -49,7 +49,8 @@ export class EmployeeService{
     })
         .map(response => response.json())
         .subscribe(data => this.Employee = data,()=> console.log("error"),()=>{
-            this.empEvent.emit(this.Employee);  
+            this.empEvent.emit(this.Employee);
+            return this.Employee; 
         })
     }
 }
