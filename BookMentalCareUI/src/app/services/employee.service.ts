@@ -1,4 +1,4 @@
-import {Http,RequestOptions} from '@angular/http';
+import {Http,RequestOptions, Headers} from '@angular/http';
 import {Injectable, Output,EventEmitter} from '@angular/core';
 import 'rxjs/add/operator/map';
 
@@ -11,6 +11,7 @@ export class EmployeeService{
     constructor(private http: Http){
 
     }
+    
 
     findEmployee(initials){
         this.http.get('http://localhost:2026/api/Employee/' + initials)
@@ -35,5 +36,20 @@ export class EmployeeService{
 
     deleteEmployee(id){
         this.http.delete('http://localhost:2026/api/Employee/'+ id).subscribe(()=>console.log("Done"),()=> console.log('Error'));
+    }
+
+    signIn(initials, password){
+        let header = new Headers();
+
+        header.append('Initials', initials);
+        header.append('Password', password);
+
+        this.http.get('http://localhost:2026/api/Employee/SignIn', {
+      headers: header
+    })
+        .map(response => response.json())
+        .subscribe(data => this.Employee = data,()=> console.log("error"),()=>{
+            this.empEvent.emit(this.Employee);  
+        })
     }
 }

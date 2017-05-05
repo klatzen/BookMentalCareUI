@@ -7,8 +7,8 @@ import {ActivatedRoute} from '@angular/router';
      <div *ngIf="_Room != null">
      <form>
      <div class="form-group">
-        <label for="_Room.Type"> Type</label>
-        <input value="{{_Room.Type}}" [(ngModel)]="_Room.Type" name="type">
+        <label for="_Room.TYPE"> Type</label>
+        <input value="{{_Room.TYPE}}" [(ngModel)]="_Room.TYPE" name="type">
     </div>
     <div class="form-group">
     <label for="_Room.ROOMNO">Room No. </label>

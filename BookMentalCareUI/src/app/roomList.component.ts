@@ -15,10 +15,10 @@ import {RoomService} from './services/room.service';
     </thead>
     <tbody>
         <tr *ngFor="let Room of _Rooms | filterBy: userFilter">
-        <a [routerLink]="['Room',Room.INITIALS]">
+        <a [routerLink]="[Room.ID]">
             <td>{{Room.ID}}</td>
             <td>{{Room.TYPE}}</td>
-            <td>{{Room.ROOMNO}}</td>></a>
+            <td>{{Room.ROOMNO}}</td></a>
         </tr>
     </tbody>
     </table>
