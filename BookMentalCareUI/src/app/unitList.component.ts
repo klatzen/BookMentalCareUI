@@ -13,9 +13,10 @@ import {ActivatedRoute} from '@angular/router';
             </thead>
         <tbody>
         
-            <tr *ngFor="let unit of _Units">
+            <tr *ngFor="let unit of _Units | filterBy : userFilter">
                 <td>{{unit.Id}}</td>
                 <td>{{unit.SerialNo}}</td>
+                <button [routerLink]="['/editUnit',unit.Id]">Redigér/Slet</button>
             </tr>
             
         </tbody>
@@ -27,7 +28,7 @@ import {ActivatedRoute} from '@angular/router';
 export class UnitListComponent{
 
    @Input() _Units = [];
-   userFilter : any = {id: ''};
+   userFilter : any = {Id: ''};
     constructor(private resService : RessourceService, private activatedRouter : ActivatedRoute ) {
     }
 

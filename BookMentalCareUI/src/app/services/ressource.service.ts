@@ -37,18 +37,39 @@ import 'rxjs/add/operator/map';
         }
 
         deleteRessource(id:number){
-            this.http.delete('http://localhost:2026/api/ressource' + id)
+            this.http.delete('http://localhost:2026/api/ressource/' + id)
             .subscribe(()=>console.log("Done"),()=>console.log("error"));
         }
 
         findUnits(id:number) {
 
-            this.http.get('http://localhost:2026/api/unit/GetUnits/' + id)
+            this.http.get('http://localhost:2026/api/unit/units/' + id)
             .map(response => response.json())
             .subscribe(data => {data.forEach(unit => this._Units.push(unit))})
             return this._Units;
-
         }
+
+
+        saveUnit(unit){
+            this.http.post('http://localhost:2026/api/unit/',unit)
+            .subscribe(()=>console.log("Done"),()=>console.log("Error"));
+        }
+
+        deleteUnit(id:number){
+            this.http.delete('http://localhost:2026/api/unit/' + id)
+            .subscribe(()=>console.log("Done"),()=>console.log("Error"));
+        }
+
+        findUnit(Id:number){
+            this.http.get('http://localhost:2026/api/unit/unit/' + Id)
+            .map(response =>  response.json())
+            .subscribe(data => this.Unit = data,()=> console.log("error"),()=>{
+                this.unitEvent.emit(this.Unit);
+                console.log(this.Unit);
+                return this.Unit;
+            })
+        }
+
 
         
     }
