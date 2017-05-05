@@ -9,7 +9,7 @@ import {EmployeeService} from './services/employee.service';
 })
  
 export class SignInComponent {
-    @Input() _Employee: any;
+    @Input() Employee: any;
 
 
   constructor(private _cookieService:CookieService, private employeeService: EmployeeService){
@@ -19,7 +19,7 @@ export class SignInComponent {
 
   signIn(){
       this.employeeService.signIn('HNH', '1234');
-      this.employeeService.empEvent.subscribe(data => this._Employee = data, () => console.log('Error'), data => {console.log(data);} );
+      this.employeeService.empEvent.subscribe(data => this.Employee = data, () => console.log('Error'), data => {console.log(data);} );
   }
  
   getCookie(key: string){
