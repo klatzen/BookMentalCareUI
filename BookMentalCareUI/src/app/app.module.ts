@@ -16,6 +16,7 @@ import {UnitListComponent} from './unitList.component';
 import {RoomListComponent} from './roomList.component';
 import {RoomComponent} from './room.component';
 import {NewRoomComponent} from './newRoom.component';
+import {EditUnitComponent} from './editUnit.component';
 
 import {EmployeeService} from './services/employee.service';
 import {RessourceService} from './services/ressource.service';
@@ -41,7 +42,8 @@ import {routing} from './app.route';
     PatientComponent,
     RoomListComponent,
     RoomComponent,
-    NewRoomComponent
+    NewRoomComponent,
+    EditUnitComponent
   ],
   imports: [
     BrowserModule,

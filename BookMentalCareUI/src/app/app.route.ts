@@ -9,6 +9,7 @@ import {NewRessourceComponent} from './newRessource.component';
 import {PatientListComponent} from './patientList.component';
 import {PatientComponent} from './patient.component';
 import {UnitListComponent} from './unitList.component';
+import {EditUnitComponent} from'./editUnit.component';
 import {RoomComponent} from './room.component';
 import {RoomListComponent} from './roomList.component';
 import {NewRoomComponent} from './newRoom.component';
@@ -62,6 +63,9 @@ const routes = [{
     path:'roomCreate',
     component: NewRoomComponent
 
+},{
+    path:'editUnit/:Id',
+    component: EditUnitComponent
 }
 ]
 
