@@ -11,7 +11,7 @@ import {ActivatedRoute} from '@angular/router';
         <input value="{{_Patient.FNAME}}" [(ngModel)]="_Patient.FNAME" name="first">
     </div>
     <div class="form-group">
-    <label for="_PatientLNAME">Last Name </label>
+        <label for="_Patient.LNAME">Last Name </label>
         <input value="{{_Patient.LNAME}}" [(ngModel)]="_Patient.LNAME" name="last">
         </div>
         <div class="form-group">
