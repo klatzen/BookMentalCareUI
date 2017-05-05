@@ -64,18 +64,13 @@ const routes = [{
 {
     path:'roomCreate',
     component: NewRoomComponent
-
-<<<<<<< HEAD
 },{
     path:'editUnit/:Id',
     component: EditUnitComponent
-=======
 },
 {
     path:'signIn',
     component: SignInComponent
-
->>>>>>> origin/master
 }
 ]
 

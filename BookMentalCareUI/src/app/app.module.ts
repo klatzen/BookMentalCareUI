@@ -17,11 +17,10 @@ import {UnitListComponent} from './unitList.component';
 import {RoomListComponent} from './roomList.component';
 import {RoomComponent} from './room.component';
 import {NewRoomComponent} from './newRoom.component';
-<<<<<<< HEAD
+
 import {EditUnitComponent} from './editUnit.component';
-=======
+
 import {SignInComponent} from './signIn.component';
->>>>>>> origin/master
 
 import {EmployeeService} from './services/employee.service';
 import {RessourceService} from './services/ressource.service';
@@ -49,11 +48,8 @@ import {routing} from './app.route';
     RoomListComponent,
     RoomComponent,
     NewRoomComponent,
-<<<<<<< HEAD
-    EditUnitComponent
-=======
+    EditUnitComponent,
     SignInComponent
->>>>>>> origin/master
   ],
   imports: [
     BrowserModule,
