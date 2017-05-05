@@ -60,8 +60,8 @@ import 'rxjs/add/operator/map';
             .subscribe(()=>console.log("Done"),()=>console.log("Error"));
         }
 
-        findUnit(Id:number){
-            this.http.get('http://localhost:2026/api/unit/unit/' + Id)
+        findUnit(id:number){
+            this.http.get('http://localhost:2026/api/unit/unit/' + id)
             .map(response =>  response.json())
             .subscribe(data => this.Unit = data,()=> console.log("error"),()=>{
                 this.unitEvent.emit(this.Unit);
