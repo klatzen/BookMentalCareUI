@@ -13,6 +13,8 @@ import {RoomComponent} from './room.component';
 import {RoomListComponent} from './roomList.component';
 import {NewRoomComponent} from './newRoom.component';
 
+import {SignInComponent} from './signIn.component';
+
 
 
 const routes = [{
@@ -61,6 +63,11 @@ const routes = [{
 {
     path:'roomCreate',
     component: NewRoomComponent
+
+},
+{
+    path:'signIn',
+    component: SignInComponent
 
 }
 ]
