@@ -5,7 +5,7 @@ import {ActivatedRoute} from '@angular/router';
 @Component({
     selector: 'unitList',
     template: `
-    <div *ngIf="_Units">
+    <div>
         <table>
             <thead>
                 <td>Unit ID</td>

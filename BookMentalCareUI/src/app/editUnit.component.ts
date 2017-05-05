@@ -33,8 +33,8 @@ export class EditUnitComponent{
     }
 
     ngOnInit(){
-            this.activatedRoute.params.map(params => params['Id']).subscribe(Id => {
-            this.resService.findUnit(Id);
+            this.activatedRoute.params.map(params => params['id']).subscribe(id => {
+            this.resService.findUnit(id);
             this.resService.resEvent.subscribe(data => this._unit = data),()=>console.log("Error");
         })
     }
