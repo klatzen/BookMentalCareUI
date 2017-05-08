@@ -15,6 +15,7 @@ import {RoomListComponent} from './roomList.component';
 import {NewRoomComponent} from './newRoom.component';
 
 import {SignInComponent} from './signIn.component';
+import {NewBookingComponent} from './newBooking.component';
 
 
 
@@ -71,6 +72,10 @@ const routes = [{
 {
     path:'signIn',
     component: SignInComponent
+},
+{
+    path:'newBooking',
+    component: NewBookingComponent
 }
 ]
 
