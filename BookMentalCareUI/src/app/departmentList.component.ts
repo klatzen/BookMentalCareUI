@@ -1,5 +1,6 @@
-import {Component} from '@angular/core';
+import {Component, EventEmitter, Output} from '@angular/core';
 import {DepartmentService} from './services/department.service';
+
 
 @Component({
     selector: 'depList',
@@ -15,11 +16,20 @@ import {DepartmentService} from './services/department.service';
     </thead>
     <tbody>
         <tr *ngFor="let Department of _Departments | filterBy: userFilter">
+        <div *ngIf="route != '/employeeCreate'">
         <a [routerLink]="[Department.ID]">
             <td>{{Department.ID}}</td>
             <td>{{Department.NAME}}</td>
             <td>{{Department.LOCATION}}</td>
             </a>
+            </div>
+            <div *ngIf="route == '/employeeCreate'">
+        <a (click)="onClick(Department)">
+            <td>{{Department.ID}}</td>
+            <td>{{Department.NAME}}</td>
+            <td>{{Department.LOCATION}}</td>
+            </a>
+            </div>
         </tr>
     </tbody>
     </table>
@@ -28,8 +38,22 @@ import {DepartmentService} from './services/department.service';
 export class DepartmentListComponent{
         _Departments = [];
         userFilter: any = { NAME: '' };
+        @Output() sendDepartment : EventEmitter<any> = new EventEmitter();
+        @Output() Department;
+        
 
+        route : any;
+
+        ngOnInit(){
+            this.route = window.location.pathname;
+        }
+
+        onClick(Department){
+            this.sendDepartment.emit(Department);
+        }
+        
         constructor(private departmentService : DepartmentService){
             this._Departments = departmentService.findDepartments();
+
         }      
 }

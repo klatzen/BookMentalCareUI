@@ -4,7 +4,7 @@ import {EmployeeService} from './services/employee.service';
 @Component({
     selector: 'empList',
     template: `
-    <input type="text" [(ngModel)]="userFilter.INITIALS" placeholder="name">
+    <input type="text" [(ngModel)]="userFilter.INITIALS" placeholder="name, department">
     <table>
     <thead>
         <tr>
@@ -13,6 +13,7 @@ import {EmployeeService} from './services/employee.service';
             <td>Last Name</td>
             <td>Title</td>
             <td>Initials</td>
+            <td>Department</td>
         </tr>
     </thead>
     <tbody>
@@ -22,7 +23,8 @@ import {EmployeeService} from './services/employee.service';
             <td>{{Employee.FNAME}}</td>
             <td>{{Employee.LNAME}}</td>
             <td>{{Employee.TITLE}}</td>
-            <td>{{Employee.INITIALS}}</td></a>
+            <td>{{Employee.INITIALS}}</td>
+            <td>{{Employee.DEPARTMENT}}</td></a>
         </tr>
     </tbody>
     </table>
@@ -30,7 +32,7 @@ import {EmployeeService} from './services/employee.service';
 })
 export class EmployeeListComponent{
         _Employees = [];
-        userFilter: any = { INITIALS: '' };
+        userFilter: any = { INITIALS: '',DEPARTMENT:'' };
 
         constructor(private employeeService : EmployeeService){
             this._Employees = employeeService.findEmployees();

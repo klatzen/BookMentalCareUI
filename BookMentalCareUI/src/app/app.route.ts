@@ -13,6 +13,7 @@ import {EditUnitComponent} from'./editUnit.component';
 import {RoomComponent} from './room.component';
 import {RoomListComponent} from './roomList.component';
 import {NewRoomComponent} from './newRoom.component';
+import {DepartmentListComponent} from './departmentList.component';
 
 import {SignInComponent} from './signIn.component';
 
@@ -71,6 +72,10 @@ const routes = [{
 {
     path:'signIn',
     component: SignInComponent
+},
+{
+    path:'departmentList',
+    component:DepartmentListComponent
 }
 ]
 
