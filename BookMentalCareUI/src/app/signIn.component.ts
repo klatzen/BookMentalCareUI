@@ -8,8 +8,8 @@ import {EmployeeService} from './services/employee.service';
     template: ` 
     <h1>Login </h1>
         <div>
-        <label for="_Employee.INITIALS">Initials </label>
-        <input value="{{_Employee.INITIALS}}" [(ngModel)]="_Employee.INITIALS" name="initials">
+        <label for="_Employee.INITIALS">INITIALS </label>
+        <input value="{{_Employee.INITIALS}}" [(ngModel)]="_Employee.INITIALS" name="INITIALS">
         </div>
         <div class="form-group">
         <label for="_Employee.PASSWORD"> Password </label>
@@ -19,7 +19,7 @@ import {EmployeeService} from './services/employee.service';
 })
  
 export class SignInComponent {
-    @Input() _Employee: any;
+    @Input() _Employee: any = {INITIALS: '',PASSWORD:''};
 
 
   constructor(private _cookieService:CookieService, private employeeService: EmployeeService){
@@ -28,12 +28,10 @@ export class SignInComponent {
 
 
   signIn(){
-      this._Employee = this.employeeService.signIn('HNH', '1234');
-      this.employeeService.empEvent.subscribe(data =>{ 
-          this._Employee = data;
-          console.log(this._Employee);
-          this._cookieService.putObject('login',this._Employee);
-        },()=> console.log("ERROR"),()=> console.log("Done"));
+      this.employeeService.signIn(this._Employee.INITIALS,this._Employee.PASSWORD);
+      this.employeeService.empEvent.subscribe(data => {console.log(data);
+        this._cookieService.put('login',this._Employee);  
+    });
   }
   signOff(){
       this._cookieService.remove('login');

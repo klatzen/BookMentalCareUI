@@ -2,7 +2,7 @@ import {Component} from '@angular/core';
 import {RoomService} from './services/room.service';
 
 @Component({
-    selector: 'empList',
+    selector: 'roomList',
     template: `
     <input type="text" [(ngModel)]="userFilter.ROOMNO" placeholder="name">
     <table>

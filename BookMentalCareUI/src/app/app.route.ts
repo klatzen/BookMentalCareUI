@@ -16,6 +16,7 @@ import {NewRoomComponent} from './newRoom.component';
 import {DepartmentListComponent} from './departmentList.component';
 
 import {SignInComponent} from './signIn.component';
+import {NewBookingComponent} from './newBooking.component';
 
 
 
@@ -74,8 +75,13 @@ const routes = [{
     component: SignInComponent
 },
 {
+<<<<<<< HEAD
     path:'departmentList',
     component:DepartmentListComponent
+=======
+    path:'newBooking',
+    component: NewBookingComponent
+>>>>>>> origin/master
 }
 ]
 
