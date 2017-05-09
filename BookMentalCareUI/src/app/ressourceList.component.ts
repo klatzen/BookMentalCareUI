@@ -1,5 +1,6 @@
-import {Component} from '@angular/core';
+import {Component, Output, EventEmitter} from '@angular/core';
 import {RessourceService} from './services/ressource.service';
+import {BookingService} from'./services/booking.service';
 
 @Component({
     selector: 'resList',
@@ -16,6 +17,7 @@ import {RessourceService} from './services/ressource.service';
                 <td>{{ressource.Name}}</td>
                 <td>{{ressource.Type}}</td>
                 <button [routerLink]="['/unit',ressource.Id]">Se Eksemplarer</button>
+                <button (click)="OnClick(Ressource)">Add</button>
             </tr>
             <button [routerLink]="['/createRessource']">Opret ny</button>
         </tbody>
@@ -27,10 +29,22 @@ import {RessourceService} from './services/ressource.service';
 export class RessourceListComponent{
 
     _Ressources = [];
+    _Bookings = [];
+     @Output() sendRessource : EventEmitter<any> = new EventEmitter();
+     @Output() Ressource;
+
 
     userFilter : any = {Id: ''};
 
-    constructor(private resService:RessourceService){
+    constructor(private resService:RessourceService, private bookService : BookingService){
         this._Ressources = resService.findRessources();
+        this._Bookings = bookService.findBookings();
     }
+
+    OnClick(Ressource) {
+        this.sendRessource.emit(Ressource);
+    }
+
+
 }
+

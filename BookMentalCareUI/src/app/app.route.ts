@@ -74,13 +74,12 @@ const routes = [{
     component: SignInComponent
 },
 {
-<<<<<<< HEAD
     path:'departmentList',
     component:DepartmentListComponent
-=======
+},{
     path:'newBooking',
     component: NewBookingComponent
->>>>>>> origin/master
+
 }
 ]
 

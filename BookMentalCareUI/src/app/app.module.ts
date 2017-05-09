@@ -21,6 +21,7 @@ import {EditUnitComponent} from './editUnit.component';
 import {DepartmentListComponent} from './departmentList.component';
 import {NewDepartmentComponent} from './newDepartment.component';
 import {DepartmentComponent} from './department.component';
+import {NewBookingComponent} from './newBooking.component';
 
 import {SignInComponent} from './signIn.component';
 
@@ -29,6 +30,7 @@ import {RessourceService} from './services/ressource.service';
 import {PatientService} from './services/patient.service';
 import {RoomService} from './services/room.service';
 import {DepartmentService} from './services/department.service';
+import {BookingService} from './services/booking.service';
 
 import { Ng2FilterPipeModule } from 'ng2-filter-pipe';
 import { CookieService } from 'angular2-cookie/services/cookies.service';
@@ -55,7 +57,8 @@ import {routing} from './app.route';
     SignInComponent,
     NewDepartmentComponent,
     DepartmentComponent,
-    DepartmentListComponent
+    DepartmentListComponent,
+    NewBookingComponent
   ],
   imports: [
     BrowserModule,
@@ -70,7 +73,8 @@ import {routing} from './app.route';
     PatientService,
     RoomService,
     CookieService,
-    DepartmentService
+    DepartmentService,
+    BookingService
   ],
   bootstrap: [AppComponent]
 })

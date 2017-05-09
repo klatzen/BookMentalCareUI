@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, Output, EventEmitter} from '@angular/core';
 import {PatientService} from './services/patient.service';
 
 @Component({
@@ -22,6 +22,7 @@ import {PatientService} from './services/patient.service';
             <td>{{Patient.LNAME}}</td>
             <td>{{Patient.MEDREGNO}}</td>
             </a>
+            <button (click)="OnClick(Patient)">Add</button>
         </tr>
     </tbody>
     </table>
@@ -30,8 +31,14 @@ import {PatientService} from './services/patient.service';
 export class PatientListComponent{
         _Patients = [];
         userFilter: any = { FNAME: '' };
+        @Output() Patient;
+         @Output() sendPatient : EventEmitter<any> = new EventEmitter();
 
         constructor(private patientService : PatientService){
             this._Patients = patientService.findPatients();
-        }      
+        } 
+
+        OnClick(Patient) {
+            this.sendPatient.emit(Patient);
+        }     
 }

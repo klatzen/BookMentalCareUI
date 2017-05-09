@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, Output, EventEmitter} from '@angular/core';
 import {EmployeeService} from './services/employee.service';
 
 @Component({
@@ -25,16 +25,23 @@ import {EmployeeService} from './services/employee.service';
             <td>{{Employee.TITLE}}</td>
             <td>{{Employee.INITIALS}}</td>
             <td>{{Employee.DEPARTMENT}}</td></a>
+            <button (click)="OnClick(Employee)">Add</button>
         </tr>
     </tbody>
     </table>
     `
 })
 export class EmployeeListComponent{
+        @Output() Employee;
+        @Output() sendEmployee : EventEmitter<any> = new EventEmitter();
         _Employees = [];
         userFilter: any = { INITIALS: '',DEPARTMENT:'' };
 
         constructor(private employeeService : EmployeeService){
             this._Employees = employeeService.findEmployees();
         }      
+
+        OnClick(Employee){
+            this.sendEmployee.emit(Employee);
+        }
 }
