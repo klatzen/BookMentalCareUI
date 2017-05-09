@@ -49,22 +49,22 @@ export class RessourceListComponent{
     userFilter : any = {Id: ''};
 
     constructor(private resService:RessourceService, private bookService : BookingService){
-        this._Ressources = resService.findRessources();
+       resService.findRessources();
         this._Bookings = bookService.findBookings();
         this._Units = resService.findAvailibleUnits('16/05-2017', '20/05-2017');
+        
+            console.log(this._Units);
     }
 
     ngOnInit(){
             this.route = window.location.pathname;
-            console.log(this._Units);
-            
-            this._Units.forEach(u => {
-                this._Ressources.forEach(r => {
-                    if(u.RessourceId == r.Id){
-                        this._AvalibleRessources.push(r);
-                    }
-                });
-            });
+            this.resService.resEvent.subscribe(data => this._Ressources = data);
+            this.resService.unitEvent.subscribe(data => {data.forEach(u => this._Ressources.forEach(r => {
+                if(u.RessourceId = r.Id){
+                    this._AvalibleRessources.push(r);
+                    
+                }
+            }))});    
         }
 
     OnClick(id:number) {

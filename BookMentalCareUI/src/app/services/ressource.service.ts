@@ -20,7 +20,9 @@ import 'rxjs/add/operator/map';
             this._Ressources = [];
             this.http.get('http://localhost:2026/api/ressource')
             .map(response => response.json())
-            .subscribe(data => {data.forEach(ressource => this._Ressources.push(ressource))})
+            .subscribe(data => {data.forEach(ressource => this._Ressources.push(ressource))
+        this.resEvent.emit(this._Ressources);    
+        })
             return this._Ressources;
         }
 
@@ -75,7 +77,8 @@ import 'rxjs/add/operator/map';
             this._Units = [];
             this.http.get('http://localhost:2026/api/ressource?startDate=' + startDate + '&endDate=' + endDate)
             .map(response => response.json())
-            .subscribe(data => {data.forEach(unit => this._Units.push(unit))})
+            .subscribe(data => {data.forEach(unit => this._Units.push(unit))
+            this.unitEvent.emit(this._Units)})
             return this._Units;
         }
 
