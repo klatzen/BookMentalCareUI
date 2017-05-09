@@ -26,20 +26,21 @@ import {BookingService} from './services/booking.service';
             <br>
             <hr>
             <div *ngIf="showEmp">
-            <empList></empList>
+            <empList (sendEmployee)="getEmployee($event)"></empList>
+            
             </div>
 
             <div *ngIf="showPat">
-            <patList></patList>
+            <patList (sendPatient)="getPatient($event)"></patList>
             </div>
 
             <div *ngIf="showRes">
-            <resList></resList>
+            <resList (sendRessource)="getRessource($event)"></resList>
             </div>
     `
 })
 export class NewBookingComponent{
-    @Input() booking: Booking = {Description: "", Date: "", StartTime: "", EndTime: "", Ressources: "", Patient: "", Employees: "", Room: ""};
+    @Input() booking: Booking = {Description: "", Date: "", StartTime: "", EndTime: "", Ressources: [], Patient: "", Employees: [], Room: ""};
 
     showEmp = false;
     showPat = false;
@@ -55,6 +56,21 @@ export class NewBookingComponent{
 
     showRessources(){
         this.showRes= !this.showRes;
+    }
+    
+    getEmployee(event) {
+
+        this.booking.Employees.push(event);
+    }
+       
+     getPatient(event) {
+
+        this.booking.Patient = event;
+    }
+
+    getRessource(event) {
+        this.booking.Ressources.push(event);
+        console.log(this.booking);
     }
 }
 

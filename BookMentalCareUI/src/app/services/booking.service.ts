@@ -7,6 +7,7 @@ export class BookingService{
     @Output() _Bookings = [];
     @Output() Booking;
     @Output() booEvent = new EventEmitter();
+    @Output() SortedBookings= [];
 
     constructor(private http: Http){
 
@@ -35,5 +36,15 @@ export class BookingService{
 
     deleteBooking(id){
         this.http.delete('http://localhost:2026/api/Booking/'+ id).subscribe(()=>console.log("Done"),()=> console.log('Error'));
+    }
+
+        sortBookings(newStart, newEnd) {
+        
+        this._Bookings.forEach(booking => {
+            if(booking.StartTime >= newStart && booking.EndTime <= newEnd){
+                this.SortedBookings.push(booking);
+            }
+        });
+        return this.SortedBookings;
     }
 }
