@@ -52,17 +52,14 @@ export class RessourceListComponent{
        resService.findRessources();
         this._Bookings = bookService.findBookings();
         this._Units = resService.findAvailibleUnits('16/05-2017', '20/05-2017');
-        
-            console.log(this._Units);
     }
 
     ngOnInit(){
             this.route = window.location.pathname;
             this.resService.resEvent.subscribe(data => this._Ressources = data);
             this.resService.unitEvent.subscribe(data => {data.forEach(u => this._Ressources.forEach(r => {
-                if(u.RessourceId = r.Id){
-                    this._AvalibleRessources.push(r);
-                    
+                if(u.RessourceId == r.Id){
+                    this._AvalibleRessources.push(r);   
                 }
             }))});    
         }
@@ -76,8 +73,23 @@ export class RessourceListComponent{
             this._Units.splice(index, 1);
         }
         break
+        }
     }
-}
+        var del = true;
+        this._AvalibleRessources.forEach(res => {
+            this._Units.forEach(uni => {
+                if(res.Id == uni.RessourceId){
+                    del = false;
+                }
+            });
+            if(del){
+            this._AvalibleRessources.splice(this._AvalibleRessources.indexOf(res), 1);
+        }
+        del = true;
+        
+        });
+
+
     }
 }
 
