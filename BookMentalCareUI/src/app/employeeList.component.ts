@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-import {Component, Input} from '@angular/core';
-=======
-import {Component, Output, EventEmitter} from '@angular/core';
->>>>>>> origin/master
+import {Component, Output, EventEmitter, Input} from '@angular/core';
 import {EmployeeService} from './services/employee.service';
 
 @Component({
@@ -28,12 +24,8 @@ import {EmployeeService} from './services/employee.service';
             <td>{{Employee.LNAME}}</td>
             <td>{{Employee.TITLE}}</td>
             <td>{{Employee.INITIALS}}</td>
-<<<<<<< HEAD
             <td *ngIf="Employee.DEPARTMENT">{{Employee.DEPARTMENT.NAME}}</td></a>
-=======
-            <td>{{Employee.DEPARTMENT}}</td></a>
             <button (click)="OnClick(Employee)">Add</button>
->>>>>>> origin/master
         </tr>
     </tbody>
     </table>
