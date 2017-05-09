@@ -30,6 +30,15 @@ export class EmployeeService{
         return this._Employess;
     }
 
+    findAvailEmployees(startTime, endTime){
+        this._Employess= [];
+        this.http.get('http://localhost:2026/api/Booking/GetEmployees/?startTime='+ "17-05-2017" +"&endTime=" + "30-05-2017")
+        .map(response => response.json())
+        .subscribe(data=> {data.forEach(employee => this._Employess.push(employee))})
+
+        return this._Employess;
+    }
+
     saveEmployee(tempEmployee){
         this.http.post('http://localhost:2026/api/Employee',tempEmployee).subscribe(()=>console.log("Done"),()=> console.log('Error'));
     }

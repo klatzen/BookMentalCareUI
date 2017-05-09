@@ -23,8 +23,8 @@ import {DepartmentListComponent} from './departmentList.component';
         </div>
 
         <div class="form-group">
-        <label for="_Employee.DEPARTMENT"> Department </label>
-        <input [(ngModel)]="_Employee.DEPARTMENT" name="department">
+        <label for="_Employee.DEPARTMENT.NAME"> Department </label>
+        <input [(ngModel)]="_Employee.DEPARTMENT.NAME" name="department">
         </div>
 
         <div class="form-group">
@@ -55,7 +55,7 @@ export class NewEmployeeComponent {
         }
 
         getDepartment(event){
-          console.log(event);
+          this._Employee.DEPARTMENT = event;
         }
 
 }

@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, Input} from '@angular/core';
 import {EmployeeService} from './services/employee.service';
 
 @Component({
@@ -24,7 +24,7 @@ import {EmployeeService} from './services/employee.service';
             <td>{{Employee.LNAME}}</td>
             <td>{{Employee.TITLE}}</td>
             <td>{{Employee.INITIALS}}</td>
-            <td>{{Employee.DEPARTMENT}}</td></a>
+            <td *ngIf="Employee.DEPARTMENT">{{Employee.DEPARTMENT.NAME}}</td></a>
         </tr>
     </tbody>
     </table>
@@ -33,8 +33,18 @@ import {EmployeeService} from './services/employee.service';
 export class EmployeeListComponent{
         _Employees = [];
         userFilter: any = { INITIALS: '',DEPARTMENT:'' };
+        @Input() startTime;
+        @Input() endTime;
+
+        ngOnInit(){
+            if(window.location.pathname == "/newBooking"){
+                this._Employees = this.employeeService.findAvailEmployees(this.startTime,this.endTime);
+            }
+            else{
+                this._Employees = this.employeeService.findEmployees();
+            }
+        }
 
         constructor(private employeeService : EmployeeService){
-            this._Employees = employeeService.findEmployees();
         }      
 }
