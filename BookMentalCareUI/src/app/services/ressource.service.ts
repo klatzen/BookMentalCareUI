@@ -17,6 +17,7 @@ import 'rxjs/add/operator/map';
         }
 
         findRessources(){
+            this._Ressources = [];
             this.http.get('http://localhost:2026/api/ressource')
             .map(response => response.json())
             .subscribe(data => {data.forEach(ressource => this._Ressources.push(ressource))})
@@ -68,6 +69,14 @@ import 'rxjs/add/operator/map';
                 console.log(this.Unit);
                 return this.Unit;
             })
+        }
+
+        findAvailibleUnits(startDate:string, endDate:string) {
+            this._Units = [];
+            this.http.get('http://localhost:2026/api/ressource?startDate=' + startDate + '&endDate=' + endDate)
+            .map(response => response.json())
+            .subscribe(data => {data.forEach(unit => this._Units.push(unit))})
+            return this._Units;
         }
 
 
