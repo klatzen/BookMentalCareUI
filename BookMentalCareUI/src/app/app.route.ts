@@ -80,9 +80,6 @@ const routes = [{
 {
     path:'newBooking',
     component: NewBookingComponent
-},{
-    path:'newBooking',
-    component: NewBookingComponent
 }
 ]
 

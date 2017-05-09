@@ -1,5 +1,7 @@
 import {Component} from '@angular/core';
 import {RoomService} from './services/room.service';
+import{CookieService} from 'angular2-cookie/core';
+import {Router} from '@angular/router';
 
 @Component({
     selector: 'roomList',
@@ -37,7 +39,7 @@ export class RoomListComponent{
         userFilter: any = { ROOMNO: '' };
         startTime: any= '';
         endTime:any = '';
-        constructor(private RoomService : RoomService){
+        constructor(private RoomService : RoomService, private cookieService : CookieService, private router : Router){
             this._Rooms = RoomService.findRooms();
         }      
 
@@ -45,6 +47,9 @@ export class RoomListComponent{
             this._Rooms = this.RoomService.findAvailRooms(this.startTime,this.endTime);
         }
         createBooking(Room){
-
+            this.cookieService.putObject("room",Room);
+            this.cookieService.put("startTime",this.startTime);
+            this.cookieService.put("endTime",this.endTime);
+            this.router.navigate(['newBooking']);
         }
 }
