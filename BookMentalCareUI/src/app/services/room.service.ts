@@ -4,7 +4,7 @@ import 'rxjs/add/operator/map';
 
 @Injectable()
 export class RoomService{
-    @Output() _Room = [];
+    @Output() _Rooms = [];
     @Output() Room;
     @Output() roomEvent = new EventEmitter();
 
@@ -24,9 +24,9 @@ export class RoomService{
     findRooms(){
         this.http.get('http://localhost:2026/api/Room')
         .map(response => response.json())
-        .subscribe(data => {data.forEach(Room => this._Room.push(Room))})
+        .subscribe(data => {data.forEach(Room => this._Rooms.push(Room))})
 
-        return this._Room;
+        return this._Rooms;
     }
 
     saveRoom(tempRoom){
@@ -35,5 +35,13 @@ export class RoomService{
 
     deleteRoom(id){
         this.http.delete('http://localhost:2026/api/Room/'+ id).subscribe(()=>console.log("Done"),()=> console.log('Error'));
+    }
+    findAvailRooms(startTime, endTime){
+        this._Rooms = [];
+        this.http.get('http://localhost:2026/api/Room/?startTime='+ startTime +"&endTime=" + endTime)
+        .map(response => response.json())
+        .subscribe(data=> {data.forEach(employee => this._Rooms .push(employee))})
+
+        return this._Rooms ;
     }
 }

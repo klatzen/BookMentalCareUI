@@ -32,7 +32,7 @@ export class EmployeeService{
 
     findAvailEmployees(startTime, endTime){
         this._Employess= [];
-        this.http.get('http://localhost:2026/api/Employee/GetEmployees/?startTime='+ "17-05-2017" +"&endTime=" + "30-05-2017")
+        this.http.get('http://localhost:2026/api/Employee/GetEmployees/?startTime='+ startTime +"&endTime=" + endTime)
         .map(response => response.json())
         .subscribe(data=> {data.forEach(employee => this._Employess.push(employee))})
 
