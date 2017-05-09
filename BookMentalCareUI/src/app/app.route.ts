@@ -14,7 +14,6 @@ import {RoomComponent} from './room.component';
 import {RoomListComponent} from './roomList.component';
 import {NewRoomComponent} from './newRoom.component';
 import {DepartmentListComponent} from './departmentList.component';
-
 import {SignInComponent} from './signIn.component';
 import {NewBookingComponent} from './newBooking.component';
 
