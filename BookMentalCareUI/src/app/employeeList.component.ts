@@ -1,7 +1,6 @@
-import {Component, Output, EventEmitter, Input, Injectable, SimpleChanges} from '@angular/core';
+import {Component, Output, EventEmitter, Input, SimpleChanges} from '@angular/core';
 import {EmployeeService} from './services/employee.service';
 
-@Injectable()
 @Component({
     selector: 'empList',
     template: `

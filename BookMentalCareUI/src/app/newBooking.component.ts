@@ -31,7 +31,7 @@ import {EmployeeListComponent} from './employeeList.component'
             </div>
 
             <div *ngIf="booking.Patient">
-            <p>Patient: {{booking.Patient.FNAME}} {{booking.Patient.LNAME}}, {{booking.Patient.MEDREGNO}}</p>
+            <p>Patient: {{booking.Patient.FNAME}} {{booking.Patient.LNAME}}, {{booking.Patient.MEDREGNO}} <button (click)="removePatient(booking.Patient)">X</button></p>
             </div>
 
             <div *ngIf="!(booking.Employees.length == 0)">
@@ -52,12 +52,12 @@ import {EmployeeListComponent} from './employeeList.component'
 
             <hr>
             <div *ngIf="showEmp">
-            <empList [removeEmp]="Employee  " (sendEmployee)="getEmployee($event)"></empList>
+            <empList [removeEmp]="Employee" (sendEmployee)="getEmployee($event)"></empList>
             
             </div>
 
             <div *ngIf="showPat">
-            <patList (sendPatient)="getPatient($event)"></patList>
+            <patList [removePatient]="booking.Patient" (sendPatient)="getPatient($event)"></patList>
             </div>
 
             <div *ngIf="showRes">
@@ -94,7 +94,6 @@ export class NewBookingComponent{
     }
        
      getPatient(event) {
-
         this.booking.Patient = event;
     }
 
@@ -105,6 +104,10 @@ export class NewBookingComponent{
     removeEmployee(emp){
         this.booking.Employees.splice(this.booking.Employees.indexOf(emp), 1);
         this.Employee = emp;
+    }
+
+    removePatient(pat){
+        this.booking.Patient = null;
     }
 }
 

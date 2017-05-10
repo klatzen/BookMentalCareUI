@@ -1,4 +1,4 @@
-import {Component, Output, EventEmitter} from '@angular/core';
+import {Component, Output, Input, EventEmitter, SimpleChanges} from '@angular/core';
 import {PatientService} from './services/patient.service';
 
 @Component({
@@ -32,7 +32,8 @@ export class PatientListComponent{
         _Patients = [];
         userFilter: any = { FNAME: '' };
         @Output() Patient;
-         @Output() sendPatient : EventEmitter<any> = new EventEmitter();
+        @Output() sendPatient : EventEmitter<any> = new EventEmitter();
+        @Input() removePatient;
 
         constructor(private patientService : PatientService){
             this._Patients = patientService.findPatients();
@@ -42,4 +43,10 @@ export class PatientListComponent{
             this.sendPatient.emit(Patient);
             this._Patients.splice(this._Patients.indexOf(Patient), 1);
         }     
+
+        ngOnChanges(changes: SimpleChanges){
+            if(this.removePatient !== null){
+                this._Patients.push(this.removePatient);
+            }
+        }
 }
