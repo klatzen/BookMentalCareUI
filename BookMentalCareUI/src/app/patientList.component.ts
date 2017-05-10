@@ -42,5 +42,6 @@ export class PatientListComponent{
 
         OnClick(Patient) {
             this.sendPatient.emit(Patient);
+            this._Patients.splice(this._Patients.indexOf(Patient), 1);
         }     
 }
