@@ -58,7 +58,7 @@ import {EmployeeListComponent} from './employeeList.component'
             </div>
 
             <div *ngIf="showPat">
-            <patList (sendPatient)="getPatient($event)"></patList>
+            <patList [startTime]="booking.StartTime" [endTime]="booking.EndTime" (sendPatient)="getPatient($event)"></patList>
             </div>
 
             <div *ngIf="showRes">

@@ -1,4 +1,4 @@
-import {Component, Output, EventEmitter} from '@angular/core';
+import {Component, Output, EventEmitter, Input} from '@angular/core';
 import {PatientService} from './services/patient.service';
 
 @Component({
@@ -30,15 +30,24 @@ import {PatientService} from './services/patient.service';
     `
 })
 export class PatientListComponent{
-        _Patients = [];
+        @Input() _Patients = [];
         userFilter: any = { FNAME: '' };
         @Output() Patient;
-         @Output() sendPatient : EventEmitter<any> = new EventEmitter();
+        @Output() sendPatient : EventEmitter<any> = new EventEmitter();
+        @Input() startTime;
+        @Input() endTime;
 
         constructor(private patientService : PatientService){
-            this._Patients = patientService.findPatients();
-            console.log(this._Patients);
-        } 
+        }
+
+        ngOnInit(){
+            if(window.location.pathname == "/newBooking"){
+                this._Patients = this.patientService.findAvailPatients(this.startTime,this.endTime);
+            }
+            else{
+                this._Patients = this.patientService.findPatients();
+            }
+        }
 
         OnClick(Patient) {
             this.sendPatient.emit(Patient);

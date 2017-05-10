@@ -31,6 +31,15 @@ export class PatientService{
         return this._Patients;
     }
 
+    findAvailPatients(startTime, endTime){
+        this._Patients= [];
+        this.http.get('http://localhost:2026/api/Patient/GetPatients/?startTime='+ startTime +"&endTime=" + endTime)
+        .map(response => response.json())
+        .subscribe(data=> {data.forEach(patient => this._Patients.push(patient))})
+
+        return this._Patients;
+    }
+
     savePatient(tempPatient){
         this.http.post('http://localhost:2026/api/Patient',tempPatient).subscribe(()=>console.log("Done"),()=> console.log('Error'));
     }
