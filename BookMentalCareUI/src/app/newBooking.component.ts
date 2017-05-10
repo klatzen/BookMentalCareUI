@@ -53,7 +53,7 @@ import {EmployeeListComponent} from './employeeList.component'
 
             <hr>
             <div *ngIf="showEmp">
-            <empList [removeEmp]="Employee  " (sendEmployee)="getEmployee($event)"></empList>
+            <empList [removeEmp]="Employee" [startTime]="booking.StartTime" [endTime]="booking.EndTime"  (sendEmployee)="getEmployee($event)"></empList>
             
             </div>
 
@@ -72,26 +72,16 @@ export class NewBookingComponent{
     showEmp = false;
     showPat = false;
     showRes = false;
-
-<<<<<<< HEAD
     constructor(private bookingService:BookingService, private cookieService : CookieService){
 
     }
     
-        //[startTime]="booking.StartTime" [endTime]="booking.EndTime" 
      ngOnInit(){
         this.booking.Room = this.cookieService.getObject("room");
         this.booking.StartTime = this.cookieService.get("startTime");
         this.booking.EndTime = this.cookieService.get("endTime");
         this.cookieService.removeAll();
     }
-    
-=======
-    constructor(){
-
-    }
-
->>>>>>> origin/master
     showEmployees(){
         this.showEmp = !this.showEmp;
     }
