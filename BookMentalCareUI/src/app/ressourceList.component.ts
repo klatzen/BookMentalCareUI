@@ -1,10 +1,10 @@
-import {Component, Output, EventEmitter, OnInit, Input, SimpleChanges} from '@angular/core';
-import {RessourceService} from './services/ressource.service';
-import {BookingService} from'./services/booking.service';
+import { Component, Output, EventEmitter, OnInit, Input, SimpleChanges } from '@angular/core';
+import { RessourceService } from './services/ressource.service';
+import { BookingService } from './services/booking.service';
 
 @Component({
     selector: 'resList',
-    template:`
+    template: `
     <table>
         <thead>
             <td>ID</td>
@@ -36,95 +36,96 @@ import {BookingService} from'./services/booking.service';
     `
 })
 
-export class RessourceListComponent{
+export class RessourceListComponent {
 
     _Ressources = [];
     _Bookings = [];
-    _Units:Unit[];
+    _Units: Unit[];
     _AvalibleRessources = [];
-     @Output() sendRessource : EventEmitter<any> = new EventEmitter();
-     @Output() Unit;
-     @Input() startTime;
-     @Input() endTime;
-     @Input() removeUnit;
+    @Output() sendRessource: EventEmitter<any> = new EventEmitter();
+    @Output() Unit;
+    @Input() startTime;
+    @Input() endTime;
+    @Input() removeUnit;
 
-    route : any;
-    userFilter : any = {Id: ''};
+    route: any;
+    userFilter: any = { Id: '' };
 
-    constructor(private resService:RessourceService, private bookService : BookingService){
-       resService.findRessources();
+    constructor(private resService: RessourceService, private bookService: BookingService) {
+        resService.findRessources();
         this._Bookings = bookService.findBookings();
         this._Units = resService.findAvailibleUnits(this.startTime, this.endTime);
     }
 
-    ngOnInit(){
-            this.route = window.location.pathname;
-            this.resService.resEvent.subscribe(data => this._Ressources = data);
-            this.resService.unitEvent.subscribe(data => {
-                this._AvalibleRessources = [];
-                data.forEach(u => this._Ressources.forEach(r => {
-                if(u.RessourceId == r.Id){
-                    if(this._AvalibleRessources.length > 0){
-                    for(var res of this._AvalibleRessources){
-                        console.log('korer');
-                        if(res.Id == r.Id){
-                            break;
-                        }else{
-                            this._AvalibleRessources.push(r);  
+    ngOnInit() {
+        this.route = window.location.pathname;
+        this.resService.resEvent.subscribe(data => this._Ressources = data);
+        this.resService.unitEvent.subscribe(data => {
+            this._AvalibleRessources = [];
+            data.forEach(u => this._Ressources.forEach(r => {
+                if (u.RessourceId == r.Id) {
+                    if (this._AvalibleRessources.length > 0) {
+                        for (var res of this._AvalibleRessources) {
+                            if (res.Id == r.Id) {
+                                break;
+                            } else {
+                                this._AvalibleRessources.push(r);
+                            }
                         }
-                    } 
-                    }else{
+                    } else {
                         this._AvalibleRessources.push(r);
                     }
                 }
-            }))});    
-        }
+            }))
+        });
+    }
 
-        ngOnChanges(changes: SimpleChanges){
-            console.log('ich bin called');
-            if(this.removeUnit){
-                this._Units.push(this.removeUnit);
-                for(var element of this._AvalibleRessources){
-                    if(!(element.Id == this.removeUnit.Ressource.Id)){
-                        this._AvalibleRessources.push(this.removeUnit.Ressource);
-                        console.log(this._AvalibleRessources);
-                        break;
-                    }
+    ngDoCheck(changes: SimpleChanges) {
+        console.log(this.removeUnit);
+        if (this.removeUnit) {
+            var add = true;
+            this._Units.push(this.removeUnit);
+            for (var element of this._AvalibleRessources) {
+                if (element.Id === this.removeUnit.RessourceId) {
+                    add = false;
+                    break;
                 }
+            }
+
+            if (add) {
+                this._AvalibleRessources.push(this.removeUnit.Ressource);
+            }
+            add = true;
+            this.removeUnit = undefined;
+        }
+    }
+
+    OnClick(id: number) {
+        for (var unit of this._Units) {
+            if (unit.RessourceId == id) {
+                unit.Ressource = this._AvalibleRessources.find(Ressource => Ressource.Id == unit.RessourceId);
+                this.sendRessource.emit(unit);
+                this._Units.splice(this._Units.indexOf(unit), 1);
+                break;
             }
         }
 
-    OnClick(id:number) {
-        for(var unit of this._Units) {
-    if(unit.RessourceId == id) {
-        unit.Ressource = this._AvalibleRessources.find(Ressource => Ressource.Id == unit.RessourceId);
-        this.sendRessource.emit(unit);
-        var index = this._Units.indexOf(unit);
-        if(index > -1){
-            this._Units.splice(index, 1);
-        }
-        break
-        }
-    }
         var del = true;
         this._AvalibleRessources.forEach(res => {
             this._Units.forEach(uni => {
-                if(res.Id == uni.RessourceId){
+                if (res.Id == uni.RessourceId) {
                     del = false;
                 }
             });
-            if(del){
-            this._AvalibleRessources.splice(this._AvalibleRessources.indexOf(res), 1);
-        }
-        del = true;
-        
+            if (del) {
+                this._AvalibleRessources.splice(this._AvalibleRessources.indexOf(res), 1);
+            }
+            del = true;
         });
-
-
     }
 }
 
-interface Unit{
+interface Unit {
     Id: number,
     SerialNo: string,
     RessourceId: number,
