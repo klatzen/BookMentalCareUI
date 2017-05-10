@@ -16,14 +16,14 @@ import {DepartmentService} from './services/department.service';
     </thead>
     <tbody>
         <tr *ngFor="let Department of _Departments | filterBy: userFilter">
-        <div *ngIf="route != '/employeeCreate'">
+        <div *ngIf="route == '/departmentList'">
         <a [routerLink]="[Department.ID]">
             <td>{{Department.ID}}</td>
             <td>{{Department.NAME}}</td>
             <td>{{Department.LOCATION}}</td>
             </a>
             </div>
-            <div *ngIf="route == '/employeeCreate'">
+            <div *ngIf="route != '/departmentList'">
         <a (click)="onClick(Department)">
             <td>{{Department.ID}}</td>
             <td>{{Department.NAME}}</td>

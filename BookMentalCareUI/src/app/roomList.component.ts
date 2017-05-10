@@ -12,13 +12,14 @@ import {Router} from '@angular/router';
     <br>
     <hr>
 
-    <input type="text" [(ngModel)]="userFilter.ROOMNO" placeholder="name">
+    <input type="text" [(ngModel)]="userFilter.TYPE" placeholder="name">
     <table>
     <thead>
         <tr>
             <td>ID</td>
             <td>Type</td>
             <td>Room No.</td>
+            <td>Department</td>
         </tr>
     </thead>
     <tbody>
@@ -26,7 +27,8 @@ import {Router} from '@angular/router';
         <a [routerLink]="[Room.ID]">
             <td>{{Room.ID}}</td>
             <td>{{Room.TYPE}}</td>
-            <td>{{Room.ROOMNO}}</td></a>
+            <td>{{Room.ROOMNO}}</td>
+            <td *ngIf="Room.DEPARTMENT">{{Room.DEPARTMENT.NAME}}</td></a>
             <td><button (click)="createBooking(Room)">Create Booking</button> </td>
         </tr>
     </tbody>
@@ -36,7 +38,7 @@ import {Router} from '@angular/router';
 })
 export class RoomListComponent{
         _Rooms = [];
-        userFilter: any = { ROOMNO: '' };
+        userFilter: any = { TYPE: '' };
         startTime: any= '';
         endTime:any = '';
         constructor(private RoomService : RoomService, private cookieService : CookieService, private router : Router){

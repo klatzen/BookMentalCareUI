@@ -13,6 +13,7 @@ import {NewRessourceComponent} from './newRessource.component';
 import {NewEmployeeComponent} from './newEmployee.component';
 import {PatientListComponent} from './patientList.component';
 import {PatientComponent} from './patient.component';
+import {NewPatientComponent} from './newPatient.component';
 import {UnitListComponent} from './unitList.component';
 import {RoomListComponent} from './roomList.component';
 import {RoomComponent} from './room.component';
@@ -58,7 +59,8 @@ import {routing} from './app.route';
     NewDepartmentComponent,
     DepartmentComponent,
     DepartmentListComponent,
-    NewBookingComponent
+    NewBookingComponent,
+    NewPatientComponent
   ],
   imports: [
     BrowserModule,
