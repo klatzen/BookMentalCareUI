@@ -1,5 +1,6 @@
 import {Component, Input} from '@angular/core';
 import {BookingService} from './services/booking.service';
+import {CookieService} from 'angular2-cookie/core';
 
 @Component({
     selector: 'book',
@@ -46,6 +47,18 @@ export class NewBookingComponent{
     showPat = false;
     showRes = false;
 
+    constructor(private bookingService:BookingService, private cookieService : CookieService){
+
+    }
+    
+        //[startTime]="booking.StartTime" [endTime]="booking.EndTime" 
+     ngOnInit(){
+        this.booking.Room = this.cookieService.getObject("room");
+        this.booking.StartTime = this.cookieService.get("startTime");
+        this.booking.EndTime = this.cookieService.get("endTime");
+        this.cookieService.removeAll();
+    }
+    
     showEmployees(){
         this.showEmp = !this.showEmp;
     }
@@ -72,6 +85,7 @@ export class NewBookingComponent{
         this.booking.Ressources.push(event);
         console.log(this.booking);
     }
+
 }
 
 interface Booking{

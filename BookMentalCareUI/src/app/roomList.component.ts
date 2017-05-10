@@ -47,6 +47,7 @@ export class RoomListComponent{
             this._Rooms = this.RoomService.findAvailRooms(this.startTime,this.endTime);
         }
         createBooking(Room){
+            this.cookieService.removeAll();
             this.cookieService.putObject("room",Room);
             this.cookieService.put("startTime",this.startTime);
             this.cookieService.put("endTime",this.endTime);
