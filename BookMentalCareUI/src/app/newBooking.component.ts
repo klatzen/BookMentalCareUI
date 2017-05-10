@@ -1,4 +1,4 @@
-import {Component, Input} from '@angular/core';
+import {Component, Input, Output} from '@angular/core';
 import {BookingService} from './services/booking.service';
 
 import {EmployeeListComponent} from './employeeList.component'
@@ -52,7 +52,7 @@ import {EmployeeListComponent} from './employeeList.component'
 
             <hr>
             <div *ngIf="showEmp">
-            <empList (sendEmployee)="getEmployee($event)"></empList>
+            <empList [removeEmp]="Employee  " (sendEmployee)="getEmployee($event)"></empList>
             
             </div>
 
@@ -67,7 +67,7 @@ import {EmployeeListComponent} from './employeeList.component'
 })
 export class NewBookingComponent{
     @Input() booking: Booking = {Description: "", Date: "", StartTime: "", EndTime: "", Ressources: [], Patient: "", Employees: [], Room: ""};
-
+    @Output() Employee;
     showEmp = false;
     showPat = false;
     showRes = false;
@@ -104,6 +104,7 @@ export class NewBookingComponent{
 
     removeEmployee(emp){
         this.booking.Employees.splice(this.booking.Employees.indexOf(emp), 1);
+        this.Employee = emp;
     }
 }
 
@@ -113,7 +114,7 @@ interface Booking{
     StartTime: string;
     EndTime: string;
     Ressources;
-    Patient: string;
+    Patient;
     Employees;
     Room;
 }

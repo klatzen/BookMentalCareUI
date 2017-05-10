@@ -39,6 +39,7 @@ export class EmployeeListComponent{
         userFilter: any = { INITIALS: '',DEPARTMENT:'' };
         @Input() startTime;
         @Input() endTime;
+        @Input() removeEmp;
 
         ngOnInit(){
             if(window.location.pathname == "/newBooking"){
@@ -48,7 +49,11 @@ export class EmployeeListComponent{
                 this._Employees = this.employeeService.findEmployees();
             }
         }
-
+        ngOnChanges(changes: SimpleChanges){
+            if(this.removeEmp !== null){
+                this._Employees.push(this.removeEmp);
+            }
+        }
         constructor(private employeeService : EmployeeService){
         }      
 
