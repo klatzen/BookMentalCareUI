@@ -9,16 +9,16 @@ import {EmployeeListComponent} from './employeeList.component'
     template: ` 
             <form>
                 <div class="form-group">
-                    <label for="booking.Description">Description</label>
-                    <input [(ngModel)]="booking.Description" name="description">
-                </div>
-                <div class="form-group">
                     <label for="booking.StartTime">Start Time</label>
-                    <input [(ngModel)]="booking.StartTime" value="{{booking.StartTime}}" name="startTime">
+                    <input [(ngModel)]="booking.StartTime" value="{{booking.StartTime}}" name="startTime" readonly>
                 </div>
                 <div class="form-group">
                     <label for="booking.EndTime">End Time</label>
-                    <input [(ngModel)]="booking.EndTime" name="endTime">
+                    <input [(ngModel)]="booking.EndTime" name="endTime" readonly>
+                </div>
+                <div class="form-group">
+                    <label for="booking.Description">Description</label>
+                    <textarea [(ngModel)]="booking.Description" name="description"></textarea>
                 </div>
             </form>
 
@@ -44,7 +44,7 @@ import {EmployeeListComponent} from './employeeList.component'
             <div *ngIf="!(booking.Ressources.length == 0)">
             <p>List of ressources added to booking</p>
             <ul *ngFor="let res of booking.Ressources">
-                <li>Name: {{res.Ressource.Name}} <button>X</button></li>
+                <li>Name: {{res.Ressource.Name}} <button (click)="removeRessource(res)">X</button></li>
             </ul>
             </div>
             
@@ -61,7 +61,7 @@ import {EmployeeListComponent} from './employeeList.component'
             </div>
 
             <div *ngIf="showRes">
-            <resList (sendRessource)="getRessource($event)"></resList>
+            <resList [removeUnit]="Unit" [startTime]="booking.StartTime" [endTime]="booking.EndTime" (sendRessource)="getRessource($event)"></resList>
             </div>
     `
 })
@@ -69,6 +69,7 @@ export class NewBookingComponent{
     @Input() booking: Booking = {Description: "", Date: "", StartTime: "", EndTime: "", Ressources: [], Patient: null, Employees: [], Room: ""};
     @Output() Employee;
     @Output() Patient;
+    @Output() Unit;
     showEmp = false;
     showPat = false;
     showRes = false;
@@ -95,8 +96,8 @@ export class NewBookingComponent{
     }
     
     getEmployee(event) {
-
         this.booking.Employees.push(event);
+                console.log(this.booking);
     }
        
      getPatient(event) {
@@ -116,6 +117,11 @@ export class NewBookingComponent{
 
     removePatient(patient){
         this.booking.Patient = null;
+    }
+
+    removeRessource(unit){
+        this.booking.Ressources.splice(this.booking.Ressources.indexOf(unit), 1);
+        this.Unit = unit;
     }
 }
 
