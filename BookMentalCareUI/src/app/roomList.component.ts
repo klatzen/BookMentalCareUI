@@ -26,7 +26,8 @@ import {Router} from '@angular/router';
         <a [routerLink]="[Room.ID]">
             <td>{{Room.ID}}</td>
             <td>{{Room.TYPE}}</td>
-            <td>{{Room.ROOMNO}}</td></a>
+            <td>{{Room.ROOMNO}}</td>
+            <td *ngIf="Room.DEPARTMENT">{{Room.DEPARTMENT.NAME}} </td></a>
             <td><button (click)="createBooking(Room)">Create Booking</button> </td>
         </tr>
     </tbody>

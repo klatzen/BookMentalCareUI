@@ -12,6 +12,7 @@ import {PatientService} from './services/patient.service';
             <td>Front Name</td>
             <td>Last Name</td>
             <td>Medical Reg. No.</td>
+            <td>Department</td>
         </tr>
     </thead>
     <tbody>
@@ -21,7 +22,7 @@ import {PatientService} from './services/patient.service';
             <td>{{Patient.FNAME}}</td>
             <td>{{Patient.LNAME}}</td>
             <td>{{Patient.MEDREGNO}}</td>
-            </a>
+            <td *ngIf="Patient.DEPARTMENT">{{Patient.DEPARTMENT.NAME}}</td></a>
             <button (click)="OnClick(Patient)">Add</button>
         </tr>
     </tbody>
@@ -37,6 +38,7 @@ export class PatientListComponent{
 
         constructor(private patientService : PatientService){
             this._Patients = patientService.findPatients();
+            console.log(this._Patients);
         } 
 
         OnClick(Patient) {

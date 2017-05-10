@@ -1,5 +1,6 @@
 import {Component, Input, Output} from '@angular/core';
 import {BookingService} from './services/booking.service';
+import {CookieService} from 'angular2-cookie/core';
 
 import {EmployeeListComponent} from './employeeList.component'
 
@@ -52,7 +53,7 @@ import {EmployeeListComponent} from './employeeList.component'
 
             <hr>
             <div *ngIf="showEmp">
-            <empList [removeEmp]="Employee" (sendEmployee)="getEmployee($event)"></empList>
+            <empList [removeEmp]="Employee" [startTime]="booking.StartTime" [endTime]="booking.EndTime"  (sendEmployee)="getEmployee($event)"></empList>
             
             </div>
 
@@ -71,11 +72,16 @@ export class NewBookingComponent{
     showEmp = false;
     showPat = false;
     showRes = false;
-
-    constructor(){
+    constructor(private bookingService:BookingService, private cookieService : CookieService){
 
     }
-
+    
+     ngOnInit(){
+        this.booking.Room = this.cookieService.getObject("room");
+        this.booking.StartTime = this.cookieService.get("startTime");
+        this.booking.EndTime = this.cookieService.get("endTime");
+        this.cookieService.removeAll();
+    }
     showEmployees(){
         this.showEmp = !this.showEmp;
     }
@@ -105,7 +111,6 @@ export class NewBookingComponent{
         this.booking.Employees.splice(this.booking.Employees.indexOf(emp), 1);
         this.Employee = emp;
     }
-
     removePatient(pat){
         this.booking.Patient = null;
     }
