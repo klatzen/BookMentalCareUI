@@ -13,6 +13,7 @@ export class PatientService{
     }
 
     findPatient(id){
+        this._Patients = [];
         this.http.get('http://localhost:2026/api/Patient/' + id)
         .map(response => response.json())
         .subscribe(data => this.Patient = data,()=> console.log("error"),()=>{
@@ -22,6 +23,7 @@ export class PatientService{
     }
 
     findPatients(){
+        this._Patients = [];
         this.http.get('http://localhost:2026/api/Patient')
         .map(response => response.json())
         .subscribe(data => {data.forEach(patient => this._Patients.push(patient))})

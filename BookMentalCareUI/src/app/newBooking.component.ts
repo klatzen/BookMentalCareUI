@@ -1,6 +1,8 @@
 import {Component, Input} from '@angular/core';
 import {BookingService} from './services/booking.service';
 
+import {EmployeeListComponent} from './employeeList.component'
+
 @Component({
     selector: 'book',
     template: ` 
@@ -24,6 +26,30 @@ import {BookingService} from './services/booking.service';
             <button (click)="showEmployees()">Show Employee(s)</button> <button (click)="showPatients()">Show Patient</button> <button (click)="showRessources()">Show Ressource(s)</button>
 
             <br>
+            <div *ngIf="booking.Room">
+            <p>Booked Room: {{booking.Room}}</p>
+            </div>
+
+            <div *ngIf="booking.Patient">
+            <p>Patient: {{booking.Patient.FNAME}} {{booking.Patient.LNAME}}, {{booking.Patient.MEDREGNO}}</p>
+            </div>
+
+            <div *ngIf="!(booking.Employees.length == 0)">
+            <p>List of employees added to booking</p>
+            <ul *ngFor="let emp of booking.Employees">
+                <li>Name: {{emp.FNAME}} {{emp.LNAME}}, Initials: {{emp.INITIALS}} <button (click)="removeEmployee(emp)">X</button></li>
+            </ul>
+            </div>
+
+            <div *ngIf="!(booking.Ressources.length == 0)">
+            <p>List of ressources added to booking</p>
+            <ul *ngFor="let res of booking.Ressources">
+                <li>Name: {{res.Ressource.Name}} <button>X</button></li>
+            </ul>
+            </div>
+            
+
+
             <hr>
             <div *ngIf="showEmp">
             <empList (sendEmployee)="getEmployee($event)"></empList>
@@ -45,6 +71,10 @@ export class NewBookingComponent{
     showEmp = false;
     showPat = false;
     showRes = false;
+
+    constructor(){
+
+    }
 
     showEmployees(){
         this.showEmp = !this.showEmp;
@@ -70,7 +100,10 @@ export class NewBookingComponent{
 
     getRessource(event) {
         this.booking.Ressources.push(event);
-        console.log(this.booking);
+    }
+
+    removeEmployee(emp){
+        this.booking.Employees.splice(this.booking.Employees.indexOf(emp), 1);
     }
 }
 

@@ -67,6 +67,7 @@ export class RessourceListComponent{
     OnClick(id:number) {
         for(var unit of this._Units) {
     if(unit.RessourceId == id) {
+        unit.Ressource = this._AvalibleRessources.find(Id => Id == unit.RessourceId);
         this.sendRessource.emit(unit);
         var index = this._Units.indexOf(unit);
         if(index > -1){
@@ -96,6 +97,7 @@ export class RessourceListComponent{
 interface Unit{
     Id: number,
     SerialNo: string,
-    RessourceId: number
+    RessourceId: number,
+    Ressource: any;
 }
 

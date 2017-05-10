@@ -1,6 +1,7 @@
-import {Component, Output, EventEmitter, Input} from '@angular/core';
+import {Component, Output, EventEmitter, Input, Injectable, SimpleChanges} from '@angular/core';
 import {EmployeeService} from './services/employee.service';
 
+@Injectable()
 @Component({
     selector: 'empList',
     template: `
@@ -34,7 +35,7 @@ import {EmployeeService} from './services/employee.service';
 export class EmployeeListComponent{
         @Output() Employee;
         @Output() sendEmployee : EventEmitter<any> = new EventEmitter();
-        _Employees = [];
+        @Input() _Employees = [];
         userFilter: any = { INITIALS: '',DEPARTMENT:'' };
         @Input() startTime;
         @Input() endTime;
@@ -53,5 +54,12 @@ export class EmployeeListComponent{
 
         OnClick(Employee){
             this.sendEmployee.emit(Employee);
+            this._Employees.splice(this._Employees.indexOf(Employee), 1);
+        }
+
+        addEmp(emp){
+            console.log(emp);
+            this._Employees.push(emp);
+            console.log(this._Employees);
         }
 }
