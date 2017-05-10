@@ -7,7 +7,6 @@ import {EmployeeListComponent} from './employeeList.component'
 @Component({
     selector: 'book',
     template: ` 
-            <p>{{booking.Room.ID}}</p>
             <form>
                 <div class="form-group">
                     <label for="booking.Description">Description</label>
@@ -15,7 +14,7 @@ import {EmployeeListComponent} from './employeeList.component'
                 </div>
                 <div class="form-group">
                     <label for="booking.StartTime">Start Time</label>
-                    <input [(ngModel)]="booking.StartTime" name="startTime">
+                    <input [(ngModel)]="booking.StartTime" value="{{booking.StartTime}}" name="startTime">
                 </div>
                 <div class="form-group">
                     <label for="booking.EndTime">End Time</label>
@@ -28,11 +27,11 @@ import {EmployeeListComponent} from './employeeList.component'
 
             <br>
             <div *ngIf="booking.Room">
-            <p>Booked Room: {{booking.Room}}</p>
+            <p>Booked Room: ID: {{booking.Room.ID}}, Type: {{booking.Room.TYPE}}</p>
             </div>
 
             <div *ngIf="booking.Patient">
-            <p>Patient: {{booking.Patient.FNAME}} {{booking.Patient.LNAME}}, {{booking.Patient.MEDREGNO}}</p>
+            <p>Patient: {{booking.Patient.FNAME}} {{booking.Patient.LNAME}}, {{booking.Patient.MEDREGNO}} <button (click)="removePatient(booking.Patient)">X</button></p>
             </div>
 
             <div *ngIf="!(booking.Employees.length == 0)">
@@ -67,8 +66,9 @@ import {EmployeeListComponent} from './employeeList.component'
     `
 })
 export class NewBookingComponent{
-    @Input() booking: Booking = {Description: "", Date: "", StartTime: "", EndTime: "", Ressources: [], Patient: "", Employees: [], Room: ""};
+    @Input() booking: Booking = {Description: "", Date: "", StartTime: "", EndTime: "", Ressources: [], Patient: null, Employees: [], Room: ""};
     @Output() Employee;
+    @Output() Patient;
     showEmp = false;
     showPat = false;
     showRes = false;
@@ -100,8 +100,9 @@ export class NewBookingComponent{
     }
        
      getPatient(event) {
-
+         if(this.booking.Patient == null){
         this.booking.Patient = event;
+         }
     }
 
     getRessource(event) {
@@ -113,6 +114,9 @@ export class NewBookingComponent{
         this.Employee = emp;
     }
 
+    removePatient(patient){
+        this.booking.Patient = null;
+    }
 }
 
 interface Booking{

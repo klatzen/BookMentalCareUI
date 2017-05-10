@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 import {Component, Output, EventEmitter, Input} from '@angular/core';
+=======
+import {Component, Output, Input, EventEmitter, SimpleChanges} from '@angular/core';
+>>>>>>> origin/master
 import {PatientService} from './services/patient.service';
 
 @Component({
@@ -30,12 +34,19 @@ import {PatientService} from './services/patient.service';
     `
 })
 export class PatientListComponent{
+<<<<<<< HEAD
         @Input() _Patients = [];
         userFilter: any = { FNAME: '' };
         @Output() Patient;
         @Output() sendPatient : EventEmitter<any> = new EventEmitter();
         @Input() startTime;
         @Input() endTime;
+=======
+         _Patients = [];
+        userFilter: any = { FNAME: '' };
+        @Output() Patient;
+        @Output() sendPatient : EventEmitter<any> = new EventEmitter();
+>>>>>>> origin/master
 
         constructor(private patientService : PatientService){
         }
@@ -51,6 +62,5 @@ export class PatientListComponent{
 
         OnClick(Patient) {
             this.sendPatient.emit(Patient);
-            this._Patients.splice(this._Patients.indexOf(Patient), 1);
         }     
 }
