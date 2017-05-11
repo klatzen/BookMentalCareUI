@@ -24,7 +24,7 @@ import {EmployeeListComponent} from './employeeList.component'
 
 
             <button (click)="showEmployees()">Show Employee(s)</button> <button (click)="showPatients()">Show Patient</button> <button (click)="showRessources()">Show Ressource(s)</button>
-
+            <button *ngIf="booking.Patient && booking.Employees.length > 0" (click)="CompleteBooking()"> Complete Booking</button>
             <br>
             <div *ngIf="booking.Room">
             <p>Booked Room: ID: {{booking.Room.ID}}, Type: {{booking.Room.TYPE}}</p>
@@ -63,6 +63,8 @@ import {EmployeeListComponent} from './employeeList.component'
             <div *ngIf="showRes">
             <resList [removeUnit]="Unit" [startTime]="booking.StartTime" [endTime]="booking.EndTime" (sendRessource)="getRessource($event)"></resList>
             </div>
+
+        
     `
 })
 export class NewBookingComponent{
@@ -81,18 +83,24 @@ export class NewBookingComponent{
         this.booking.Room = this.cookieService.getObject("room");
         this.booking.StartTime = this.cookieService.get("startTime");
         this.booking.EndTime = this.cookieService.get("endTime");
-        this.cookieService.removeAll();
+        //this.cookieService.removeAll();
     }
     showEmployees(){
         this.showEmp = !this.showEmp;
+        this.showPat = false;
+        this.showRes = false;
     }
 
     showPatients(){
         this.showPat = !this.showPat;
+        this.showEmp = false;
+        this.showRes = false;
     }
 
     showRessources(){
         this.showRes= !this.showRes;
+        this.showPat = false;
+        this.showEmp = false;
     }
     
     getEmployee(event) {
@@ -122,6 +130,9 @@ export class NewBookingComponent{
     removeRessource(unit){
         this.booking.Ressources.splice(this.booking.Ressources.indexOf(unit), 1);
         this.Unit = unit;
+    }
+    CompleteBooking(){
+        this.bookingService.saveBooking(this.booking);
     }
 }
 

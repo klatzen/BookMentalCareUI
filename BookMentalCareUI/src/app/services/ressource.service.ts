@@ -73,13 +73,13 @@ import 'rxjs/add/operator/map';
             })
         }
 
-        findAvailibleUnits(startDate:string, endDate:string) {
-            this._Units = [];
-            this.http.get('http://localhost:2026/api/ressource?startDate=' + startDate + '&endDate=' + endDate)
+        findAvailibleRessources(startDate:string, endDate:string) {
+            this._Ressources = [];
+            this.http.get('http://localhost:2026/api/ressource/?startDate=' + startDate + '&endDate=' + endDate)
             .map(response => response.json())
-            .subscribe(data => {data.forEach(unit => this._Units.push(unit))
-            this.unitEvent.emit(this._Units)})
-            return this._Units;
+            .subscribe(data => {data.forEach(res => this._Ressources.push(res))
+            this.resEvent.emit(this._Ressources)})
+            return this._Ressources;
         }
 
 
