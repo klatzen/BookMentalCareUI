@@ -130,6 +130,7 @@ export class NewBookingComponent{
     removeRessource(unit){
         this.booking.Ressources.splice(this.booking.Ressources.indexOf(unit), 1);
         this.Unit = unit;
+        console.log(this.Unit);
     }
     CompleteBooking(){
         this.bookingService.saveBooking(this.booking);

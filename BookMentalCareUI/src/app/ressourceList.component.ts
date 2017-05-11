@@ -65,17 +65,25 @@ export class RessourceListComponent {
 
             });
         } else {
-            this.resService.findRessources();
             this.resService.resEvent.subscribe(data => this._Ressources = data);
-
         }
     }
 
     ngOnChanges(changes: SimpleChanges) {
-
+        console.log(changes.removeUnit);
+        if(changes.removeUnit.currentValue != undefined){
+             let res = this._AvalibleRessources.find(x => x.Id == this.removeUnit.RessourceId);
+            if (res === undefined) {
+                this.removeUnit.Ressource.units.push(this.removeUnit);
+                this._AvalibleRessources.push(this.removeUnit.Ressource);
+            } else {
+                res.units.push(this.removeUnit);
+            }
+            this.removeUnit = null;
+        }
+        /*console.log(this.removeUnit);
         if (this.removeUnit != null) {
             let res = this._AvalibleRessources.find(x => x.Id == this.removeUnit.RessourceId);
-            console.log(res);
             if (res === undefined) {
                 this.removeUnit.Ressource.units.push(this.removeUnit);
                 this._AvalibleRessources.push(this.removeUnit.Ressource);
@@ -84,9 +92,10 @@ export class RessourceListComponent {
             }
         }
         console.log(this._AvalibleRessources);
+        this.removeUnit = null;*/
     }
 
-    OnClick(Res) {
+     OnClick(Res) {
         let unit = Res.units.pop();
         unit.Ressource = Res;
         this.sendRessource.emit(unit);
