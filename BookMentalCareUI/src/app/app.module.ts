@@ -38,6 +38,7 @@ import { CookieService } from 'angular2-cookie/services/cookies.service';
 
 
 import {routing} from './app.route';
+import { NavComponent } from './nav/nav.component';
 
 @NgModule({
   declarations: [
@@ -60,7 +61,8 @@ import {routing} from './app.route';
     DepartmentComponent,
     DepartmentListComponent,
     NewBookingComponent,
-    NewPatientComponent
+    NewPatientComponent,
+    NavComponent
   ],
   imports: [
     BrowserModule,
