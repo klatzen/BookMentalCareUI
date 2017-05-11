@@ -52,8 +52,9 @@ export class RessourceListComponent {
     route: any;
     userFilter: any = { Id: '' };
 
-    constructor(private resService: RessourceService, private bookService: BookingService) {
 
+    constructor(private resService: RessourceService, private bookService: BookingService) {
+        resService.findRessources();
         this._Bookings = bookService.findBookings();
     }
 
@@ -95,7 +96,6 @@ export class RessourceListComponent {
         }
     }
 }
-
 interface Unit {
     Id: number,
     SerialNo: string,
