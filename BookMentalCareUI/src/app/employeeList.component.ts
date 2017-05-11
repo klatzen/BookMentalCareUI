@@ -25,7 +25,7 @@ import {EmployeeService} from './services/employee.service';
             <td>{{Employee.TITLE}}</td>
             <td>{{Employee.INITIALS}}</td>
             <td *ngIf="Employee.DEPARTMENT">{{Employee.DEPARTMENT.NAME}}</td></a>
-            <button (click)="OnClick(Employee)">Add</button>
+            <button *ngIf="route == '/booking'" (click)="OnClick(Employee)">Add</button>
         </tr>
     </tbody>
     </table>
@@ -39,9 +39,11 @@ export class EmployeeListComponent{
         @Input() startTime;
         @Input() endTime;
         @Input() removeEmp;
+        route:any;
 
         ngOnInit(){
-            if(window.location.pathname == "/newBooking"){
+            this.route = window.location.pathname;
+            if(this.route == "/booking"){
                 this._Employees = this.employeeService.findAvailEmployees(this.startTime,this.endTime);
             }
             else{

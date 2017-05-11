@@ -21,10 +21,10 @@ import {NewBookingComponent} from './newBooking.component';
 
 
 const routes = [{
-    path: '',
+    path: 'employees',
     component: EmployeeListComponent
 },{
-    path:'ressource',
+    path:'ressources',
     component: RessourceListComponent
 },{
     path:'ressource/:id',
@@ -36,14 +36,12 @@ const routes = [{
 },{
     path:'createRessource',
     component: NewRessourceComponent
-
-
 },{
     path:'employeeCreate',
     component: NewEmployeeComponent
 
 },{
-    path:'patient',
+    path:'patients',
     component: PatientListComponent
 
 },{
@@ -59,7 +57,7 @@ const routes = [{
     component: UnitListComponent
 
 },{
-    path:'room',
+    path:'rooms',
     component: RoomListComponent
 
 },{
@@ -79,11 +77,11 @@ const routes = [{
     component: SignInComponent
 },
 {
-    path:'departmentList',
+    path:'departments',
     component:DepartmentListComponent
 },
 {
-    path:'newBooking',
+    path:'booking',
     component: NewBookingComponent
 }
 ]

@@ -23,7 +23,7 @@ import {PatientService} from './services/patient.service';
             <td>{{Patient.LNAME}}</td>
             <td>{{Patient.MEDREGNO}}</td>
             <td *ngIf="Patient.DEPARTMENT">{{Patient.DEPARTMENT.NAME}}</td></a>
-            <button (click)="OnClick(Patient)">Add</button>
+            <button *ngIf="route == '/booking'" (click)="OnClick(Patient)">Add</button>
         </tr>
     </tbody>
     </table>
@@ -36,13 +36,14 @@ export class PatientListComponent{
         @Output() sendPatient : EventEmitter<any> = new EventEmitter();
         @Input() startTime;
         @Input() endTime;
-
+        route: any;
 
         constructor(private patientService : PatientService){
         }
 
         ngOnInit(){
-            if(window.location.pathname == "/newBooking"){
+            this.route = window.location.pathname;
+            if(this.route == "/booking"){
                 this._Patients = this.patientService.findAvailPatients(this.startTime,this.endTime);
             }
             else{

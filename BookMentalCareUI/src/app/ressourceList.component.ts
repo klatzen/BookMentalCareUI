@@ -12,7 +12,7 @@ import { BookingService } from './services/booking.service';
             <td>Type</td>
         </thead>
         <tbody>
-        <div *ngIf="route == '/newBooking'">
+        <div *ngIf="route == '/booking'">
             <tr *ngFor="let ressource of _AvalibleRessources | filterBy: userFilter">
                 <td>{{ressource.Id}}</td>
                 <td>{{ressource.Name}}</td>
@@ -21,7 +21,7 @@ import { BookingService } from './services/booking.service';
             </tr>
             
             </div>
-        <div *ngIf="route != '/newBooking'">
+        <div *ngIf="route != '/booking'">
             <tr *ngFor="let ressource of _Ressources | filterBy: userFilter">
                 <td>{{ressource.Id}}</td>
                 <td>{{ressource.Name}}</td>
@@ -58,7 +58,7 @@ export class RessourceListComponent {
 
     ngOnInit() {
         this.route = window.location.pathname;
-        if (this.route == '/newBooking') {
+        if (this.route == '/booking') {
             this.resService.findAvailibleRessources(this.startTime, this.endTime);
             this.resService.resEvent.subscribe(data => {
                 this._AvalibleRessources = data;

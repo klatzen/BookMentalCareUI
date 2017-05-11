@@ -4,18 +4,17 @@ import {CookieService} from 'angular2-cookie/core';
 import {EmployeeService} from './services/employee.service';
  
 @Component({
-    selector: 'my-very-cool-app',
+    selector: 'sign-in',
     template: ` 
     <h1>Login </h1>
         <div>
-        <label for="_Employee.INITIALS">INITIALS </label>
+        <label for="_Employee.INITIALS"> Initials </label>
         <input value="{{_Employee.INITIALS}}" [(ngModel)]="_Employee.INITIALS" name="INITIALS">
         </div>
         <div class="form-group">
         <label for="_Employee.PASSWORD"> Password </label>
-        <input value="{{_Employee.PASSWORD}}" [(ngModel)]="_Employee.PASSWORD" name ="password">
-    <button (click)="signIn()">login</button>
-    <button (click)="signOff()">log off</button>` 
+        <input value="{{_Employee.PASSWORD}}" [(ngModel)]="_Employee.PASSWORD" name ="password" type="password">
+        <button (click)="signIn()"> Login </button>` 
 })
  
 export class SignInComponent {
@@ -32,8 +31,5 @@ export class SignInComponent {
       this.employeeService.empEvent.subscribe(data => {console.log(data);
         this._cookieService.put('login',this._Employee);  
     });
-  }
-  signOff(){
-      this._cookieService.remove('login');
   }
 }

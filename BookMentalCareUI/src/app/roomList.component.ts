@@ -51,6 +51,6 @@ export class RoomListComponent{
             this.cookieService.putObject("room",Room);
             this.cookieService.put("startTime",this.startTime);
             this.cookieService.put("endTime",this.endTime);
-            this.router.navigate(['newBooking']);
+            this.router.navigate(['booking']);
         }
 }

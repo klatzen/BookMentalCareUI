@@ -1,3 +1,34 @@
-<p>
-  nav works!
-</p>
+<nav id="navbar" class="navbar navbar-fixed-top navbar-dark bg-inverse">
+  <a class="navbar-brand" href="#">BookMentalCare</a>
+  <ul *ngIf="login" class="nav navbar-nav">
+    <li class="nav-item active">
+      <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="/booking">Book</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="/employees">Employees</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="/rooms">Rooms</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="/patients">Patients</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="ressources">Ressources</a>
+    </li>
+  </ul>
+  <ul *ngIf="!login" class="nav navbar-nav">
+    <li class="nav-item active">
+      <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+    </li>
+    </ul>
+  <ul class="nav navbar-nav pull-right">
+    <li class="nav-item">
+      <a *ngIf="!login" class="nav-link" href="/signIn">Log on</a>
+      <a *ngIf="login" class="nav-link" href="/signIn" (click)="signOut(login)" >Log out</a>
+    </li>
+  </ul>
+</nav>
