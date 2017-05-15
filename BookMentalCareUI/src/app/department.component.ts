@@ -5,19 +5,18 @@ import {ActivatedRoute} from '@angular/router';
     selector: 'dep',
     template: ` 
      <div *ngIf="_Department != null">
-     <form>
+     <form class="form-inline">
      <div class="form-group">
         <label for="_Department.NAME"> Name</label>
-        <input value="{{_Department.NAME}}" [(ngModel)]="_Department.NAME" name="name">
+        <input class="form-control" value="{{_Department.NAME}}" [(ngModel)]="_Department.NAME" name="name">
     </div>
     <div class="form-group">
     <label for="_Department.LOCATION">Location </label>
-        <input value="{{_Department.LOCATION}}" [(ngModel)]="_Department.LOCATION" name="location">
+        <input class="form-control" value="{{_Department.LOCATION}}" [(ngModel)]="_Department.LOCATION" name="location">
         </div>
-        
+        <button type="button" (click)="updateDepartment()" class="btn btn-secondary">Update </button>
+        <button type="button" (click)="deleteDepartment()" class="btn btn-secondary">Delete</button>
         </form>
-        <button (click)="updateDepartment()">Update </button>
-        <button (click)="deleteDepartment()">Delete</button>
     </div>
      `
 })
