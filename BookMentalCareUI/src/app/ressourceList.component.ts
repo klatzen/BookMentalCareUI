@@ -5,31 +5,29 @@ import { BookingService } from './services/booking.service';
 @Component({
     selector: 'resList',
     template: `
-    <table>
+    <table class="table">
         <thead>
-            <td>ID</td>
-            <td>Name</td>
-            <td>Type</td>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Type</th>
         </thead>
-        <tbody>
-        <div *ngIf="route != '/ressources'">
+        <tbody *ngIf="route != '/ressources'">
             <tr *ngFor="let ressource of _AvalibleRessources | filterBy: userFilter">
                 <td>{{ressource.Id}}</td>
                 <td>{{ressource.Name}}</td>
                 <td>{{ressource.Type}}</td>
-                <button (click)="OnClick(ressource)">Add</button>
+                <button (click)="OnClick(ressource)" class="btn btn-secondary">Add</button>
             </tr>
-            
-            </div>
-        <div *ngIf="route == '/ressources'">
+
+        </tbody>
+        <tbody *ngIf="route == '/ressources'">
             <tr *ngFor="let ressource of _Ressources | filterBy: userFilter">
                 <td>{{ressource.Id}}</td>
                 <td>{{ressource.Name}}</td>
                 <td>{{ressource.Type}}</td>
-                <button [routerLink]="['/unit',ressource.Id]">Se Eksemplarer</button>
+                <button [routerLink]="['/unit',ressource.Id]" class="btn btn-secondary">See units</button>
             </tr>
-            <button [routerLink]="['/createRessource']">Opret ny</button>
-            </div>
+            <button [routerLink]="['/createRessource']" class="btn btn-secondary">Create new</button>
         </tbody>
     </table>
     
@@ -65,6 +63,7 @@ export class RessourceListComponent {
 
             });
         } else {
+            this.resService.findRessources();
             this.resService.resEvent.subscribe(data => this._Ressources = data);
         }
     }
