@@ -5,31 +5,29 @@ import {DepartmentService} from './services/department.service';
 @Component({
     selector: 'depList',
     template: `
-    <input type="text" [(ngModel)]="userFilter.NAME" placeholder="name">
-    <table>
+    <input class="dep-search" type="text" [(ngModel)]="userFilter.NAME" placeholder="Insert department name">
+    <table class="table">
     <thead>
         <tr>
-            <td>ID</td>
-            <td>Name</td>
-            <td>Location</td>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Location</th>
         </tr>
     </thead>
-    <tbody>
+    <tbody *ngIf="route == '/departments'">
         <tr *ngFor="let Department of _Departments | filterBy: userFilter">
-        <div *ngIf="route == '/departments'">
-        <a [routerLink]="[Department.ID]">
+        <a [routerLink]="['/department',Department.ID]">
+            <td>{{Department.ID}}</td></a>
+            <td>{{Department.NAME}}</td>
+            <td>{{Department.LOCATION}}</td>
+        </tr>
+    </tbody>
+    <tbody *ngIf="route != '/departments'">
+        <tr *ngFor="let Department of _Departments | filterBy: userFilter">
             <td>{{Department.ID}}</td>
             <td>{{Department.NAME}}</td>
             <td>{{Department.LOCATION}}</td>
-            </a>
-            </div>
-            <div *ngIf="route != '/departments'">
-        <a (click)="onClick(Department)">
-            <td>{{Department.ID}}</td>
-            <td>{{Department.NAME}}</td>
-            <td>{{Department.LOCATION}}</td>
-            </a>
-            </div>
+            <button (click)="onClick(Department)" class="btn btn-secondary">Add</button>
         </tr>
     </tbody>
     </table>
@@ -56,4 +54,12 @@ export class DepartmentListComponent{
             this._Departments = departmentService.findDepartments();
 
         }      
+
+        /*<div *ngIf="route != '/departments'">
+        <a (click)="onClick(Department)">
+            <td>{{Department.ID}}</td>
+            <td>{{Department.NAME}}</td>
+            <td>{{Department.LOCATION}}</td>
+            </a>
+            </div>*/
 }

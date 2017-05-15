@@ -7,4 +7,21 @@ body{
     text-align: center;
 }
 
+.form-control{
+    margin-right: 5px;
+}
+
+.dep-search{
+    margin: 15px 15px 15px 15px;
+}
+
+.input-group-btn.input-space{
+        padding-top: 15px;
+    }
+
+#delete-btn{
+        margin-left:15px;
+}
+
+
 

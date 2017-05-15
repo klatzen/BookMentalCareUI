@@ -15,9 +15,9 @@ import {RoomComponent} from './room.component';
 import {RoomListComponent} from './roomList.component';
 import {NewRoomComponent} from './newRoom.component';
 import {DepartmentListComponent} from './departmentList.component';
+import {DepartmentComponent} from './department.component';
 import {SignInComponent} from './signIn.component';
 import {NewBookingComponent} from './newBooking.component';
-
 
 
 const routes = [{
@@ -83,6 +83,10 @@ const routes = [{
 {
     path:'booking',
     component: NewBookingComponent
+},
+{
+    path:'department/:id',
+    component: DepartmentComponent
 }
 ]
 

@@ -5,27 +5,27 @@ import {EmployeeService} from './services/employee.service';
     selector: 'empList',
     template: `
     <input type="text" [(ngModel)]="userFilter.INITIALS" placeholder="name, department">
-    <table>
+    <table class="table">
     <thead>
         <tr>
-            <td>ID</td>
-            <td>Front Name</td>
-            <td>Last Name</td>
-            <td>Title</td>
-            <td>Initials</td>
-            <td>Department</td>
+            <th>ID</th>
+            <th>Front Name</th>
+            <th>Last Name</th>
+            <th>Title</th>
+            <th>Initials</th>
+            <th>Department</th>
         </tr>
     </thead>
     <tbody>
         <tr *ngFor="let Employee of _Employees | filterBy: userFilter">
-        <a [routerLink]="['employee',Employee.INITIALS]">
-            <td>{{Employee.ID}}</td>
+        <a [routerLink]="['/employee',Employee.INITIALS]">
+            <td>{{Employee.ID}}</td></a>
             <td>{{Employee.FNAME}}</td>
             <td>{{Employee.LNAME}}</td>
             <td>{{Employee.TITLE}}</td>
             <td>{{Employee.INITIALS}}</td>
-            <td *ngIf="Employee.DEPARTMENT">{{Employee.DEPARTMENT.NAME}}</td></a>
-            <button *ngIf="route == '/booking'" (click)="OnClick(Employee)">Add</button>
+            <td *ngIf="Employee.DEPARTMENT">{{Employee.DEPARTMENT.NAME}}</td>
+            <button *ngIf="route == '/booking'" (click)="OnClick(Employee)" type="button" class="btn btn-secondary">Add</button>
         </tr>
     </tbody>
     </table>
