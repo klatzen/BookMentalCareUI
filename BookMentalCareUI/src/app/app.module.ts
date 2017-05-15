@@ -23,6 +23,7 @@ import {DepartmentListComponent} from './departmentList.component';
 import {NewDepartmentComponent} from './newDepartment.component';
 import {DepartmentComponent} from './department.component';
 import {NewBookingComponent} from './newBooking.component';
+import {BookingListComponent} from './bookingList.component';
 
 import {SignInComponent} from './signIn.component';
 
@@ -62,7 +63,8 @@ import { NavComponent } from './nav/nav.component';
     DepartmentListComponent,
     NewBookingComponent,
     NewPatientComponent,
-    NavComponent
+    NavComponent,
+    BookingListComponent
   ],
   imports: [
     BrowserModule,

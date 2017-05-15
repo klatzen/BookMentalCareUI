@@ -12,7 +12,7 @@ import { BookingService } from './services/booking.service';
             <td>Type</td>
         </thead>
         <tbody>
-        <div *ngIf="route == '/booking'">
+        <div *ngIf="route != '/ressources'">
             <tr *ngFor="let ressource of _AvalibleRessources | filterBy: userFilter">
                 <td>{{ressource.Id}}</td>
                 <td>{{ressource.Name}}</td>
@@ -21,7 +21,7 @@ import { BookingService } from './services/booking.service';
             </tr>
             
             </div>
-        <div *ngIf="route != '/booking'">
+        <div *ngIf="route == '/ressources'">
             <tr *ngFor="let ressource of _Ressources | filterBy: userFilter">
                 <td>{{ressource.Id}}</td>
                 <td>{{ressource.Name}}</td>
@@ -58,7 +58,7 @@ export class RessourceListComponent {
 
     ngOnInit() {
         this.route = window.location.pathname;
-        if (this.route == '/booking') {
+        if (this.route != '/ressources') {
             this.resService.findAvailibleRessources(this.startTime, this.endTime);
             this.resService.resEvent.subscribe(data => {
                 this._AvalibleRessources = data;
@@ -81,18 +81,6 @@ export class RessourceListComponent {
             }
             this.removeUnit = null;
         }
-        /*console.log(this.removeUnit);
-        if (this.removeUnit != null) {
-            let res = this._AvalibleRessources.find(x => x.Id == this.removeUnit.RessourceId);
-            if (res === undefined) {
-                this.removeUnit.Ressource.units.push(this.removeUnit);
-                this._AvalibleRessources.push(this.removeUnit.Ressource);
-            } else {
-                res.units.push(this.removeUnit);
-            }
-        }
-        console.log(this._AvalibleRessources);
-        this.removeUnit = null;*/
     }
 
      OnClick(Res) {

@@ -23,7 +23,7 @@ import {PatientService} from './services/patient.service';
             <td>{{Patient.LNAME}}</td>
             <td>{{Patient.MEDREGNO}}</td>
             <td *ngIf="Patient.DEPARTMENT">{{Patient.DEPARTMENT.NAME}}</td></a>
-            <button *ngIf="route == '/booking'" (click)="OnClick(Patient)">Add</button>
+            <button *ngIf="route != '/patients'" (click)="OnClick(Patient)">Add</button>
         </tr>
     </tbody>
     </table>
@@ -43,7 +43,7 @@ export class PatientListComponent{
 
         ngOnInit(){
             this.route = window.location.pathname;
-            if(this.route == "/booking"){
+            if(this.route != "/patients"){
                 this._Patients = this.patientService.findAvailPatients(this.startTime,this.endTime);
             }
             else{

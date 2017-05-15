@@ -29,6 +29,13 @@ export class BookingService{
 
         return this._Bookings;
     }
+    findEmpBookings(id){
+        this.http.get('http://localhost:2026/api/booking/getEmpBooking/'+ 1)
+        .map(response => response.json())
+        .subscribe(data => {data.forEach(booking => this._Bookings.push(booking))})
+        console.log(this._Bookings);
+        return this._Bookings;
+    }
 
     saveBooking(tempBooking){
         this.http.post('http://localhost:2026/api/Booking', tempBooking).subscribe(()=>console.log("Done"),()=> console.log('Error'));
