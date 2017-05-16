@@ -19,7 +19,6 @@ export class BookingService{
         .map(response => response.json())
         .subscribe(data => this.Booking = data,()=> this.alertService.showAlert(true,"Der opstod en fejl - prøv igen","danger"),()=>{
             this.booEvent.emit(this.Booking);  
-            console.log(this.Booking);
         })
     }
 

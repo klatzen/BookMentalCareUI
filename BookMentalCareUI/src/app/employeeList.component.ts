@@ -1,6 +1,5 @@
 import {Component, Output, EventEmitter, Input, SimpleChanges} from '@angular/core';
 import {EmployeeService} from './services/employee.service';
-import {AlertService} from './services/alert.service';
 
 @Component({
     selector: 'empList',
@@ -44,7 +43,6 @@ export class EmployeeListComponent{
         route:any;
 
         ngOnInit(){
-            this.alertService.showAlert(true, "Det virker bar", "info");
             this.route = window.location.pathname;
             if(this.route != "/employees"){
                 this._Employees = this.employeeService.findAvailEmployees(this.startTime,this.endTime);
@@ -58,7 +56,7 @@ export class EmployeeListComponent{
                 this._Employees.push(this.removeEmp);
             }
         }
-        constructor(private employeeService : EmployeeService, private alertService:AlertService){
+        constructor(private employeeService : EmployeeService){
         }      
 
         OnClick(Employee){

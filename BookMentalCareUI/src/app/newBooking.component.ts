@@ -26,10 +26,10 @@ import {EmployeeListComponent} from './employeeList.component'
 
             
             <button (click)="showEmployees()">Show Employee(s)</button> <button (click)="showPatients()">Show Patient</button> <button (click)="showRessources()">Show Ressource(s)</button>
-            <div *ngIf="route == 'booking'">
+            <div *ngIf="route == '/booking'">
             <button *ngIf="booking.PATIENT && booking.EMPLOYEES.length > 0" (click)="CompleteBooking()"> Complete Booking</button>
             </div>
-            <div *ngIf="route != 'booking'">
+            <div *ngIf="route != '/booking'">
                     <button (click)="UpdateBooking()"> Update Booking</button>
                     <button (click)="DeleteBooking()"> Delete Booking</button>
             </div>
@@ -76,7 +76,7 @@ import {EmployeeListComponent} from './employeeList.component'
     `
 })
 export class NewBookingComponent{
-    @Input() booking: Booking = {DESCRIPTION: "", DATE: "", STARTTIME: "", ENDTIME: "", RESSOURCES: [], PATIENT:'', EMPLOYEES: [], Room: ""};
+    @Input() booking: Booking = {ID: 0, DESCRIPTION: "", DATE: "", STARTTIME: "", ENDTIME: "", RESSOURCES: [], PATIENT:'', EMPLOYEES: [], Room: ""};
     @Output() Employee;
     @Output() Patient;
     @Output() Unit;
@@ -159,12 +159,13 @@ export class NewBookingComponent{
     UpdateBooking(){
         this.bookingService.saveBooking(this.booking);
     }
-    deleteBooking(){
-        
+    DeleteBooking(){
+        this.bookingService.deleteBooking(this.booking.ID);
     }
 }
 
 interface Booking{
+    ID: number;
     DESCRIPTION: string;
     DATE: string;
     STARTTIME: string;
