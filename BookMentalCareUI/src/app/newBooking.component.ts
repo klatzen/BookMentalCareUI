@@ -99,6 +99,7 @@ export class NewBookingComponent{
                 this.booking.Room = this.cookieService.getObject("room");
                 this.booking.STARTTIME = this.cookieService.get("startTime");
                 this.booking.ENDTIME = this.cookieService.get("endTime");
+                
                 this.cookieService.remove("room");
                 this.cookieService.remove("startTime");
                 this.cookieService.remove("endTime");

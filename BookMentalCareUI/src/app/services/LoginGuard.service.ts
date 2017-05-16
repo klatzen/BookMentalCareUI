@@ -13,6 +13,11 @@ export class LoginGuard implements CanActivate {
         private checkIfLoggedIn():boolean{
             let employee= this.cookieService.getObject('login');
             if(employee){
+                console.log(window.location.pathname);
+                if(window.location.pathname == '/signIn'){
+                    this.router.navigate(['/bookings']);
+                    return false;
+                }
                 return true;
             }else{
                 this.router.navigate(['/signIn']);

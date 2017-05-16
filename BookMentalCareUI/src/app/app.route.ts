@@ -89,7 +89,8 @@ const routes = [{
 },
 {
     path:'signIn',
-    component: SignInComponent
+    component: SignInComponent,
+    canActivate: [LoginGuard]
 },
 {
     path:'departments',

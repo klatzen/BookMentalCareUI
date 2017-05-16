@@ -1,5 +1,6 @@
 import {Component, EventEmitter, Output} from '@angular/core';
 import {BookingService} from './services/booking.service';
+import {CookieService} from 'angular2-cookie/core';
 
 
 @Component({
@@ -33,14 +34,13 @@ import {BookingService} from './services/booking.service';
 export class BookingListComponent{
         _Bookings = [];
         route : any;
-        empId: number;
-
+        emp:any;
         ngOnInit(){
             this.route = window.location.pathname;
         }      
-        constructor(private bookingService : BookingService){
-            this._Bookings = bookingService.findEmpBookings(this.empId);
-            
-
+        constructor(private bookingService : BookingService,private cookieService:CookieService){
+            this.emp = this.cookieService.getObject('login');
+            console.log(this.emp);
+            this._Bookings = bookingService.findEmpBookings(this.emp.ID);
         }      
 }
