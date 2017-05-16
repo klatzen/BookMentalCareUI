@@ -42,7 +42,7 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class EmployeeComponent {
     @Input() _Employee: any;
-    constructor(private employeeService: EmployeeService, private activatedRoute: ActivatedRoute) {
+    constructor(private employeeService: EmployeeService, private activatedRoute: ActivatedRoute) { 
 
     }
     ngOnInit() {
