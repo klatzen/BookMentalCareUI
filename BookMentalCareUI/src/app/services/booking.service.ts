@@ -24,6 +24,7 @@ export class BookingService{
     }
 
     findBookings(){
+        this._Bookings = [];
         this.http.get('http://localhost:2026/api/Booking')
         .map(response => response.json())
         .subscribe(data => {data.forEach(booking => this._Bookings.push(booking))},()=> this.alertService.showAlert(true,"Der opstod en fejl - prøv igen","danger"))
