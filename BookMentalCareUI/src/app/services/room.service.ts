@@ -22,6 +22,7 @@ export class RoomService{
     }
 
     findRooms(){
+        this._Rooms = [];
         this.http.get('http://localhost:2026/api/Room')
         .map(response => response.json())
         .subscribe(data => {data.forEach(Room => this._Rooms.push(Room))}, err => this.alertService.showAlert(true, "Der opstod en fejl - prøv igen", "danger"))

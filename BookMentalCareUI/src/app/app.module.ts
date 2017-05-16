@@ -37,6 +37,7 @@ import {AlertService, AlertMessage} from './services/alert.service';
 
 import { Ng2FilterPipeModule } from 'ng2-filter-pipe';
 import { CookieService } from 'angular2-cookie/services/cookies.service';
+import {LoginGuard} from './services/LoginGuard.service';
 
 import {routing} from './app.route';
 import { NavComponent } from './nav/nav.component';
@@ -82,7 +83,8 @@ import { NavComponent } from './nav/nav.component';
     DepartmentService,
     BookingService,
     AlertService,
-    AlertMessage
+    AlertMessage,
+    LoginGuard
   ],
   bootstrap: [AppComponent]
 })

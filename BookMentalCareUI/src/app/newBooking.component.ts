@@ -92,7 +92,6 @@ export class NewBookingComponent{
          this.route = window.location.pathname;
          if(this.route != '/booking'){
                  this.activatedRoute.params.map(params => params['id']).subscribe(id => {
-                     console.log('test');
                      this.bookingService.findBooking(id);
                      this.bookingService.booEvent.subscribe(data => this.booking = data);
                  })
