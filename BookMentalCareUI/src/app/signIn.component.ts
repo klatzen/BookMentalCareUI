@@ -1,5 +1,6 @@
-    import {Component, Input} from '@angular/core';
+import {Component, Input} from '@angular/core';
 import {CookieService} from 'angular2-cookie/core';
+import {Router} from '@angular/router';
 
 import {EmployeeService} from './services/employee.service';
  
@@ -35,7 +36,7 @@ export class SignInComponent {
     @Input() _Employee: any = {INITIALS: '',PASSWORD:''};
     signedin: any;
 
-  constructor(private _cookieService:CookieService, private employeeService: EmployeeService){
+  constructor(private _cookieService:CookieService, private employeeService: EmployeeService,private router:Router){
 
   }
 
@@ -45,7 +46,8 @@ export class SignInComponent {
       this.employeeService.empEvent.subscribe(data => {console.log(data);
           this.signedin = data;
           if(this.signedin != null){
-                this._cookieService.put('login',this._Employee);  
+                this._cookieService.putObject('login',this._Employee);
+                this.router.navigate(['/bookings']);
           }
     });
 
