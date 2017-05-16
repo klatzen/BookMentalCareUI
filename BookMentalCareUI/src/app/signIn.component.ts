@@ -33,7 +33,7 @@ import {EmployeeService} from './services/employee.service';
 })
  
 export class SignInComponent {
-    @Input() _Employee: any = {INITIALS: '',PASSWORD:''};
+    @Input() _Employee: any = {ID:0,INITIALS: '',PASSWORD:''};
     signedin: any;
 
   constructor(private _cookieService:CookieService, private employeeService: EmployeeService,private router:Router){
@@ -46,7 +46,7 @@ export class SignInComponent {
       this.employeeService.empEvent.subscribe(data => {console.log(data);
           this.signedin = data;
           if(this.signedin != null){
-                this._cookieService.putObject('login',this._Employee);
+                this._cookieService.putObject('login',this.signedin);
                 this.router.navigate(['/bookings']);
           }
     });
