@@ -6,29 +6,40 @@ import {Router} from '@angular/router';
 @Component({
     selector: 'roomList',
     template: `
-    <input type="text" [(ngModel)]="startTime" placeholder="Start Time">
-    <input type="text" [(ngModel)]="endTime" placeholder="End Time">
-    <button (click)="createRoom()"> Check Period</button>
-    <br>
+    <form class="form-inline">
+    <div class="form-group">
+        
+        <label for="startTime">Start Time</label>
+        <input class="form-control" type="text" [(ngModel)]="startTime" name="startTime">
+        
+        <label for="endTime">End Time</label>
+        <input class="form-control" type="text" [(ngModel)]="endTime" name="endTime">
+
+        <button (click)="createRoom()" class="btn btn-secondary">Check Period</button>
+
+    </div>
+    </form>
     <hr>
 
-    <input type="text" [(ngModel)]="userFilter.ROOMNO" placeholder="name">
-    <table>
+    <label>Search</label>
+    <input type="text" [(ngModel)]="userFilter.ROOMNO" placeholder="department name">
+
+    <table class="table">
     <thead>
         <tr>
-            <td>ID</td>
-            <td>Type</td>
-            <td>Room No.</td>
+            <th>ID</th>
+            <th>Type</th>
+            <th>Room No.</th>
         </tr>
     </thead>
     <tbody>
         <tr *ngFor="let Room of _Rooms | filterBy: userFilter">
-        <a [routerLink]="[Room.ID]">
             <td>{{Room.ID}}</td>
             <td>{{Room.TYPE}}</td>
             <td>{{Room.ROOMNO}}</td>
-            <td *ngIf="Room.DEPARTMENT">{{Room.DEPARTMENT.NAME}} </td></a>
-            <td><button (click)="createBooking(Room)">Create Booking</button> </td>
+            <td *ngIf="Room.DEPARTMENT">{{Room.DEPARTMENT.NAME}} </td>
+            <td><button [routerLink]="['/room',Room.ID]" class="btn btn-secondary">Edit</button></td>
+            <td><button (click)="createBooking(Room)" class="btn btn-secondary" id="delete-btn">Create Booking</button></td>
         </tr>
     </tbody>
     </table>
@@ -52,5 +63,11 @@ export class RoomListComponent{
             this.cookieService.put("startTime",this.startTime);
             this.cookieService.put("endTime",this.endTime);
             this.router.navigate(['booking']);
+        }
+
+        ngOnInit(){
+            this.cookieService.remove("room");
+            this.cookieService.remove("startTime");
+            this.cookieService.remove("endTime");
         }
 }

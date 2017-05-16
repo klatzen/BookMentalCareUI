@@ -5,23 +5,33 @@ import {ActivatedRoute} from '@angular/router';
     selector: 'pat',
     template: ` 
      <div *ngIf="_Patient != null">
-     <form>
+     <form class="form-horizontal">
      <div class="form-group">
+        <div class="col-xs-3"> 
         <label for="_Patient.FNAME"> Front Name</label>
-        <input value="{{_Patient.FNAME}}" [(ngModel)]="_Patient.FNAME" name="first">
-    </div>
-    <div class="form-group">
+        <input class="form-control" value="{{_Patient.FNAME}}" [(ngModel)]="_Patient.FNAME" name="first">
+        </div>
+    
+        <div class="col-xs-3"> 
         <label for="_Patient.LNAME">Last Name </label>
-        <input value="{{_Patient.LNAME}}" [(ngModel)]="_Patient.LNAME" name="last">
+        <input class="form-control" value="{{_Patient.LNAME}}" [(ngModel)]="_Patient.LNAME" name="last">
         </div>
-        <div class="form-group">
-        <label for="_Patient.MEDREGNO"> Medical Reg. No </label>
-        <input value="{{_Patient.MEDREGNO}}" [(ngModel)]="_Patient.MEDREGNO" name ="initials">
-        
+
+        <div class="col-xs-3"> 
+        <label for="_Patient.MEDREGNO"> Medical Rec. No </label>
+        <input class="form-control" value="{{_Patient.MEDREGNO}}" readonly>
         </div>
+
+        </div>
+        <div class="input-group">
+        <div class="col-sm-offset-2 col-sm-10">
+            <span class="input-group-btn input-space">
+            <button (click)="updatePatient()" class="btn btn-secondary">Update</button>
+            <button (click)="deletePatient()" class="btn btn-secondary" id="delete-btn">Delete</button>
+            </span>
+        </div>
+    </div>
         </form>
-        <button (click)="updatePatient()">Update </button>
-        <button (click)="deletePatient()">Delete</button>
     </div>
      `
 })

@@ -22,8 +22,8 @@ import {PatientService} from './services/patient.service';
             <td>{{Patient.LNAME}}</td>
             <td>{{Patient.MEDREGNO}}</td>
             <td *ngIf="Patient.DEPARTMENT">{{Patient.DEPARTMENT.NAME}}</td>
-            <button [routerLink]="['/patient',Patient.ID]" class="btn btn-secondary">Edit</button>
-            <button *ngIf="route != '/patients'" (click)="OnClick(Patient)">Add</button>
+            <button *ngIf="route == '/patients'" [routerLink]="['/patient',Patient.ID]" class="btn btn-secondary">Edit</button>
+            <button *ngIf="route != '/patients'" (click)="OnClick(Patient)" class="btn btn-secondary">Add</button>
         </tr>
     </tbody>
     </table>

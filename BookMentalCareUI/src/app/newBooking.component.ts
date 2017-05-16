@@ -90,7 +90,7 @@ export class NewBookingComponent{
     
      ngOnInit(){
          this.route = window.location.pathname;
-         if(this.route != 'booking'){
+         if(this.route != '/booking'){
                  this.activatedRoute.params.map(params => params['id']).subscribe(id => {
                      console.log('test');
                      this.bookingService.findBooking(id);
@@ -100,7 +100,9 @@ export class NewBookingComponent{
                 this.booking.Room = this.cookieService.getObject("room");
                 this.booking.STARTTIME = this.cookieService.get("startTime");
                 this.booking.ENDTIME = this.cookieService.get("endTime");
-                this.cookieService.removeAll();
+                this.cookieService.remove("room");
+                this.cookieService.remove("startTime");
+                this.cookieService.remove("endTime");
             }
         
     }
