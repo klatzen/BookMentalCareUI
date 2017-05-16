@@ -5,20 +5,33 @@ import {ActivatedRoute} from '@angular/router';
     selector: 'ressource',
     template: `
     <div *ngIf="_ressource != null; else error ">
-    <form>
+    <form class="form-horizontal">
     <div class="form-group">
-    <label for="_ressource.Id">Id : {{_ressource.Id}}</label>
+         
+        <div class="col-xs-3"> 
+        <label for="_ressource.Id">Id</label>
+        <input class="form-control" value="{{_ressource.Id}}" readonly>
+        </div>
+
+        <div class="col-xs-3">  
+        <label for="_ressource.Name">Name</label>
+        <input class="form-control" value="{{_ressource.Name}}" [(ngModel)]="_ressource.Name" name="name">
+        </div>
+
+        <div class="col-xs-3"> 
+        <label for="_ressource.Type">Type</label> 
+        <input class="form-control" value="{{_ressource.Type}}" [(ngModel)]="_ressource.Type" name="type">
+        </div>
+
+        <div class="input-group">
+        <div class="col-xs-3">
+        <span class="input-group-btn input-space">
+        <button (click)="saveUpdate()" class="btn btn-secondary">Save changes</button>
+        <button (click)="deleteRes()" class="btn btn-secondary" id="delete-btn">Delete</button>
+        </span>
+        </div>
+        </div>
     </div>
-    <div class="form-group">
-    <label for="_ressource.Name">Name</label>
-    <input value="{{_ressource.Name}}" [(ngModel)]="_ressource.Name" name="name">
-    </div>
-    <div class="form-group">
-    <label for="_ressource.Type">Type</label>
-    <input value="{{_ressource.Type}}" [(ngModel)]="_ressource.Type" name="type">
-    </div>
-    <button (click)="saveUpdate()">Redigér</button>
-    <button (click)="deleteRes()">Slet</button>
     </form>
     </div>
     `

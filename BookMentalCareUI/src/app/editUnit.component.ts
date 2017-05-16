@@ -6,20 +6,28 @@ import {ActivatedRoute} from '@angular/router';
     selector:'edit-unit',
     template:`
         <div *ngIf="_unit != null">
-    <form>
+    <form class="form-horizontal">
     <div class="form-group">
-    <label for="*ngIf='_unit.Id'">Id : {{_unit.Id}}</label>
+
+    <div class="col-xs-3"> 
+    <label for="*ngIf='_unit.Id'">Id</label>
+    <input class="form-control" value="{{_unit.Id}}" readonly>
     </div>
-    <div class="form-group">
+
+    <div class="col-xs-3"> 
     <label for="ngIf='_unit.SerialNo'">Serial Number</label>
-    <input value="{{_unit.SerialNo}}" [(ngModel)]="_unit.SerialNo" name="serialNo">
+    <input class="form-control" value="{{_unit.SerialNo}}" [(ngModel)]="_unit.SerialNo" name="serialNo">
     </div>
-    <div class="form-group">
-    <label for="ngIf='_unit.RessourceId'">Ressource ID</label>
-    <input value="{{_unit.RessourceId}}" [(ngModel)]="_unit.RessourceId" name="resId">
     </div>
-    <button (click)="saveUpdate()">Redigér</button>
-    <button (click)="deleteUnit()">Slet</button>
+
+    <div class="input-group">
+        <div class="col-xs-3">
+        <span class="input-group-btn input-space">
+        <button (click)="saveUpdate()" class="btn btn-secondary">Save changes</button>
+        <button (click)="deleteUnit()" class="btn btn-secondary" id="delete-btn">Delete</button>
+        </span>
+        </div>
+        </div>
     </form>
     </div>
     `

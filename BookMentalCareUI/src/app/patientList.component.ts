@@ -5,24 +5,24 @@ import {PatientService} from './services/patient.service';
     selector: 'patList',
     template: `
     <input type="text" [(ngModel)]="userFilter.FNAME" placeholder="name">
-    <table>
+    <table class="table">
     <thead>
         <tr>
-            <td>ID</td>
-            <td>Front Name</td>
-            <td>Last Name</td>
-            <td>Medical Reg. No.</td>
-            <td>Department</td>
+            <th>ID</th>
+            <th>Front Name</th>
+            <th>Last Name</th>
+            <th>Medical Reg. No.</th>
+            <th>Department</th>
         </tr>
     </thead>
     <tbody>
         <tr *ngFor="let Patient of _Patients | filterBy: userFilter">
-        <a [routerLink]="[Patient.ID]">
             <td>{{Patient.ID}}</td>
             <td>{{Patient.FNAME}}</td>
             <td>{{Patient.LNAME}}</td>
             <td>{{Patient.MEDREGNO}}</td>
-            <td *ngIf="Patient.DEPARTMENT">{{Patient.DEPARTMENT.NAME}}</td></a>
+            <td *ngIf="Patient.DEPARTMENT">{{Patient.DEPARTMENT.NAME}}</td>
+            <button [routerLink]="['/patient',Patient.ID]" class="btn btn-secondary">Edit</button>
             <button *ngIf="route != '/patients'" (click)="OnClick(Patient)">Add</button>
         </tr>
     </tbody>

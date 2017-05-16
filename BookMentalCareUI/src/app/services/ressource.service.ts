@@ -45,7 +45,7 @@ import 'rxjs/add/operator/map';
         }
 
         findUnits(id:number) {
-
+            this._Units = [];
             this.http.get('http://localhost:2026/api/unit/units/' + id)
             .map(response => response.json())
             .subscribe(data => {data.forEach(unit => this._Units.push(unit))})

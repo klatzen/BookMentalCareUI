@@ -6,17 +6,17 @@ import {ActivatedRoute} from '@angular/router';
     selector: 'unitList',
     template: `
     <div>
-        <table>
+        <table class="table">
             <thead>
-                <td>Unit ID</td>
-                <td>Serial Number</td>
+                <th>Unit ID</th>
+                <th>Serial Number</th>
             </thead>
         <tbody>
         
             <tr *ngFor="let unit of _Units | filterBy : userFilter">
                 <td>{{unit.Id}}</td>
                 <td>{{unit.SerialNo}}</td>
-                <button [routerLink]="['/editUnit',unit.Id]">Redigér/Slet</button>
+                <button [routerLink]="['/editUnit',unit.Id]" class="btn btn-secondary">Redigér/Slet</button>
             </tr>
             
         </tbody>

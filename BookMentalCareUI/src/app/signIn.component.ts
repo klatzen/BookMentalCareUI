@@ -21,7 +21,7 @@ import {EmployeeService} from './services/employee.service';
         <div class="input-group">
             <div class="col-sm-offset-2 col-sm-10">
                 <span class="input-group-btn input-space">
-                <button (click)="signIn()" [routerLink]="['/']" class="btn btn-secondary" >Login</button>
+                <button type="button" (click)="signIn()" [routerLink]="['/']" class="btn btn-secondary" >Login</button>
                 </span>
             </div>
         </div>
@@ -33,7 +33,7 @@ import {EmployeeService} from './services/employee.service';
  
 export class SignInComponent {
     @Input() _Employee: any = {INITIALS: '',PASSWORD:''};
-
+    signedin: any;
 
   constructor(private _cookieService:CookieService, private employeeService: EmployeeService){
 
@@ -43,7 +43,10 @@ export class SignInComponent {
   signIn(){
       this.employeeService.signIn(this._Employee.INITIALS,this._Employee.PASSWORD);
       this.employeeService.empEvent.subscribe(data => {console.log(data);
-        this._cookieService.put('login',this._Employee);  
+          this.signedin = data;
+          if(this.signedin != null){
+                this._cookieService.put('login',this._Employee);  
+          }
     });
 
   }
