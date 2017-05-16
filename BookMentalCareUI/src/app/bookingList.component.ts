@@ -37,14 +37,10 @@ export class BookingListComponent{
 
         ngOnInit(){
             this.route = window.location.pathname;
-        }
-
-        onClick(Booking){
-            
-        }
-        
+        }      
         constructor(private bookingService : BookingService){
             this._Bookings = bookingService.findEmpBookings(this.empId);
+            
 
         }      
 }
