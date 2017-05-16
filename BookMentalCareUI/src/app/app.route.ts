@@ -89,7 +89,7 @@ const routes = [{
     component: BookingListComponent
 },
 {
-    path:'bookings/:id',
+    path:'booking/:id',
     component: NewBookingComponent
 },
 {
