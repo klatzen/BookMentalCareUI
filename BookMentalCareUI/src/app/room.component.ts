@@ -5,18 +5,27 @@ import {ActivatedRoute} from '@angular/router';
     selector: 'pat',
     template: ` 
      <div *ngIf="_Room != null">
-     <form>
+     <form class="form-horizontal">
      <div class="form-group">
+        <div class="col-xs-3"> 
         <label for="_Room.TYPE"> Type</label>
-        <input value="{{_Room.TYPE}}" [(ngModel)]="_Room.TYPE" name="type">
-    </div>
-    <div class="form-group">
-    <label for="_Room.ROOMNO">Room No. </label>
-        <input value="{{_Room.ROOMNO}}" [(ngModel)]="_Room.ROOMNO" name="roomNo">
+        <input class="form-control" value="{{_Room.TYPE}}" [(ngModel)]="_Room.TYPE" name="type">
         </div>
-        </form>
-        <button (click)="updateRoom()">Update </button>
-        <button (click)="deleteRoom()">Delete</button>
+
+        <div class="col-xs-3"> 
+        <label for="_Room.ROOMNO">Room No. </label>
+        <input class="form-control" value="{{_Room.ROOMNO}}" [(ngModel)]="_Room.ROOMNO" name="roomNo" readonly>
+        </div>
+    </div>
+    <div class="input-group">
+        <div class="col-sm-offset-2 col-sm-10">
+            <span class="input-group-btn input-space">
+            <button (click)="updateRoom()" class="btn btn-secondary">Update</button>
+            <button (click)="deleteRoom()" class="btn btn-secondary" id="delete-btn">Delete</button>
+            </span>
+        </div>
+    </div>
+    </form>
     </div>
      `
 })

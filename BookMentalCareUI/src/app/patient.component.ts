@@ -30,7 +30,7 @@ import {ActivatedRoute} from '@angular/router';
             <button (click)="deletePatient()" class="btn btn-secondary" id="delete-btn">Delete</button>
             </span>
         </div>
-    </div>
+        </div>
         </form>
     </div>
      `

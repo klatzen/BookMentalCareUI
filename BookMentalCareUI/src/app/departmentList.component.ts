@@ -5,7 +5,13 @@ import {DepartmentService} from './services/department.service';
 @Component({
     selector: 'depList',
     template: `
-    <input class="dep-search" type="text" [(ngModel)]="userFilter.NAME" placeholder="Insert department name">
+    <form class="form-inline">
+    <div class="form-group">
+        <label>Search</label>
+        <input class="form control" type="text" [(ngModel)]="userFilter.NAME" placeholder="department name" name="search">
+    </div>
+    </form>
+    
     <table class="table">
     <thead>
         <tr>
