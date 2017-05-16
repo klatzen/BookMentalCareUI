@@ -21,8 +21,12 @@ import {Router} from '@angular/router';
     </form>
     <hr>
 
-    <label>Search</label>
-    <input type="text" [(ngModel)]="userFilter.ROOMNO" placeholder="department name">
+    <form class="form-inline">
+    <div class="form-group">
+        <label>Search</label>
+        <input class="form-control" type="text" [(ngModel)]="userFilter.ROOMNO" placeholder="department name" name="search">
+    </div>
+    </form>
 
     <table class="table">
     <thead>
