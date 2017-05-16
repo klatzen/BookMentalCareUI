@@ -32,6 +32,7 @@ export class BookingService{
         return this._Bookings;
     }
     findEmpBookings(id){
+        this._Bookings = [];
         this.http.get('http://localhost:2026/api/booking/getEmpBooking/'+ 1)
         .map(response => response.json())
         .subscribe(data => {data.forEach(booking => this._Bookings.push(booking))},()=> this.alertService.showAlert(true,"Der opstod en fejl - prøv igen","danger"));
