@@ -74,6 +74,9 @@ export class RessourceListComponent {
         if(changes.removeUnit.currentValue != undefined){
              let res = this._AvalibleRessources.find(x => x.Id == this.removeUnit.RessourceId);
             if (res === undefined) {
+                if(this.removeUnit.Ressource.units == null){
+                    this.removeUnit.Ressource.units = [];
+                }
                 this.removeUnit.Ressource.units.push(this.removeUnit);
                 this._AvalibleRessources.push(this.removeUnit.Ressource);
             } else {

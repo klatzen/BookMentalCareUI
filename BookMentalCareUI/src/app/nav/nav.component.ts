@@ -22,7 +22,6 @@ export class NavComponent implements OnInit {
   }
 
   onCloseAlert(reason: string){
-    let objCloseAlert: AlertMessage = {show: false, message: '', alertType: null};
     this.alertService.showAlert(false, null, null);
   }
 
