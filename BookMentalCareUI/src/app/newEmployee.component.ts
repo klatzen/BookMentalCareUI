@@ -11,32 +11,32 @@ import {DepartmentListComponent} from './departmentList.component';
      <div class="form-group">
         <div class="col-xs-3">
         <label for="_Employee.FNAME"> Front Name</label>
-        <input  [(ngModel)]="_Employee.FNAME" name="first">
+        <input class="form-control" [(ngModel)]="_Employee.FNAME" name="first">
         </div>
         
         <div class="col-xs-3">
         <label for="_Employee.LNAME">Last Name </label>
-        <input  [(ngModel)]="_Employee.LNAME" name="last">
+        <input class="form-control" [(ngModel)]="_Employee.LNAME" name="last">
         </div>
 
         <div class="col-xs-3">
         <label for="_Employee.TITLE"> Title </label>
-        <input [(ngModel)]="_Employee.TITLE" name="title">
+        <input class="form-control" [(ngModel)]="_Employee.TITLE" name="title">
         </div>
         
         <div class="col-xs-3"> 
         <label for="_Employee.DEPARTMENT.NAME"> Department </label>
-        <input [(ngModel)]="_Employee.DEPARTMENT.NAME" name="department">
+        <input class="form-control" [(ngModel)]="_Employee.DEPARTMENT.NAME" name="department">
         </div>
         
-        <div class="col-xs-3">
+        <div class="col-xs-3" id="space-ontop">
         <label for="_Employee.INITIALS"> Initials </label>
-        <input  [(ngModel)]="_Employee.INITIALS" name ="initials">
+        <input class="form-control" [(ngModel)]="_Employee.INITIALS" name ="initials">
         </div>
 
-        <div class="col-xs-3">     
+        <div class="col-xs-3" id="space-ontop">     
         <label for="_Employee.PASSWORD"> Password </label>
-        <input  [(ngModel)]="_Employee.PASSWORD" name ="password" type="password">
+        <input class="form-control" [(ngModel)]="_Employee.PASSWORD" name ="password" type="password">
         </div>
       </div>
   
