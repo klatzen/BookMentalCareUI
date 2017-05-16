@@ -33,10 +33,10 @@ import {PatientService} from './services/patient.service';
 import {RoomService} from './services/room.service';
 import {DepartmentService} from './services/department.service';
 import {BookingService} from './services/booking.service';
+import {AlertService, AlertMessage} from './services/alert.service';
 
 import { Ng2FilterPipeModule } from 'ng2-filter-pipe';
 import { CookieService } from 'angular2-cookie/services/cookies.service';
-
 
 import {routing} from './app.route';
 import { NavComponent } from './nav/nav.component';
@@ -80,7 +80,9 @@ import { NavComponent } from './nav/nav.component';
     RoomService,
     CookieService,
     DepartmentService,
-    BookingService
+    BookingService,
+    AlertService,
+    AlertMessage
   ],
   bootstrap: [AppComponent]
 })
