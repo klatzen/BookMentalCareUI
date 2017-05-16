@@ -1,6 +1,5 @@
 import {Component, Output, EventEmitter, Input, SimpleChanges} from '@angular/core';
 import {EmployeeService} from './services/employee.service';
-import {AlertService} from './services/alert.service';
 
 @Component({
     selector: 'empList',
@@ -19,13 +18,13 @@ import {AlertService} from './services/alert.service';
     </thead>
     <tbody>
         <tr *ngFor="let Employee of _Employees | filterBy: userFilter">
-            <td>{{Employee.ID}}</td>
+        <a [routerLink]="['/employee',Employee.INITIALS]">
+            <td>{{Employee.ID}}</td></a>
             <td>{{Employee.FNAME}}</td>
             <td>{{Employee.LNAME}}</td>
             <td>{{Employee.TITLE}}</td>
             <td>{{Employee.INITIALS}}</td>
             <td *ngIf="Employee.DEPARTMENT">{{Employee.DEPARTMENT.NAME}}</td>
-            <button *ngIf="route == '/employees'" [routerLink]="['/employee',Employee.INITIALS]" class="btn btn-secondary">Edit</button>
             <button *ngIf="route != '/employees'" (click)="OnClick(Employee)" type="button" class="btn btn-secondary">Add</button>
 
         </tr>
@@ -44,7 +43,6 @@ export class EmployeeListComponent{
         route:any;
 
         ngOnInit(){
-            this.alertService.showAlert(true, "Det virker bar", "info");
             this.route = window.location.pathname;
             if(this.route != "/employees"){
                 this._Employees = this.employeeService.findAvailEmployees(this.startTime,this.endTime);
@@ -58,7 +56,7 @@ export class EmployeeListComponent{
                 this._Employees.push(this.removeEmp);
             }
         }
-        constructor(private employeeService : EmployeeService, private alertService:AlertService){
+        constructor(private employeeService : EmployeeService){
         }      
 
         OnClick(Employee){

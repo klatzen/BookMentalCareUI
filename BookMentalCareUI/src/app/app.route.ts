@@ -19,58 +19,73 @@ import {DepartmentComponent} from './department.component';
 import {SignInComponent} from './signIn.component';
 import {NewBookingComponent} from './newBooking.component';
 import {BookingListComponent} from './bookingList.component';
+import {LoginGuard} from './services/LoginGuard.service';
 
 const routes = [{
     path: 'employees',
-    component: EmployeeListComponent
+    component: EmployeeListComponent,
+    canActivate: [LoginGuard]
 },{
     path:'ressources',
-    component: RessourceListComponent
+    component: RessourceListComponent,
+    canActivate: [LoginGuard]
 },{
     path:'ressource/:id',
-    component: RessourceComponent
+    component: RessourceComponent,
+    canActivate: [LoginGuard]
 },{
     path:'employee/:initials',
-    component: EmployeeComponent
+    component: EmployeeComponent,
+    canActivate: [LoginGuard]
 
 },{
     path:'createRessource',
-    component: NewRessourceComponent
+    component: NewRessourceComponent,
+    canActivate: [LoginGuard]
 },{
     path:'employeeCreate',
-    component: NewEmployeeComponent
+    component: NewEmployeeComponent,
+    canActivate: [LoginGuard]
 
 },{
     path:'patients',
-    component: PatientListComponent
+    component: PatientListComponent,
+    canActivate: [LoginGuard]
 
 },{
     path:'patientCreate',
-    component: NewPatientComponent
+    component: NewPatientComponent,
+    canActivate: [LoginGuard]
 },
 {
     path:'patient/:id',
-    component: PatientComponent
+    component: PatientComponent,
+    canActivate: [LoginGuard]
 
 },{
     path:'unit/:id',
-    component: UnitListComponent
+    component: UnitListComponent,
+    canActivate: [LoginGuard]
 
 },{
     path:'rooms',
-    component: RoomListComponent
+    component: RoomListComponent,
+    canActivate: [LoginGuard]
 
 },{
     path:'room/:id',
-    component: RoomComponent
+    component: RoomComponent,
+    canActivate: [LoginGuard]
 
 },
 {
     path:'roomCreate',
-    component: NewRoomComponent
+    component: NewRoomComponent,
+    canActivate: [LoginGuard]
 },{
     path:'editUnit/:Id',
-    component: EditUnitComponent
+    component: EditUnitComponent,
+    canActivate: [LoginGuard]
 },
 {
     path:'signIn',
@@ -78,23 +93,28 @@ const routes = [{
 },
 {
     path:'departments',
-    component:DepartmentListComponent
+    component:DepartmentListComponent,
+    canActivate: [LoginGuard]
 },
 {
     path:'booking',
-    component: NewBookingComponent
+    component: NewBookingComponent,
+    canActivate: [LoginGuard]
 },
 {
     path:'bookings',
-    component: BookingListComponent
+    component: BookingListComponent,
+    canActivate: [LoginGuard]
 },
 {
     path:'booking/:id',
-    component: NewBookingComponent
+    component: NewBookingComponent,
+    canActivate: [LoginGuard]
 },
 {
     path:'department/:id',
-    component: DepartmentComponent
+    component: DepartmentComponent,
+    canActivate: [LoginGuard]
 }
 ]
 

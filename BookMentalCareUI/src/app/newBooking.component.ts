@@ -8,65 +8,51 @@ import {EmployeeListComponent} from './employeeList.component'
 @Component({
     selector: 'book',
     template: ` 
-            <form class="form-horizontal">
+            <form>
                 <div class="form-group">
-                    <div class="col-xs-3"> 
                     <label for="booking.StartTime">Start Time</label>
-                    <input class="form-control" [(ngModel)]="booking.STARTTIME" value="{{booking.STARTTIME}}" name="startTime" readonly>
-                    </div>
-                    
-                    <div class="col-xs-3"> 
+                    <input [(ngModel)]="booking.STARTTIME" value="{{booking.STARTTIME}}" name="startTime" readonly>
+                </div>
+                <div class="form-group">
                     <label for="booking.EndTime">End Time</label>
-                    <input class="form-control" [(ngModel)]="booking.ENDTIME" name="endTime" readonly>
-                    </div>
-                    
-                    <div class="col-xs-3"> 
+                    <input [(ngModel)]="booking.ENDTIME" name="endTime" readonly>
+                </div>
+                <div class="form-group">
                     <label for="booking.Description">Description</label>
-                    <textarea class="form-control" [(ngModel)]="booking.DESCRIPTION" name="description"></textarea>
-                    </div>
+                    <textarea [(ngModel)]="booking.DESCRIPTION" name="description"></textarea>
                 </div>
             </form>
 
+
             
-            <div class="input-group">
-            <div class="col-sm-offset-2 col-sm-10">
-            <span class="input-group-btn input-space">
-                <button (click)="showEmployees()" class="btn btn-secondary">Show Employee(s)</button> <button (click)="showPatients()" class="btn btn-secondary" id="delete-btn">Show Patient</button> <button (click)="showRessources()" class="btn btn-secondary" id="delete-btn">Show Ressource(s)</button>
-                <div *ngIf="route == '/booking'">
-                    <button *ngIf="booking.PATIENT && booking.EMPLOYEES.length > 0" (click)="CompleteBooking()" class="btn btn-secondary"> Complete Booking</button>
-                </div>
-                <span class="input-group-btn input-space">
-                <div *ngIf="route != '/booking'">
-                    <button (click)="UpdateBooking()" class="btn btn-secondary"> Save Changes</button>
-                    <button (click)="deleteBooking()" class="btn btn-secondary" id="delete-btn"> Delete Booking</button>
-                </div>
-                </span>
-            </span>
+            <button (click)="showEmployees()">Show Employee(s)</button> <button (click)="showPatients()">Show Patient</button> <button (click)="showRessources()">Show Ressource(s)</button>
+            <div *ngIf="route == '/booking'">
+            <button *ngIf="booking.PATIENT && booking.EMPLOYEES.length > 0" (click)="CompleteBooking()"> Complete Booking</button>
             </div>
+            <div *ngIf="route != '/booking'">
+                    <button (click)="UpdateBooking()"> Update Booking</button>
+                    <button (click)="DeleteBooking()"> Delete Booking</button>
             </div>
-            <hr>
+            <br>
             <div *ngIf="booking.Room">
-            <p><b>Booked Room:</b> ID {{booking.Room.ID}}, Type: {{booking.Room.TYPE}}</p>
+            <p>Booked Room: ID: {{booking.Room.ID}}, Type: {{booking.Room.TYPE}}</p>
             </div>
 
             <div *ngIf="booking.PATIENT">
-            <p><b>Patient added to booking</b></p> 
-            <ul>
-            <li>{{booking.PATIENT.FNAME}} {{booking.PATIENT.LNAME}}, {{booking.PATIENT.MEDREGNO}} <button (click)="removePatient(booking.PATIENT)" class="btn btn-secondary pull-right" id="remove-btn">X</button></li>
-            </ul>
+            <p>Patient: {{booking.PATIENT.FNAME}} {{booking.PATIENT.LNAME}}, {{booking.PATIENT.MEDREGNO}} <button (click)="removePatient(booking.PATIENT)">X</button></p>
             </div>
 
             <div *ngIf="!(booking.EMPLOYEES.length == 0)">
-            <p><b>Employees added to booking</b></p>
+            <p>List of employees added to booking</p>
             <ul *ngFor="let emp of booking.EMPLOYEES">
-                <li>Name: {{emp.FNAME}} {{emp.LNAME}}, Initials: {{emp.INITIALS}} <button (click)="removeEmployee(emp)" class="btn btn-secondary pull-right" id="remove-btn">X</button></li>
+                <li>Name: {{emp.FNAME}} {{emp.LNAME}}, Initials: {{emp.INITIALS}} <button (click)="removeEmployee(emp)">X</button></li>
             </ul>
             </div>
 
             <div *ngIf="!(booking.RESSOURCES.length == 0)">
-            <p><b>Ressources added to booking</b></p>
+            <p>List of ressources added to booking</p>
             <ul *ngFor="let res of booking.RESSOURCES">
-                <li>Name: {{res.Ressource.Name}} <button (click)="removeRessource(res)" class="btn btn-secondary pull-right" id="remove-btn">X</button></li>
+                <li>Name: {{res.Ressource.Name}} <button (click)="removeRessource(res)">X</button></li>
             </ul>
             </div>
             
@@ -90,7 +76,7 @@ import {EmployeeListComponent} from './employeeList.component'
     `
 })
 export class NewBookingComponent{
-    @Input() booking: Booking = {DESCRIPTION: "", DATE: "", STARTTIME: "", ENDTIME: "", RESSOURCES: [], PATIENT:'', EMPLOYEES: [], Room: ""};
+    @Input() booking: Booking = {ID: 0, DESCRIPTION: "", DATE: "", STARTTIME: "", ENDTIME: "", RESSOURCES: [], PATIENT:'', EMPLOYEES: [], Room: ""};
     @Output() Employee;
     @Output() Patient;
     @Output() Unit;
@@ -106,7 +92,6 @@ export class NewBookingComponent{
          this.route = window.location.pathname;
          if(this.route != '/booking'){
                  this.activatedRoute.params.map(params => params['id']).subscribe(id => {
-                     console.log('test');
                      this.bookingService.findBooking(id);
                      this.bookingService.booEvent.subscribe(data => this.booking = data);
                  })
@@ -173,12 +158,13 @@ export class NewBookingComponent{
     UpdateBooking(){
         this.bookingService.saveBooking(this.booking);
     }
-    deleteBooking(){
-        
+    DeleteBooking(){
+        this.bookingService.deleteBooking(this.booking.ID);
     }
 }
 
 interface Booking{
+    ID: number;
     DESCRIPTION: string;
     DATE: string;
     STARTTIME: string;
