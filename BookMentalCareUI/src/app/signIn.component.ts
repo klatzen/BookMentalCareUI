@@ -22,7 +22,7 @@ import {EmployeeService} from './services/employee.service';
         <div class="input-group">
             <div class="col-sm-offset-2 col-sm-10">
                 <span class="input-group-btn input-space">
-                <button type="button" (click)="signIn()" [routerLink]="['/']" class="btn btn-secondary" >Login</button>
+                <button type="button" (click)="signIn()" [routerLink]="['/bookings',_Employee.ID]" class="btn btn-secondary" >Login</button>
                 </span>
             </div>
         </div>

@@ -27,7 +27,7 @@ import {ActivatedRoute} from '@angular/router';
         <button (click)="deleteUnit()" class="btn btn-secondary" id="delete-btn">Delete</button>
         </span>
         </div>
-        </div>
+    </div>
     </form>
     </div>
     `

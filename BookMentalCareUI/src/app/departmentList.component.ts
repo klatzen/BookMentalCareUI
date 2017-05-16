@@ -22,10 +22,10 @@ import {DepartmentService} from './services/department.service';
     </thead>
     <tbody *ngIf="route == '/departments'">
         <tr *ngFor="let Department of _Departments | filterBy: userFilter">
-        <a [routerLink]="['/department',Department.ID]">
-            <td>{{Department.ID}}</td></a>
+            <td>{{Department.ID}}</td>
             <td>{{Department.NAME}}</td>
             <td>{{Department.LOCATION}}</td>
+            <button [routerLink]="['/department',Department.ID]" class="btn btn-secondary">Edit</button>
         </tr>
     </tbody>
     <tbody *ngIf="route != '/departments'">

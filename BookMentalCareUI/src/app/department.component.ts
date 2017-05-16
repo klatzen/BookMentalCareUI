@@ -7,15 +7,26 @@ import {ActivatedRoute} from '@angular/router';
      <div *ngIf="_Department != null">
      <form class="form-inline">
      <div class="form-group">
+     
+        <div class="col-xs-3"> 
         <label for="_Department.NAME"> Name</label>
         <input class="form-control" value="{{_Department.NAME}}" [(ngModel)]="_Department.NAME" name="name">
-    </div>
-    <div class="form-group">
-    <label for="_Department.LOCATION">Location </label>
+        </div>
+
+        <div class="col-xs-3"> 
+        <label for="_Department.LOCATION">Location </label>
         <input class="form-control" value="{{_Department.LOCATION}}" [(ngModel)]="_Department.LOCATION" name="location">
         </div>
-        <button type="button" (click)="updateDepartment()" class="btn btn-secondary">Update </button>
-        <button type="button" (click)="deleteDepartment()" class="btn btn-secondary">Delete</button>
+
+    </div>
+        <div class="input-group">
+        <div class="col-xs-3">
+        <span class="input-group-btn input-space">
+        <button (click)="updateDepartment()" class="btn btn-secondary">Save changes</button>
+        <button (click)="deleteDepartment()" class="btn btn-secondary" id="delete-btn">Delete</button>
+        </span>
+        </div>
+    </div>
         </form>
     </div>
      `
