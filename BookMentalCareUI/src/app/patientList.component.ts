@@ -4,7 +4,14 @@ import {PatientService} from './services/patient.service';
 @Component({
     selector: 'patList',
     template: `
-    <input type="text" [(ngModel)]="userFilter.FNAME" placeholder="name">
+    <form class="form-inline">
+    <div class="form-group">
+        <label>Search</label>
+        <input class="form-control" type="text" [(ngModel)]="userFilter.FNAME" placeholder="name" name="search">
+    </div>
+    
+    </form>
+
     <table class="table">
     <thead>
         <tr>

@@ -25,8 +25,8 @@ import { BookingService } from './services/booking.service';
                 <td>{{ressource.Id}}</td>
                 <td>{{ressource.Name}}</td>
                 <td>{{ressource.Type}}</td>
-                <button type="button" [routerLink]="['/unit',ressource.Id]" class="btn btn-secondary">See units</button>
-                <button type="button" [routerLink]="['/ressource',ressource.Id]" class="btn btn-secondary">Edit</button>
+                <td><button type="button" [routerLink]="['/unit',ressource.Id]" class="btn btn-secondary">See units</button></td>
+                <td><button type="button" [routerLink]="['/ressource',ressource.Id]" class="btn btn-secondary">Edit</button></td>
             </tr>
             <button [routerLink]="['/createRessource']" class="btn btn-secondary">Create new</button>
         </tbody>
