@@ -4,7 +4,13 @@ import {EmployeeService} from './services/employee.service';
 @Component({
     selector: 'empList',
     template: `
-    <input type="text" [(ngModel)]="userFilter.INITIALS" placeholder="name, department">
+    <form class="form-inline">
+    <div class="form-group">
+        <label>Search</label>
+        <input class="form-control" type="text" [(ngModel)]="userFilter.INITIALS" placeholder="name" name="search">
+    </div>
+    
+    </form>
     <table class="table">
     <thead>
         <tr>

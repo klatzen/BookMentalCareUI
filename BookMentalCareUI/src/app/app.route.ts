@@ -102,7 +102,7 @@ const routes = [{
     canActivate: [LoginGuard]
 },
 {
-    path:'bookings',
+    path:'bookings/:id',
     component: BookingListComponent,
     canActivate: [LoginGuard]
 },
