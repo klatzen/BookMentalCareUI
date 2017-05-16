@@ -5,23 +5,32 @@ import {RoomService} from './services/room.service';
   selector: 'Room',
   template: 
   `
-  <form>
+  <form class="form-horizontal">
      <div class="form-group">
+        <div class="col-xs-3">
         <label for="_Room.TYPE"> Type</label>
         <input  [(ngModel)]="_Room.TYPE" name="type">
-    </div>
-    <div class="form-group">
-    <label for="_Room.ROOMNO">Room No. </label>
+        </div>
+        
+        <div class="col-xs-3">
+        <label for="_Room.ROOMNO">Room No. </label>
         <input  [(ngModel)]="_Room.ROOMNO" name="roomNo">
         </div>
-        <div class="form-group">
+        
+        <div class="col-xs-3">
         <label for="_Room.DEPARTMENT.NAME"> Department </label>
         <input [(ngModel)]="_Room.DEPARTMENT.NAME" name="department">
         </div>
+      </div>
 
         <depList (sendDepartment)="getDepartment($event)"></depList>
         </form>
-        <button (click)="createRoom()">Create Room </button>
+        <div class="input-group">
+        <div class="col-xs-3">
+        <span class="input-group-btn input-space">
+          <button (click)="createRoom()" class="btn btn-secondary">Create Room </button>
+        </span>
+        </div>
   `
 
 })

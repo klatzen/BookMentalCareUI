@@ -5,30 +5,38 @@ import {PatientService} from './services/patient.service';
   selector: 'patient',
   template: 
   `
-  <form>
+  <form class="form-horizontal">
      <div class="form-group">
         <label for="_Patient.FNAME"> Front Name</label>
         <input  [(ngModel)]="_Patient.FNAME" name="first">
-    </div>
-
-    <div class="form-group">
-    <label for="_Patient.LNAME">Last Name </label>
+    
+        <div class="col-xs-3">
+        <label for="_Patient.LNAME">Last Name </label>
         <input  [(ngModel)]="_Patient.LNAME" name="last">
         </div>
 
-        <div class="form-group">
+        <div class="col-xs-3">
         <label for="_Patient.MEDREGNO"> Medical Record No. </label>
         <input [(ngModel)]="_Patient.MEDREGNO" name="medRegNo">
         </div>
-        <div class="form-group">
+        
+        <div class="col-xs-3">
         <label for="_Patient.DEPARTMENT.NAME"> Department </label>
         <input [(ngModel)]="_Patient.DEPARTMENT.NAME" name="department">
         </div>
+      </div>
 
         <depList (sendDepartment)="getDepartment($event)"></depList>
 
         </form>
-        <button (click)="createPatient()">Create Patient </button>
+        
+        <div class="input-group">
+        <div class="col-xs-3">
+        <span class="input-group-btn input-space">
+        <button (click)="createPatient()" class="btn btn-secondary">Create Patient </button>
+        </span>
+        </div>
+    </div>
   `
 
 })
