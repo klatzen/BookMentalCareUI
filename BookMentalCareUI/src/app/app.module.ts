@@ -41,6 +41,8 @@ import {LoginGuard} from './services/LoginGuard.service';
 
 import {routing} from './app.route';
 import { NavComponent } from './nav/nav.component';
+import { ModalModule } from 'angular2-modal';
+import { BootstrapModalModule } from 'angular2-modal/plugins/bootstrap';
 
 @NgModule({
   declarations: [
@@ -72,7 +74,9 @@ import { NavComponent } from './nav/nav.component';
     FormsModule,
     HttpModule,
     routing,
-    Ng2FilterPipeModule
+    Ng2FilterPipeModule,
+    ModalModule.forRoot(),
+    BootstrapModalModule
   ],
   providers: [
     EmployeeService,

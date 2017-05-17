@@ -24,6 +24,7 @@ export class EmployeeService{
     }
 
     findEmployees(){
+        this._Employess = [];
         this.http.get('http://localhost:2026/api/Employee')
         .map(response => response.json())
         .subscribe(data => {data.forEach(employee => this._Employess.push(employee))},()=> this.alertService.showAlert(true,"Der opstod en fejl - prøv igen","danger"))

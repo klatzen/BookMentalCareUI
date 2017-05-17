@@ -36,6 +36,6 @@ export class DepartmentService{
 
     deleteDepartment(id){
         this.http.delete('http://localhost:2026/api/Department/'+ id).subscribe(()=>"",()=> this.alertService.showAlert(true,"Der opstod en fejl - prøv igen","danger"),
-        ()=> this.alertService.showAlert(true,"data er slettet","success"));
+        ()=> this.alertService.showAlert(true,"Data er slettet","success"));
     }
 }

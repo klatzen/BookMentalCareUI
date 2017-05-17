@@ -46,6 +46,6 @@ export class PatientService{
     }
 
     deletePatient(id){
-        this.http.delete('http://localhost:2026/api/Patient/'+ id).subscribe(() => "",err => this.alertService.showAlert(true, "Der opstod en fejl - prøv igen", "danger"), () => this.alertService.showAlert(true, "Data blev gemt..", "success"));
+        this.http.delete('http://localhost:2026/api/Patient/'+ id).subscribe(() => "",err => this.alertService.showAlert(true, "Der opstod en fejl - prøv igen", "danger"), () => this.alertService.showAlert(true, "Data blev slettet..", "success"));
     }
 }

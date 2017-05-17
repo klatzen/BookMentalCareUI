@@ -35,7 +35,7 @@ export class RoomService{
     }
 
     deleteRoom(id){
-        this.http.delete('http://localhost:2026/api/Room/'+ id).subscribe(() => "",err => this.alertService.showAlert(true, "Der opstod en fejl - prøv igen", "danger"), () => this.alertService.showAlert(true, "Data blev gemt..", "success"));
+        this.http.delete('http://localhost:2026/api/Room/'+ id).subscribe(() => "",err => this.alertService.showAlert(true, "Der opstod en fejl - prøv igen", "danger"), () => this.alertService.showAlert(true, "Data blev slettet..", "success"));
     }
     findAvailRooms(startTime, endTime){
         this._Rooms = [];

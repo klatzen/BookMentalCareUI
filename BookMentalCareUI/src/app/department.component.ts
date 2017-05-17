@@ -1,6 +1,9 @@
-import {Component, Input} from '@angular/core';
 import {DepartmentService} from './services/department.service';
 import {ActivatedRoute} from '@angular/router';
+
+import { Component, ViewContainerRef, Input } from '@angular/core';
+import { Overlay } from 'angular2-modal';
+import { Modal } from 'angular2-modal/plugins/bootstrap';
 @Component({
     selector: 'dep',
     template: ` 
@@ -23,7 +26,7 @@ import {ActivatedRoute} from '@angular/router';
         <div class="col-xs-3">
         <span class="input-group-btn input-space">
         <button (click)="updateDepartment()" class="btn btn-secondary">Save changes</button>
-        <button (click)="deleteDepartment()" class="btn btn-secondary" id="delete-btn">Delete</button>
+        <button (click)="onClick()" class="btn btn-secondary" id="delete-btn">Delete</button>
         </span>
         </div>
     </div>
@@ -33,8 +36,8 @@ import {ActivatedRoute} from '@angular/router';
 })
 export class DepartmentComponent{
         @Input() _Department: any;
-        constructor(private departmentService : DepartmentService,private activatedRoute: ActivatedRoute){
-            
+        constructor(private departmentService : DepartmentService,private activatedRoute: ActivatedRoute, overlay: Overlay, vcRef: ViewContainerRef, public modal: Modal){
+            overlay.defaultViewContainer = vcRef;
         }
         ngOnInit(){
             this.activatedRoute.params.map(params => params['id']).subscribe(id => {
@@ -50,6 +53,17 @@ export class DepartmentComponent{
         updateDepartment(){
             this.departmentService.saveDepartment(this._Department);
         }
+
+        onClick() {
+    this.modal.confirm()
+        .size('lg')
+        .showClose(true)
+        .title('Bekræft sletning af department')
+        .body(`
+            <h4>Er du sikker på du vil slette denne department?</h4>
+            `).okBtn('Delete').okBtnClass.apply(() => console.log('fired'))
+        .open();
+  }
 
         
 } 
