@@ -2,6 +2,7 @@ import {Http,RequestOptions} from '@angular/http';
 import {Injectable, Output,EventEmitter} from '@angular/core';
 import 'rxjs/add/operator/map';
 import {AlertService} from '../services/alert.service';
+import {Router} from '@angular/router';
 
 @Injectable()
 export class DepartmentService{
@@ -9,7 +10,7 @@ export class DepartmentService{
     @Output() Department;
     @Output() depEvent = new EventEmitter();
 
-    constructor(private http: Http, private alertService:AlertService){
+    constructor(private http: Http, private alertService:AlertService, private router:Router){
 
     }
 
@@ -22,6 +23,7 @@ export class DepartmentService{
     }
 
     findDepartments(){
+        this._Departments = [];
         this.http.get('http://localhost:2026/api/Department')
         .map(response => response.json())
         .subscribe(data => {data.forEach(department => this._Departments.push(department))},()=> this.alertService.showAlert(true,"Der opstod en fejl - prøv igen","danger"))
@@ -35,7 +37,9 @@ export class DepartmentService{
     }
 
     deleteDepartment(id){
+        console.log(id);
         this.http.delete('http://localhost:2026/api/Department/'+ id).subscribe(()=>"",()=> this.alertService.showAlert(true,"Der opstod en fejl - prøv igen","danger"),
-        ()=> this.alertService.showAlert(true,"Data er slettet","success"));
+        ()=> {this.alertService.showAlert(true,"Data er slettet","success")
+                this.router.navigate(['/departments']);});
     }
 }

@@ -1,5 +1,5 @@
 import {DepartmentService} from './services/department.service';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 
 import { Component, ViewContainerRef, Input } from '@angular/core';
 import { Overlay } from 'angular2-modal';
@@ -36,7 +36,7 @@ import { Modal } from 'angular2-modal/plugins/bootstrap';
 })
 export class DepartmentComponent{
         @Input() _Department: any;
-        constructor(private departmentService : DepartmentService,private activatedRoute: ActivatedRoute, overlay: Overlay, vcRef: ViewContainerRef, public modal: Modal){
+        constructor(private departmentService : DepartmentService,private activatedRoute: ActivatedRoute, overlay: Overlay, vcRef: ViewContainerRef, public modal: Modal, private router:Router){
             overlay.defaultViewContainer = vcRef;
         }
         ngOnInit(){
@@ -64,10 +64,11 @@ export class DepartmentComponent{
         .title('Bekræft sletning af department')
         .body(`
             <p>Er du sikker på du vil slette denne department?</p>
-            `).okBtn('Cancel')
+            `).okBtn('Delete')
             .okBtnClass('btn btn-info')
-            .addButton('btn btn-success', 'Delete',this.testMe)
-        .open().then(res => res.result.then(() => console.log("Test")));
+        .open().then((dialogRef) => dialogRef.result /* this is the promise of the result */) 
+            .then(result => this.deleteDepartment())
+            .catch(err => alert("CANCELED"));
   }
 
         
