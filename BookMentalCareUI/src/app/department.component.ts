@@ -53,16 +53,21 @@ export class DepartmentComponent{
         updateDepartment(){
             this.departmentService.saveDepartment(this._Department);
         }
+        testMe(){
+            console.log("virker bare");
+        }
 
         onClick() {
-    this.modal.confirm()
+    this.modal.alert()
         .size('lg')
         .showClose(true)
         .title('Bekræft sletning af department')
         .body(`
-            <h4>Er du sikker på du vil slette denne department?</h4>
-            `).okBtn('Delete').okBtnClass.apply(() => console.log('fired'))
-        .open();
+            <p>Er du sikker på du vil slette denne department?</p>
+            `).okBtn('Cancel')
+            .okBtnClass('btn btn-info')
+            .addButton('btn btn-success', 'Delete',this.testMe)
+        .open().then(res => res.result.then(() => console.log("Test")));
   }
 
         
