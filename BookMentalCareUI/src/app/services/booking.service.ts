@@ -2,6 +2,7 @@ import {Http,RequestOptions} from '@angular/http';
 import {Injectable, Output,EventEmitter} from '@angular/core';
 import 'rxjs/add/operator/map';
 import {AlertService,AlertMessage} from '../services/alert.service';
+import {Router} from '@angular/router';
 
 @Injectable()
 export class BookingService{
@@ -10,7 +11,7 @@ export class BookingService{
     @Output() booEvent = new EventEmitter();
     @Output() SortedBookings= [];
 
-    constructor(private http: Http, private alertService:AlertService){
+    constructor(private http: Http, private alertService:AlertService, private router:Router){
 
     }
 
@@ -32,7 +33,6 @@ export class BookingService{
     }
     findEmpBookings(id){
         this._Bookings = [];
-        this.http.get('http://localhost:2026/api/booking/getEmpBooking/'+ 1)
         this.http.get('http://localhost:2026/api/booking/getEmpBooking/'+ id)
         .map(response => response.json())
         .subscribe(data => {data.forEach(booking => this._Bookings.push(booking))},()=> this.alertService.showAlert(true,"Der opstod en fejl - prøv igen","danger"));
@@ -41,12 +41,14 @@ export class BookingService{
 
     saveBooking(tempBooking){
         this.http.post('http://localhost:2026/api/Booking', tempBooking).subscribe(()=>console.log("Done"),()=> this.alertService.showAlert(true,"Der opstod en fejl - prøv igen","danger")
-        ,()=> this.alertService.showAlert(true,"Data blev gemt..","success"));
+        ,()=> {this.alertService.showAlert(true,"Data er gemt..","success")
+        this.router.navigate(['/bookings']);});
     }
 
     deleteBooking(id){
         this.http.delete('http://localhost:2026/api/Booking/'+ id).subscribe(()=>console.log("Done"),()=> this.alertService.showAlert(true,"Der opstod en fejl - prøv igen","danger"),
-        ()=> this.alertService.showAlert(true,"Data er nu slettet..","success"));
+        ()=> {this.alertService.showAlert(true,"Data er slettet","success")
+                this.router.navigate(['/bookings']);});
     }
 
         sortBookings(newStart, newEnd) {

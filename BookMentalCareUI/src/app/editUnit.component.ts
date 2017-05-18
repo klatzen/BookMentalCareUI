@@ -1,6 +1,8 @@
-import {Component, Input} from '@angular/core';
+import {Component,ViewContainerRef, Input} from '@angular/core';
 import {RessourceService} from './services/ressource.service';
 import {ActivatedRoute} from '@angular/router';
+import { Modal } from 'angular2-modal/plugins/bootstrap';
+import { Overlay } from 'angular2-modal';
 
 @Component({
     selector:'edit-unit',
@@ -24,7 +26,7 @@ import {ActivatedRoute} from '@angular/router';
         <div class="col-xs-3">
         <span class="input-group-btn input-space">
         <button (click)="saveUpdate()" class="btn btn-secondary">Save changes</button>
-        <button (click)="deleteUnit()" class="btn btn-secondary" id="delete-btn">Delete</button>
+        <button (click)="onClick()" class="btn btn-secondary" id="delete-btn">Delete</button>
         </span>
         </div>
     </div>
@@ -36,8 +38,8 @@ import {ActivatedRoute} from '@angular/router';
 export class EditUnitComponent{
     @Input() _unit : any;
 
-    constructor(private resService: RessourceService, private activatedRoute:ActivatedRoute){
-            
+    constructor(private resService: RessourceService, private activatedRoute:ActivatedRoute,public modal:Modal, overlay: Overlay, vcRef: ViewContainerRef){
+            overlay.defaultViewContainer = vcRef;
     }
     ngOnInit(){
             this.activatedRoute.params.map(params => params['Id']).subscribe(id => {
@@ -55,5 +57,18 @@ export class EditUnitComponent{
     deleteUnit(){
         this.resService.deleteUnit(this._unit.Id);
     }
+    onClick() {
+    this.modal.alert()
+        .size('lg')
+        .showClose(true)
+        .title('Confirm deletion of unit')
+        .body(`
+            <p>Are you sure?</p>
+            `).okBtn('Delete')
+            .okBtnClass('btn btn-info')
+        .open().then((dialogRef) => dialogRef.result /* this is the promise of the result */) 
+            .then(result => this.deleteUnit())
+            .catch(err => alert("CANCELED"));
+  }
 }
 

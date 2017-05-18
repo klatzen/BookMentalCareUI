@@ -2,6 +2,7 @@ import {Http,RequestOptions, Headers} from '@angular/http';
 import {Injectable, Output,EventEmitter} from '@angular/core';
 import 'rxjs/add/operator/map';
 import {AlertService} from '../services/alert.service';
+import {Router} from '@angular/router';
 
 @Injectable()
 export class EmployeeService{
@@ -9,7 +10,7 @@ export class EmployeeService{
     @Output() Employee;
     @Output() empEvent = new EventEmitter();
 
-    constructor(private http: Http,private alertService:AlertService){
+    constructor(private http: Http,private alertService:AlertService, private router:Router){
 
     }
     
@@ -43,12 +44,14 @@ export class EmployeeService{
 
     saveEmployee(tempEmployee){
         this.http.post('http://localhost:2026/api/Employee',tempEmployee).subscribe(()=>"",()=> this.alertService.showAlert(true,"Der opstod en fejl - prøv igen","danger"),
-        ()=> this.alertService.showAlert(true,"Data blev gemt..","success"));
+        ()=> {this.alertService.showAlert(true,"Data er gemt..","success")
+        this.router.navigate(['/employees']);});
     }
 
     deleteEmployee(id){
         this.http.delete('http://localhost:2026/api/Employee/'+ id).subscribe(()=> "",()=> this.alertService.showAlert(true,"Der opstod en fejl - prøv igen","danger"),
-        ()=> this.alertService.showAlert(true,"Data er slettet..","success"));
+        ()=> {this.alertService.showAlert(true,"Data er slettet","success")
+                this.router.navigate(['/employees']);});
     }
 
     signIn(initials, password){

@@ -92,8 +92,8 @@ const routes = [{
 },
 {
     path:'signIn',
-    component: SignInComponent,
-    canActivate: [LoginGuard]
+    component: SignInComponent
+    //canActivate: [LoginGuard]
 },
 {
     path:'departments',
@@ -107,8 +107,8 @@ const routes = [{
 },
 {
     path:'bookings',
-    component: BookingListComponent,
-    canActivate: [LoginGuard]
+    component: BookingListComponent
+    //canActivate: [LoginGuard]
 },
 {
     path:'booking/:id',

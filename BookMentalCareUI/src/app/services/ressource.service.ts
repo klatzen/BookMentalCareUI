@@ -1,5 +1,6 @@
 import {Http} from '@angular/http';
 import {Injectable, Output, EventEmitter} from '@angular/core';
+import {Router} from '@angular/router';
 import 'rxjs/add/operator/map';
 import {AlertService} from './alert.service';
 
@@ -13,7 +14,7 @@ import {AlertService} from './alert.service';
         @Output() Unit;
         @Output() unitEvent = new EventEmitter();
 
-        constructor(private http: Http, private alertService:AlertService){
+        constructor(private http: Http, private alertService:AlertService, private router:Router){
 
         }
 
@@ -37,12 +38,14 @@ import {AlertService} from './alert.service';
 
         saveRessource(ressource){
             this.http.post('http://localhost:2026/api/ressource/',ressource)
-            .subscribe( () => "",err => this.alertService.showAlert(true, "Der opstod en fejl - prøv igen", "danger"), () => this.alertService.showAlert(true, "Data blev gemt..", "success"));
+            .subscribe( () => "",err => this.alertService.showAlert(true, "Der opstod en fejl - prøv igen", "danger"), () => {this.alertService.showAlert(true,"Data er gemt..","success")
+        this.router.navigate(['/ressources']);});
         }
 
         deleteRessource(id:number){
             this.http.delete('http://localhost:2026/api/ressource/' + id)
-            .subscribe(() => "",err => this.alertService.showAlert(true, "Der opstod en fejl - prøv igen", "danger"), () => this.alertService.showAlert(true, "Data blev slettet..", "success"));
+            .subscribe(() => "",err => this.alertService.showAlert(true, "Der opstod en fejl - prøv igen", "danger"), () =>  {this.alertService.showAlert(true,"Data er slettet","success")
+                this.router.navigate(['/ressources']);});
         }
 
         findUnits(id:number) {
@@ -61,7 +64,8 @@ import {AlertService} from './alert.service';
 
         deleteUnit(id:number){
             this.http.delete('http://localhost:2026/api/unit/' + id)
-            .subscribe(() => "",err => this.alertService.showAlert(true, "Der opstod en fejl - prøv igen", "danger"), () => this.alertService.showAlert(true, "Data blev slettet..", "success"));
+            .subscribe(() => "",err => this.alertService.showAlert(true, "Der opstod en fejl - prøv igen", "danger"), () =>  {this.alertService.showAlert(true,"Data er slettet","success")
+                this.router.navigate(['/ressources']);});
         }
 
         findUnit(id:number){

@@ -1,4 +1,5 @@
 import {Http,RequestOptions} from '@angular/http';
+import {Router} from '@angular/router'
 import {Injectable, Output,EventEmitter} from '@angular/core';
 import 'rxjs/add/operator/map';
 import {AlertService} from './alert.service';
@@ -9,7 +10,7 @@ export class RoomService{
     @Output() Room;
     @Output() roomEvent = new EventEmitter();
 
-    constructor(private http: Http, private alertService:AlertService){
+    constructor(private http: Http, private alertService:AlertService, private router:Router){
 
     }
 
@@ -31,11 +32,13 @@ export class RoomService{
     }
 
     saveRoom(tempRoom){
-        this.http.post('http://localhost:2026/api/Room',tempRoom).subscribe(() => "",err => this.alertService.showAlert(true, "Der opstod en fejl - prøv igen", "danger"), () => this.alertService.showAlert(true, "Data blev gemt..", "success"));
+        this.http.post('http://localhost:2026/api/Room',tempRoom).subscribe(() => "",err => this.alertService.showAlert(true, "Der opstod en fejl - prøv igen", "danger"), () => {this.alertService.showAlert(true,"Data er gemt..","success")
+        this.router.navigate(['/rooms']);});
     }
 
     deleteRoom(id){
-        this.http.delete('http://localhost:2026/api/Room/'+ id).subscribe(() => "",err => this.alertService.showAlert(true, "Der opstod en fejl - prøv igen", "danger"), () => this.alertService.showAlert(true, "Data blev slettet..", "success"));
+        this.http.delete('http://localhost:2026/api/Room/'+ id).subscribe(() => "",err => this.alertService.showAlert(true, "Der opstod en fejl - prøv igen", "danger"), () =>  {this.alertService.showAlert(true,"Data er slettet","success")
+                this.router.navigate(['/rooms']);});
     }
     findAvailRooms(startTime, endTime){
         this._Rooms = [];

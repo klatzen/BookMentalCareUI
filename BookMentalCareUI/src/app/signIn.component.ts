@@ -22,7 +22,7 @@ import {EmployeeService} from './services/employee.service';
         <div class="input-group">
             <div class="col-sm-offset-2 col-sm-10">
                 <span class="input-group-btn input-space">
-                <button type="button" (click)="signIn()" [routerLink]="['/bookings',_Employee.ID]" class="btn btn-secondary" >Login</button>
+                <button type="button" (click)="signIn()" class="btn btn-secondary" >Login</button>
                 </span>
             </div>
         </div>
@@ -47,7 +47,8 @@ export class SignInComponent {
           this.signedin = data;
           if(this.signedin != null){
                 this._cookieService.putObject('login',this.signedin);
-                //this.router.navigate(['/bookings']);
+                window.location.reload();
+                this.router.navigate(['/bookings']);
           }
     });
 
