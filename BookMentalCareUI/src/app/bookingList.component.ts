@@ -40,7 +40,6 @@ export class BookingListComponent{
         }      
         constructor(private bookingService : BookingService,private cookieService:CookieService){
             this.emp = this.cookieService.getObject('login');
-            console.log(this.emp);
             this._Bookings = bookingService.findEmpBookings(this.emp.ID);
         }      
 }

@@ -33,7 +33,8 @@ export class DepartmentService{
 
     saveDepartment(tempDepartment){
         this.http.post('http://localhost:2026/api/Department', tempDepartment).subscribe(()=>"",()=> this.alertService.showAlert(true,"Der opstod en fejl - prøv igen","danger"),
-        ()=> this.alertService.showAlert(true,"Data er gemt..","success"));
+        ()=> {this.alertService.showAlert(true,"Data er gemt..","success")
+        this.router.navigate(['/departments']);});
     }
 
     deleteDepartment(id){

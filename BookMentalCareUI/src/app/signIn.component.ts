@@ -47,6 +47,7 @@ export class SignInComponent {
           this.signedin = data;
           if(this.signedin != null){
                 this._cookieService.putObject('login',this.signedin);
+                window.location.reload();
                 this.router.navigate(['/bookings']);
           }
     });

@@ -31,7 +31,7 @@ import { ActivatedRoute } from '@angular/router';
     <div class="input-group">
         <div class="col-sm-offset-2 col-sm-10">
             <span class="input-group-btn input-space">
-            <button (click)="updateEmployee()" class="btn btn-secondary">Update</button>
+            <button (click)="updateEmployee()" class="btn btn-secondary">Save changes</button>
             <button (click)="deleteEmployee()" class="btn btn-secondary" id="delete-btn">Delete</button>
             </span>
         </div>
