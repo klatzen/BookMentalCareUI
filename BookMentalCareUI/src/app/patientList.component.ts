@@ -20,6 +20,8 @@ import {PatientService} from './services/patient.service';
             <th>Last Name</th>
             <th>Medical Reg. No.</th>
             <th>Department</th>
+            <th></th>
+            <th></th>
         </tr>
     </thead>
     <tbody>
@@ -34,6 +36,7 @@ import {PatientService} from './services/patient.service';
         </tr>
     </tbody>
     </table>
+    <button [routerLink]="['/patientCreate']" class="btn btn-secondary" >Create new</button>
     `
 })
 export class PatientListComponent{

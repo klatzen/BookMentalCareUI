@@ -47,7 +47,7 @@ export class SignInComponent {
           this.signedin = data;
           if(this.signedin != null){
                 this._cookieService.putObject('login',this.signedin);
-                this.router.navigate(['/bookings']);
+                //this.router.navigate(['/bookings']);
           }
     });
 

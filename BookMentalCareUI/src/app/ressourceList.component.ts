@@ -10,7 +10,12 @@ import { BookingService } from './services/booking.service';
             <th>ID</th>
             <th>Name</th>
             <th>Type</th>
+            <th></th>
+            <th></th>
         </thead>
+        <tbody *ngIf="_AvalibleRessources.length < 1 && route != '/ressources'">
+            <td>No available ressources</td>
+        </tbody>
         <tbody *ngIf="route != '/ressources'">
             <tr *ngFor="let ressource of _AvalibleRessources | filterBy: userFilter">
                 <td>{{ressource.Id}}</td>
@@ -18,7 +23,6 @@ import { BookingService } from './services/booking.service';
                 <td>{{ressource.Type}}</td>
                 <button (click)="OnClick(ressource)" class="btn btn-secondary">Add</button>
             </tr>
-
         </tbody>
         <tbody *ngIf="route == '/ressources'">
             <tr *ngFor="let ressource of _Ressources | filterBy: userFilter">
@@ -61,7 +65,6 @@ export class RessourceListComponent {
             this.resService.findAvailibleRessources(this.startTime, this.endTime);
             this.resService.resEvent.subscribe(data => {
                 this._AvalibleRessources = data;
-
             });
         } else {
             this.resService.findRessources();
@@ -94,6 +97,7 @@ export class RessourceListComponent {
             this._AvalibleRessources.splice(this._AvalibleRessources.indexOf(Res), 1);
         }
     }
+
 }
 
 interface Unit {

@@ -19,7 +19,7 @@ import {RoomService} from './services/room.service';
         
         <div class="col-xs-3">
         <label for="_Room.DEPARTMENT.NAME"> Department </label>
-        <input [(ngModel)]="_Room.DEPARTMENT.NAME" name="department">
+        <input [(ngModel)]="_Room.DEPARTMENT.NAME" name="department" placeholder="choose a department from list" readonly>
         </div>
       </div>
 

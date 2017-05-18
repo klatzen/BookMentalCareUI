@@ -20,22 +20,24 @@ import {EmployeeService} from './services/employee.service';
             <th>Title</th>
             <th>Initials</th>
             <th>Department</th>
+            <th></th>
         </tr>
     </thead>
     <tbody>
         <tr *ngFor="let Employee of _Employees | filterBy: userFilter">
-        <a [routerLink]="['/employee',Employee.INITIALS]">
-            <td>{{Employee.ID}}</td></a>
+            <td>{{Employee.ID}}</td>
             <td>{{Employee.FNAME}}</td>
             <td>{{Employee.LNAME}}</td>
             <td>{{Employee.TITLE}}</td>
             <td>{{Employee.INITIALS}}</td>
             <td *ngIf="Employee.DEPARTMENT">{{Employee.DEPARTMENT.NAME}}</td>
+            <button *ngIf="route == '/employees'" [routerLink]="['/employee',Employee.INITIALS]" type="button" class="btn btn-secondary">Edit</button>
             <button *ngIf="route != '/employees'" (click)="OnClick(Employee)" type="button" class="btn btn-secondary">Add</button>
 
         </tr>
     </tbody>
     </table>
+    <button [routerLink]="['/employeeCreate']" class="btn btn-secondary" >Create new</button>
     `
 })
 export class EmployeeListComponent{
