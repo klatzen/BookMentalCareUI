@@ -54,7 +54,7 @@ export class EmployeeComponent {
     }
 
     deleteEmployee() {
-        this.employeeService.deleteEmployee(this._Employee.ID);
+        this.employeeService.deleteEmployee(this._Employee.INITIALS);
     }
     updateEmployee() {
         this.employeeService.saveEmployee(this._Employee);
