@@ -7,22 +7,24 @@ import {PatientService} from './services/patient.service';
   `
   <form class="form-horizontal">
      <div class="form-group">
+     <div class="col-xs-3">
         <label for="_Patient.FNAME"> Front Name</label>
-        <input  [(ngModel)]="_Patient.FNAME" name="first">
+        <input class="form-control"  [(ngModel)]="_Patient.FNAME" name="first">
+        </div>
     
         <div class="col-xs-3">
         <label for="_Patient.LNAME">Last Name </label>
-        <input  [(ngModel)]="_Patient.LNAME" name="last">
+        <input  class="form-control" [(ngModel)]="_Patient.LNAME" name="last">
         </div>
 
         <div class="col-xs-3">
         <label for="_Patient.MEDREGNO"> Medical Record No. </label>
-        <input [(ngModel)]="_Patient.MEDREGNO" name="medRegNo">
+        <input class="form-control" [(ngModel)]="_Patient.MEDREGNO" name="medRegNo">
         </div>
         
         <div class="col-xs-3">
         <label for="_Patient.DEPARTMENT.NAME"> Department </label>
-        <input [(ngModel)]="_Patient.DEPARTMENT.NAME" name="department" placeholder="choose a department from list" readonly>
+        <input class="form-control" [(ngModel)]="_Patient.DEPARTMENT.NAME" name="department" placeholder="choose a department from list" readonly>
         </div>
       </div>
 

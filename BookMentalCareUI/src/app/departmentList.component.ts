@@ -6,10 +6,11 @@ import {DepartmentService} from './services/department.service';
     selector: 'depList',
     template: `
     <form class="form-inline">
-    <div class="form-group">
-        <label>Search</label>
-        <input class="form control" type="text" [(ngModel)]="userFilter.NAME" placeholder="department name" name="search">
-    </div>
+
+    <div class="col-xs-3">
+        <label> Search</label>
+        <input class="form-control"  [(ngModel)]="userFilter.NAME" placeholder="department name" name="search">
+        </div>
     </form>
     
     <table class="table">
