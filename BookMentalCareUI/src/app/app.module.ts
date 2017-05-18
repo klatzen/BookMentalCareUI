@@ -24,6 +24,7 @@ import {NewDepartmentComponent} from './newDepartment.component';
 import {DepartmentComponent} from './department.component';
 import {NewBookingComponent} from './newBooking.component';
 import {BookingListComponent} from './bookingList.component';
+import {NewUnitComponent} from './newUnit.component';
 
 import {SignInComponent} from './signIn.component';
 
@@ -67,7 +68,8 @@ import { BootstrapModalModule } from 'angular2-modal/plugins/bootstrap';
     NewBookingComponent,
     NewPatientComponent,
     NavComponent,
-    BookingListComponent
+    BookingListComponent,
+    NewUnitComponent
   ],
   imports: [
     BrowserModule,

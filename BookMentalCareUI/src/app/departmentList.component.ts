@@ -18,6 +18,7 @@ import {DepartmentService} from './services/department.service';
             <th>ID</th>
             <th>Name</th>
             <th>Location</th>
+            <th></th>
         </tr>
     </thead>
     <tbody *ngIf="route == '/departments'">
@@ -27,6 +28,7 @@ import {DepartmentService} from './services/department.service';
             <td>{{Department.LOCATION}}</td>
             <button [routerLink]="['/department',Department.ID]" class="btn btn-secondary">Edit</button>
         </tr>
+            <button [routerLink]="['/departmentCreate']" class="btn btn-secondary" >Create new</button>
     </tbody>
     <tbody *ngIf="route != '/departments'">
         <tr *ngFor="let Department of _Departments | filterBy: userFilter">

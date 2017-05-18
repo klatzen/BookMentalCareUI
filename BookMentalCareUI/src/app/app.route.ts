@@ -11,15 +11,18 @@ import {PatientComponent} from './patient.component';
 import {NewPatientComponent} from './newPatient.component';
 import {UnitListComponent} from './unitList.component';
 import {EditUnitComponent} from'./editUnit.component';
+import {NewUnitComponent} from './newUnit.component';
 import {RoomComponent} from './room.component';
 import {RoomListComponent} from './roomList.component';
 import {NewRoomComponent} from './newRoom.component';
 import {DepartmentListComponent} from './departmentList.component';
 import {DepartmentComponent} from './department.component';
+import {NewDepartmentComponent} from './newDepartment.component';
 import {SignInComponent} from './signIn.component';
 import {NewBookingComponent} from './newBooking.component';
 import {BookingListComponent} from './bookingList.component';
 import {LoginGuard} from './services/LoginGuard.service';
+
 
 const routes = [{
     path: 'employees',
@@ -28,7 +31,7 @@ const routes = [{
 },{
     path:'ressources',
     component: RessourceListComponent,
-    canActivate: [LoginGuard]
+    //canActivate: [LoginGuard]
 },{
     path:'ressource/:id',
     component: RessourceComponent,
@@ -45,7 +48,7 @@ const routes = [{
 },{
     path:'employeeCreate',
     component: NewEmployeeComponent,
-    canActivate: [LoginGuard]
+    //canActivate: [LoginGuard]
 
 },{
     path:'patients',
@@ -65,7 +68,7 @@ const routes = [{
 },{
     path:'unit/:id',
     component: UnitListComponent,
-    canActivate: [LoginGuard]
+    //canActivate: [LoginGuard]
 
 },{
     path:'rooms',
@@ -116,6 +119,16 @@ const routes = [{
     path:'department/:id',
     component: DepartmentComponent,
     canActivate: [LoginGuard]
+},
+{
+    path:'departmentCreate',
+    component: NewDepartmentComponent,
+    canActivate:[LoginGuard]
+},
+{
+    path:'unitCreate/:Id',
+    component: NewUnitComponent,
+    //canActivate:[LoginGuard]
 }
 ]
 

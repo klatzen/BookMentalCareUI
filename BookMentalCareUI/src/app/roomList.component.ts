@@ -24,7 +24,7 @@ import {Router} from '@angular/router';
     <form class="form-inline">
     <div class="form-group">
         <label>Search</label>
-        <input class="form-control" type="text" [(ngModel)]="userFilter.ROOMNO" placeholder="department name" name="search">
+        <input class="form-control" type="text" [(ngModel)]="userFilter.TYPE" placeholder="room type" name="search">
     </div>
     </form>
 
@@ -34,6 +34,9 @@ import {Router} from '@angular/router';
             <th>ID</th>
             <th>Type</th>
             <th>Room No.</th>
+            <th>Department</th>
+            <th></th>
+            <th></th>
         </tr>
     </thead>
     <tbody>
@@ -47,12 +50,13 @@ import {Router} from '@angular/router';
         </tr>
     </tbody>
     </table>
+    <button [routerLink]="['/roomCreate']" class="btn btn-secondary" >Create new</button>
     
     `
 })
 export class RoomListComponent{
         _Rooms = [];
-        userFilter: any = { ROOMNO: '' };
+        userFilter: any = { TYPE: '' };
         startTime: any= '';
         endTime:any = '';
         constructor(private RoomService : RoomService, private cookieService : CookieService, private router : Router){
