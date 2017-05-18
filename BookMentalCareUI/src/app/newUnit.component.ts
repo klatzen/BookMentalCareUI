@@ -1,6 +1,7 @@
 import {Component, Input} from '@angular/core';
 import {RessourceService} from './services/ressource.service';
 import {ActivatedRoute} from '@angular/router';
+import {CookieService} from 'angular2-cookie/core';
 
 @Component({
     selector:'new-unit',
@@ -9,12 +10,12 @@ import {ActivatedRoute} from '@angular/router';
      <div class="form-group">
         <div class="col-xs-3">
         <label for="Unit.SerialNo"> SerialNo</label>
-        <input  [(ngModel)]="Unit.SerialNo" name="serialNo">
+        <input  class="form-control" [(ngModel)]="Unit.SerialNo" name="serialNo">
         </div>
         
         <div class="col-xs-3">
         <label for="Unit.Ressource">Ressource</label>
-        <input  [(ngModel)]="Unit.Ressource" name="ressource" value="resId">
+        <input  class="form-control" [(ngModel)]="Unit.Ressource.Id" name="ressource" value={{Unit.Ressource.Id}} >
         </div>
       </div>
       <button (click)="createUnit(Unit)" class="btn btn-secondary">Create Unit</button>
@@ -26,24 +27,22 @@ export class NewUnitComponent{
     @Input() Unit : Unit = {Id:0, SerialNo:'',Ressource:''};
     resId;
 
-
-    constructor(private ressourceService : RessourceService, private activatedRouter :  ActivatedRoute){
+    constructor(private ressourceService : RessourceService, private activatedRouter :  ActivatedRoute, private cookieService : CookieService){
 
     }
 
     createUnit(){
-        this.Unit.Ressource = this.resId;
         this.ressourceService.saveUnit(this.Unit);
     }
 
 
     ngOnInit(){
-        this.activatedRouter.params.map(params => params['Id']).subscribe(id => {
-        this.ressourceService.findRessource(id);
-        this.resId = id});
-        console.log(this.resId);
-        
+        this.resId = this.cookieService.get('resId');
+        this.ressourceService.findRessource(this.resId);
+        this.ressourceService.resEvent.subscribe(data => this.Unit.Ressource = data);
+        this.cookieService.remove('resId');
     }
+
 }
 
 

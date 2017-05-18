@@ -50,7 +50,7 @@ export class RessourceComponent{
 
     ngOnInit(){
             this.activatedRoute.params.map(params => params['id']).subscribe(id => {
-            this.resService.findRessource(id);
+            console.log(this.resService.findRessource(id));
             this.resService.resEvent.subscribe(data => this._ressource = data);
         })
     }

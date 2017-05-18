@@ -1,6 +1,7 @@
-import {Component, Input} from '@angular/core';
+import {Component, Input, EventEmitter, Output} from '@angular/core';
 import {RessourceService} from './services/ressource.service';
 import {ActivatedRoute} from '@angular/router';
+import {CookieService} from 'angular2-cookie/core';
 
 @Component({
     selector: 'unitList',
@@ -19,7 +20,7 @@ import {ActivatedRoute} from '@angular/router';
                 <td>{{unit.SerialNo}}</td>
                 <td>{{unit.RessourceId}}</td>
                 <button [routerLink]="['/editUnit',unit.Id]" class="btn btn-secondary">Redigér/Slet</button>
-                <button [routerLink]="['/unitCreate',unit.RessourceId]" class="btn btn-secondary" >Create new</button>
+                <button [routerLink]="['/unitCreate',unit.RessourceId]" (click)="createNew()" class="btn btn-secondary" >Create new</button>
             </tr>
             
         </tbody>
@@ -30,19 +31,23 @@ import {ActivatedRoute} from '@angular/router';
 
 export class UnitListComponent{
 
-   @Input() _Units = [];
-   resId;
- 
+   _Units = [];
+   resId : any = '';
    userFilter : any = {Id: ''};
 
-    constructor(private resService : RessourceService, private activatedRouter : ActivatedRoute ) {
+    constructor(private resService : RessourceService, private activatedRouter : ActivatedRoute, private cookieService : CookieService) {
     }
 
     ngOnInit() {
         this.activatedRouter.params.map(params => params['id']).subscribe(id => {
         this._Units  = this.resService.findUnits(id);
-           console.log(this._Units);
+        this.resId = id;
         }) 
+    }
+
+    createNew(resId){
+        this.cookieService.remove('resId');
+        this.cookieService.put('resId',this.resId);
     }
 
     

@@ -35,7 +35,7 @@ const routes = [{
 },{
     path:'ressource/:id',
     component: RessourceComponent,
-    canActivate: [LoginGuard]
+    //canActivate: [LoginGuard]
 },{
     path:'employee/:initials',
     component: EmployeeComponent,
@@ -126,7 +126,7 @@ const routes = [{
     canActivate:[LoginGuard]
 },
 {
-    path:'unitCreate/:Id',
+    path:'unitCreate/:id',
     component: NewUnitComponent,
     //canActivate:[LoginGuard]
 }
