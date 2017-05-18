@@ -61,9 +61,9 @@ export class DepartmentComponent{
     this.modal.alert()
         .size('lg')
         .showClose(true)
-        .title('Bekræft sletning af department')
+        .title('Confirm deletion of department')
         .body(`
-            <p>Er du sikker på du vil slette denne department?</p>
+            <p>Are you sure?</p>
             `).okBtn('Delete')
             .okBtnClass('btn btn-info')
         .open().then((dialogRef) => dialogRef.result /* this is the promise of the result */) 

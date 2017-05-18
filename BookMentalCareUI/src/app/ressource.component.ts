@@ -1,6 +1,8 @@
-import {Component, Input} from '@angular/core';
+import {Component, Input, ViewContainerRef} from '@angular/core';
 import {RessourceService} from './services/ressource.service';
 import {ActivatedRoute} from '@angular/router';
+import {Modal} from 'angular2-modal/plugins/bootstrap';
+import {Overlay} from 'angular2-modal';
 @Component({
     selector: 'ressource',
     template: `
@@ -27,7 +29,7 @@ import {ActivatedRoute} from '@angular/router';
         <div class="col-xs-3">
         <span class="input-group-btn input-space">
         <button (click)="saveUpdate()" class="btn btn-secondary">Save changes</button>
-        <button (click)="deleteRes()" class="btn btn-secondary" id="delete-btn">Delete</button>
+        <button (click)="onClick()" class="btn btn-secondary" id="delete-btn">Delete</button>
         </span>
         </div>
         </div>
@@ -42,7 +44,8 @@ export class RessourceComponent{
      @Input() _ressource : any;
      error : any = console.log("not found");
          
-    constructor(private resService:RessourceService, private activatedRoute: ActivatedRoute){
+    constructor(private resService:RessourceService, private activatedRoute: ActivatedRoute, private modal:Modal, overlay: Overlay, vcRef: ViewContainerRef) { 
+        overlay.defaultViewContainer = vcRef;
     }
 
     ngOnInit(){
@@ -59,5 +62,18 @@ export class RessourceComponent{
     deleteRes(){
         this.resService.deleteRessource(this._ressource.Id);
     }
+    onClick() {
+    this.modal.alert()
+        .size('lg')
+        .showClose(true)
+        .title('Confirm deletion of department')
+        .body(`
+            <p>Are you sure?</p>
+            `).okBtn('Delete')
+            .okBtnClass('btn btn-info')
+        .open().then((dialogRef) => dialogRef.result /* this is the promise of the result */) 
+            .then(result => this.deleteRes())
+            .catch(err => alert("CANCELED"));
+  }
 
 }

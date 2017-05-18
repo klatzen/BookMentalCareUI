@@ -20,7 +20,6 @@ export class PatientService{
         .map(response => response.json())
         .subscribe(data => this.Patient = data, err => this.alertService.showAlert(true, "Der opstod en fejl - prøv igen", "danger"),()=>{
             this.patEvent.emit(this.Patient);  
-            console.log(this.Patient);
         })
     }
 
@@ -48,6 +47,7 @@ export class PatientService{
     }
 
     deletePatient(id){
-        this.http.delete('http://localhost:2026/api/Patient/'+ id).subscribe(() => "",err => this.alertService.showAlert(true, "Der opstod en fejl - prøv igen", "danger"), () => this.alertService.showAlert(true, "Data blev slettet..", "success"));
+        this.http.delete('http://localhost:2026/api/Patient/'+ id).subscribe(() => "",err => this.alertService.showAlert(true, "Der opstod en fejl - prøv igen", "danger"), () =>  {this.alertService.showAlert(true,"Data er slettet","success")
+                this.router.navigate(['/patients']);});
     }
 }

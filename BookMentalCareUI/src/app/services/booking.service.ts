@@ -33,7 +33,6 @@ export class BookingService{
     }
     findEmpBookings(id){
         this._Bookings = [];
-        this.http.get('http://localhost:2026/api/booking/getEmpBooking/'+ 1)
         this.http.get('http://localhost:2026/api/booking/getEmpBooking/'+ id)
         .map(response => response.json())
         .subscribe(data => {data.forEach(booking => this._Bookings.push(booking))},()=> this.alertService.showAlert(true,"Der opstod en fejl - prøv igen","danger"));
@@ -48,7 +47,8 @@ export class BookingService{
 
     deleteBooking(id){
         this.http.delete('http://localhost:2026/api/Booking/'+ id).subscribe(()=>console.log("Done"),()=> this.alertService.showAlert(true,"Der opstod en fejl - prøv igen","danger"),
-        ()=> this.alertService.showAlert(true,"Data er nu slettet..","success"));
+        ()=> {this.alertService.showAlert(true,"Data er slettet","success")
+                this.router.navigate(['/bookings']);});
     }
 
         sortBookings(newStart, newEnd) {

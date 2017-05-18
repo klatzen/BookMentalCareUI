@@ -44,7 +44,8 @@ import {AlertService} from './alert.service';
 
         deleteRessource(id:number){
             this.http.delete('http://localhost:2026/api/ressource/' + id)
-            .subscribe(() => "",err => this.alertService.showAlert(true, "Der opstod en fejl - prøv igen", "danger"), () => this.alertService.showAlert(true, "Data blev slettet..", "success"));
+            .subscribe(() => "",err => this.alertService.showAlert(true, "Der opstod en fejl - prøv igen", "danger"), () =>  {this.alertService.showAlert(true,"Data er slettet","success")
+                this.router.navigate(['/ressources']);});
         }
 
         findUnits(id:number) {
@@ -63,7 +64,8 @@ import {AlertService} from './alert.service';
 
         deleteUnit(id:number){
             this.http.delete('http://localhost:2026/api/unit/' + id)
-            .subscribe(() => "",err => this.alertService.showAlert(true, "Der opstod en fejl - prøv igen", "danger"), () => this.alertService.showAlert(true, "Data blev slettet..", "success"));
+            .subscribe(() => "",err => this.alertService.showAlert(true, "Der opstod en fejl - prøv igen", "danger"), () =>  {this.alertService.showAlert(true,"Data er slettet","success")
+                this.router.navigate(['/ressources']);});
         }
 
         findUnit(id:number){

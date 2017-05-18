@@ -1,6 +1,8 @@
-import {Component, Input} from '@angular/core';
+import {Component, Input, ViewContainerRef} from '@angular/core';
 import {PatientService} from './services/patient.service';
 import {ActivatedRoute} from '@angular/router';
+import {Modal} from 'angular2-modal/plugins/bootstrap';
+import { Overlay } from 'angular2-modal';
 @Component({
     selector: 'pat',
     template: ` 
@@ -27,7 +29,7 @@ import {ActivatedRoute} from '@angular/router';
         <div class="col-sm-offset-2 col-sm-10">
             <span class="input-group-btn input-space">
             <button (click)="updatePatient()" class="btn btn-secondary">Save changes</button>
-            <button (click)="deletePatient()" class="btn btn-secondary" id="delete-btn">Delete</button>
+            <button (click)="onClick()" class="btn btn-secondary" id="delete-btn">Delete</button>
             </span>
         </div>
         </div>
@@ -37,8 +39,8 @@ import {ActivatedRoute} from '@angular/router';
 })
 export class PatientComponent{
         @Input() _Patient: any;
-        constructor(private patientService : PatientService,private activatedRoute: ActivatedRoute){
-            
+        constructor(private patientService : PatientService,private activatedRoute: ActivatedRoute, private modal:Modal, overlay: Overlay, vcRef: ViewContainerRef) { 
+             overlay.defaultViewContainer = vcRef; 
         }
         ngOnInit(){
             this.activatedRoute.params.map(params => params['id']).subscribe(id => {
@@ -54,6 +56,19 @@ export class PatientComponent{
         updatePatient(){
             this.patientService.savePatient(this._Patient);
         }
+        onClick() {
+    this.modal.alert()
+        .size('lg')
+        .showClose(true)
+        .title('Confirm deletion of patient')
+        .body(`
+            <p>Are you sure?</p>
+            `).okBtn('Delete')
+            .okBtnClass('btn btn-info')
+        .open().then((dialogRef) => dialogRef.result /* this is the promise of the result */) 
+            .then(result => this.deletePatient())
+            .catch(err => alert("CANCELED"));
+  }
 
         
 } 

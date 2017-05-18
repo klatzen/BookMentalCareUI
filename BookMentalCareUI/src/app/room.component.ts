@@ -1,6 +1,8 @@
-import {Component, Input} from '@angular/core';
+import {Component, Input, ViewContainerRef} from '@angular/core';
 import {RoomService} from './services/room.service';
 import {ActivatedRoute} from '@angular/router';
+import { Modal } from 'angular2-modal/plugins/bootstrap';
+import {Overlay} from 'angular2-modal';
 @Component({
     selector: 'pat',
     template: ` 
@@ -21,7 +23,7 @@ import {ActivatedRoute} from '@angular/router';
         <div class="col-sm-offset-2 col-sm-10">
             <span class="input-group-btn input-space">
             <button (click)="updateRoom()" class="btn btn-secondary">Save changes</button>
-            <button (click)="deleteRoom()" class="btn btn-secondary" id="delete-btn">Delete</button>
+            <button (click)="onClick()" class="btn btn-secondary" id="delete-btn">Delete</button>
             </span>
         </div>
     </div>
@@ -31,7 +33,8 @@ import {ActivatedRoute} from '@angular/router';
 })
 export class RoomComponent{
         @Input() _Room: any;
-        constructor(private RoomService : RoomService,private activatedRoute: ActivatedRoute){
+        constructor(private RoomService : RoomService,private activatedRoute: ActivatedRoute, private modal:Modal, overlay: Overlay, vcRef: ViewContainerRef) { 
+        overlay.defaultViewContainer = vcRef;
             
         }
         ngOnInit(){
@@ -48,6 +51,21 @@ export class RoomComponent{
         updateRoom(){
             this.RoomService.saveRoom(this._Room);
         }
+
+        onClick() {
+    this.modal.alert()
+        .size('lg')
+        .showClose(true)
+        .title('Confirm deletion of department')
+        .body(`
+            <p>Are you sure?</p>
+            `).okBtn('Delete')
+            .okBtnClass('btn btn-info')
+        .open().then((dialogRef) => dialogRef.result /* this is the promise of the result */) 
+            .then(result => this.deleteRoom())
+            .catch(err => alert("CANCELED"));
+  }
+
 
         
 } 
