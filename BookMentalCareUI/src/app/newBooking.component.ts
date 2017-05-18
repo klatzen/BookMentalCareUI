@@ -138,8 +138,9 @@ export class NewBookingComponent{
     }
        
      getPatient(event) {
-         if(this.booking.PATIENT == null){
-        this.booking.PATIENT = event;
+         console.log(this.booking);
+         if(this.booking.PATIENT == '' || this.booking.PATIENT == null){
+            this.booking.PATIENT = event;
          }
     }
 
