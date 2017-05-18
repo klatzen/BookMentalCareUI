@@ -20,11 +20,11 @@ import {CookieService} from 'angular2-cookie/core';
                 <td>{{unit.SerialNo}}</td>
                 <td>{{unit.RessourceId}}</td>
                 <button [routerLink]="['/editUnit',unit.Id]" class="btn btn-secondary">Redigér/Slet</button>
-                <button [routerLink]="['/unitCreate',unit.RessourceId]" (click)="createNew()" class="btn btn-secondary" >Create new</button>
             </tr>
             
         </tbody>
      </table>
+     <button [routerLink]="['/unitCreate',resId]" (click)="createNew()" class="btn btn-secondary" >Create new</button>
      </div>
     `
 })

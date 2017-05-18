@@ -10,16 +10,22 @@ import {CookieService} from 'angular2-cookie/core';
      <div class="form-group">
         <div class="col-xs-3">
         <label for="Unit.SerialNo"> SerialNo</label>
-        <input  class="form-control" [(ngModel)]="Unit.SerialNo" name="serialNo">
+        <input class="form-control" [(ngModel)]="Unit.SerialNo" name="serialNo">
         </div>
         
         <div class="col-xs-3">
         <label for="Unit.Ressource">Ressource</label>
-        <input  class="form-control" [(ngModel)]="Unit.Ressource.Id" name="ressource" value={{Unit.Ressource.Id}} >
+        <input class="form-control" [(ngModel)]="Unit.Ressource.Id" name="ressource" value={{Unit.Ressource.Id}} >
         </div>
       </div>
-      <button (click)="createUnit(Unit)" class="btn btn-secondary">Create Unit</button>
+      
         </form>
+        <div class="input-group">
+        <div class="col-xs-3">
+        <span class="input-group-btn input-space">
+          <button (click)="createUnit(Unit)" class="btn btn-secondary">Create Unit</button>
+        </span>
+        </div>
     `
 })
 

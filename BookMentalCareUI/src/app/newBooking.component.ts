@@ -12,12 +12,12 @@ import {EmployeeListComponent} from './employeeList.component'
                 <div class="form-group">
                     <div class="col-xs-3">
                     <label for="booking.StartTime">Start Time</label>
-                    <input class="form-control" [(ngModel)]="booking.STARTTIME" value="{{booking.STARTTIME}}" name="startTime" readonly>
+                    <input type="date" class="form-control" [(ngModel)]="booking.STARTTIME" value="{{booking.STARTTIME}}" name="startTime" readonly>
                     </div>
 
                     <div class="col-xs-3">
                     <label for="booking.EndTime">End Time</label>
-                    <input class="form-control" [(ngModel)]="booking.ENDTIME" name="endTime" readonly>
+                    <input type="date" class="form-control" [(ngModel)]="booking.ENDTIME" name="endTime" readonly>
                     </div>
 
                     <div class="col-xs-3">

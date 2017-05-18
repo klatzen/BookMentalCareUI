@@ -10,10 +10,10 @@ import {Router} from '@angular/router';
     <div class="form-group">
         
         <label for="startTime">Start Time</label>
-        <input class="form-control" type="text" [(ngModel)]="startTime" name="startTime">
+        <input class="form-control" type="date" [(ngModel)]="startTime" name="startTime">
         
         <label for="endTime">End Time</label>
-        <input class="form-control" type="text" [(ngModel)]="endTime" name="endTime">
+        <input class="form-control" type="date" [(ngModel)]="endTime" name="endTime">
 
         <button (click)="createRoom()" class="btn btn-secondary">Check Period</button>
 
@@ -46,7 +46,7 @@ import {Router} from '@angular/router';
             <td>{{Room.ROOMNO}}</td>
             <td *ngIf="Room.DEPARTMENT">{{Room.DEPARTMENT.NAME}} </td>
             <td><button [routerLink]="['/room',Room.ID]" class="btn btn-secondary">Edit</button></td>
-            <td><button (click)="createBooking(Room)" class="btn btn-secondary" id="delete-btn">Create Booking</button></td>
+            <td *ngIf="startTime != '' && endTime != ''"><button (click)="createBooking(Room)" class="btn btn-secondary" id="delete-btn">Create Booking</button></td>
         </tr>
     </tbody>
     </table>
@@ -66,6 +66,7 @@ export class RoomListComponent{
         createRoom(){
             this._Rooms = this.RoomService.findAvailRooms(this.startTime,this.endTime);
         }
+        
         createBooking(Room){
             this.cookieService.putObject("room",Room);
             this.cookieService.put("startTime",this.startTime);
