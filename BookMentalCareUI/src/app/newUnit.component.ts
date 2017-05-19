@@ -15,7 +15,7 @@ import {CookieService} from 'angular2-cookie/core';
         
         <div class="col-xs-3">
         <label for="Unit.Ressource">Ressource</label>
-        <input class="form-control" [(ngModel)]="Unit.Ressource.Id" name="ressource" value={{Unit.Ressource.Id}} >
+        <input class="form-control" [(ngModel)]="Unit.Ressource.Id" name="ressource" value={{Unit.Ressource.Id}} readonly>
         </div>
       </div>
       
@@ -39,7 +39,8 @@ export class NewUnitComponent{
 
     createUnit(){
         this.ressourceService.saveUnit(this.Unit);
-    }
+        this.Unit.SerialNo = '';
+        }
 
 
     ngOnInit(){

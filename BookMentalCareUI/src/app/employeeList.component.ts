@@ -1,5 +1,6 @@
 import {Component, Output, EventEmitter, Input, SimpleChanges} from '@angular/core';
 import {EmployeeService} from './services/employee.service';
+import {CookieService} from 'angular2-cookie/core';
 
 @Component({
     selector: 'empList',
@@ -31,13 +32,13 @@ import {EmployeeService} from './services/employee.service';
             <td>{{Employee.TITLE}}</td>
             <td>{{Employee.INITIALS}}</td>
             <td *ngIf="Employee.DEPARTMENT">{{Employee.DEPARTMENT.NAME}}</td>
-            <button *ngIf="route == '/employees'" [routerLink]="['/employee',Employee.INITIALS]" type="button" class="btn btn-secondary">Edit</button>
+            <button *ngIf="route == '/employees' && signedIn.TITLE === 'Leder'" [routerLink]="['/employee',Employee.INITIALS]" type="button" class="btn btn-secondary">Edit</button>
             <button *ngIf="route != '/employees'" (click)="OnClick(Employee)" type="button" class="btn btn-secondary">Add</button>
 
         </tr>
     </tbody>
     </table>
-    <button [routerLink]="['/employeeCreate']" class="btn btn-secondary" >Create new</button>
+    <button *ngIf="signedIn.TITLE === 'Leder'" [routerLink]="['/employeeCreate']" class="btn btn-secondary" >Create new</button>
     `
 })
 export class EmployeeListComponent{
@@ -49,8 +50,11 @@ export class EmployeeListComponent{
         @Input() endTime;
         @Input() removeEmp;
         route:any;
+        signedIn : any;
 
         ngOnInit(){
+            this.signedIn = this.cookieService.getObject('login');
+            console.log(this.signedIn.TITLE);
             this.route = window.location.pathname;
             if(this.route != "/employees"){
                 this._Employees = this.employeeService.findAvailEmployees(this.startTime,this.endTime);
@@ -64,7 +68,7 @@ export class EmployeeListComponent{
                 this._Employees.push(this.removeEmp);
             }
         }
-        constructor(private employeeService : EmployeeService){
+        constructor(private employeeService : EmployeeService, private cookieService : CookieService){
         }      
 
         OnClick(Employee){

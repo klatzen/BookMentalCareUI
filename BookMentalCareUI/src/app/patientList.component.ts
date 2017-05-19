@@ -1,5 +1,6 @@
 import {Component, Output, Input, EventEmitter, SimpleChanges} from '@angular/core';
 import {PatientService} from './services/patient.service';
+import {CookieService} from 'angular2-cookie/core';
 
 @Component({
     selector: 'patList',
@@ -31,12 +32,12 @@ import {PatientService} from './services/patient.service';
             <td>{{Patient.LNAME}}</td>
             <td>{{Patient.MEDREGNO}}</td>
             <td *ngIf="Patient.DEPARTMENT">{{Patient.DEPARTMENT.NAME}}</td>
-            <button *ngIf="route == '/patients'" [routerLink]="['/patient',Patient.ID]" class="btn btn-secondary">Edit</button>
+            <button *ngIf="route == '/patients' && signedIn.TITLE === 'Leder'" [routerLink]="['/patient',Patient.ID]" class="btn btn-secondary">Edit</button>
             <button *ngIf="route != '/patients'" (click)="OnClick(Patient)" class="btn btn-secondary">Add</button>
         </tr>
     </tbody>
     </table>
-    <button [routerLink]="['/patientCreate']" class="btn btn-secondary" >Create new</button>
+    <button  *ngIf="signedIn.TITLE === 'Leder'" [routerLink]="['/patientCreate']" class="btn btn-secondary" >Create new</button>
     `
 })
 export class PatientListComponent{
@@ -47,11 +48,13 @@ export class PatientListComponent{
         @Input() startTime;
         @Input() endTime;
         route: any;
+        signedIn : any;
 
-        constructor(private patientService : PatientService){
+        constructor(private patientService : PatientService, private cookieService : CookieService){
         }
 
         ngOnInit(){
+            this.signedIn = this.cookieService.getObject('login');
             this.route = window.location.pathname;
             if(this.route != "/patients"){
                 this._Patients = this.patientService.findAvailPatients(this.startTime,this.endTime);
