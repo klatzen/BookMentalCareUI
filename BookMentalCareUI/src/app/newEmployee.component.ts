@@ -28,11 +28,6 @@ import {DepartmentListComponent} from './departmentList.component';
         <label for="_Employee.DEPARTMENT.NAME"> Department </label>
         <input class="form-control" [(ngModel)]="_Employee.DEPARTMENT.NAME" name="department" placeholder="choose a department from list" readonly>
         </div>
-        
-        <div class="col-xs-3" id="space-ontop">
-        <label for="_Employee.INITIALS"> Initials </label>
-        <input class="form-control" [(ngModel)]="_Employee.INITIALS" name ="initials">
-        </div>
 
         <div class="col-xs-3" id="space-ontop">     
         <label for="_Employee.PASSWORD"> Password </label>
@@ -54,7 +49,7 @@ import {DepartmentListComponent} from './departmentList.component';
 
 })
 export class NewEmployeeComponent {
-  _Employee:Employee = {FNAME:'',LNAME:'',TITLE:'',INITIALS:'', PASSWORD:'', DEPARTMENT:''};
+  _Employee:Employee = {FNAME:'',LNAME:'',TITLE:'', PASSWORD:'', DEPARTMENT:''};
         constructor(private employeeService:EmployeeService){
             
         }
@@ -72,7 +67,6 @@ interface Employee{
   FNAME,
   LNAME,
   TITLE,
-  INITIALS,
   PASSWORD,
   DEPARTMENT
 }
