@@ -5,7 +5,12 @@ import {CookieService} from 'angular2-cookie/core';
 
 @Injectable()
 export class LoginGuard implements CanActivate {
-    constructor(private cookieService:CookieService, private router:Router){}
+    route:any;
+    signIn:boolean = true;
+    constructor(private cookieService:CookieService, private router:Router){
+        this.route = window.location.pathname;
+        
+    }
         canActivate(){
             return this.checkIfLoggedIn();
         }
@@ -13,9 +18,9 @@ export class LoginGuard implements CanActivate {
         private checkIfLoggedIn():boolean{
             let employee= this.cookieService.getObject('login');
             if(employee){
-                if(window.location.pathname == '/signIn'){
+                if(employee && this.route == '/signIn' && this.signIn){
+                    this.signIn = false;
                     this.router.navigate(['/bookings']);
-                    return false;
                 }
                 return true;
             }else{
