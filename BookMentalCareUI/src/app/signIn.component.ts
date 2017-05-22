@@ -43,7 +43,7 @@ export class SignInComponent {
 
   signIn(){
       this.employeeService.signIn(this._Employee.INITIALS,this._Employee.PASSWORD);
-      this.employeeService.empEvent.subscribe(data => {console.log(data);
+      this.employeeService.empEvent.subscribe(data => {
           this.signedin = data;
           if(this.signedin != null){
                 this._cookieService.putObject('login',this.signedin);

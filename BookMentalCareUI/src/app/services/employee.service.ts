@@ -65,6 +65,9 @@ export class EmployeeService{
     })
         .map(response => response.json())
         .subscribe(data => this.Employee = data,()=> this.alertService.showAlert(true,"Der opstod en fejl - prøv igen","danger"),()=>{
+            if(this.Employee == null){
+                this.alertService.showAlert(true,"Initials eller password er forkert - prøv igen","danger")
+            }
             this.empEvent.emit(this.Employee);
             return this.Employee; 
         })

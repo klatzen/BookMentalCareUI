@@ -31,11 +31,11 @@ const routes = [{
 },{
     path:'ressources',
     component: RessourceListComponent,
-    //canActivate: [LoginGuard]
+    canActivate: [LoginGuard]
 },{
     path:'ressource/:id',
     component: RessourceComponent,
-    //canActivate: [LoginGuard]
+    canActivate: [LoginGuard]
 },{
     path:'employee/:initials',
     component: EmployeeComponent,
@@ -48,7 +48,7 @@ const routes = [{
 },{
     path:'employeeCreate',
     component: NewEmployeeComponent,
-    //canActivate: [LoginGuard]
+    canActivate: [LoginGuard]
 
 },{
     path:'patients',
@@ -68,7 +68,7 @@ const routes = [{
 },{
     path:'unit/:id',
     component: UnitListComponent,
-    //canActivate: [LoginGuard]
+    canActivate: [LoginGuard]
 
 },{
     path:'rooms',
@@ -92,8 +92,8 @@ const routes = [{
 },
 {
     path:'signIn',
-    component: SignInComponent
-    //canActivate: [LoginGuard]
+    component: SignInComponent,
+    canActivate: [LoginGuard]
 },
 {
     path:'departments',
@@ -107,8 +107,8 @@ const routes = [{
 },
 {
     path:'bookings',
-    component: BookingListComponent
-    //canActivate: [LoginGuard]
+    component: BookingListComponent,
+    canActivate: [LoginGuard]
 },
 {
     path:'booking/:id',
@@ -128,7 +128,7 @@ const routes = [{
 {
     path:'unitCreate/:id',
     component: NewUnitComponent,
-    //canActivate:[LoginGuard]
+    canActivate:[LoginGuard]
 }
 ]
 

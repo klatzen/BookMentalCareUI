@@ -9,21 +9,25 @@ import {RoomService} from './services/room.service';
      <div class="form-group">
         <div class="col-xs-3">
         <label for="_Room.TYPE"> Type</label>
-        <input  [(ngModel)]="_Room.TYPE" name="type">
+        <input class="form-control" [(ngModel)]="_Room.TYPE" name="type">
         </div>
         
         <div class="col-xs-3">
         <label for="_Room.ROOMNO">Room No. </label>
-        <input  [(ngModel)]="_Room.ROOMNO" name="roomNo">
+        <input class="form-control"  [(ngModel)]="_Room.ROOMNO" name="roomNo">
         </div>
         
         <div class="col-xs-3">
         <label for="_Room.DEPARTMENT.NAME"> Department </label>
-        <input [(ngModel)]="_Room.DEPARTMENT.NAME" name="department" placeholder="choose a department from list" readonly>
+        <input class="form-control" [(ngModel)]="_Room.DEPARTMENT.NAME" name="department" placeholder="choose a department from list" readonly>
         </div>
       </div>
-
+      <br>
+      <br>
+      <br>
+      <hr>
         <depList (sendDepartment)="getDepartment($event)"></depList>
+
         </form>
         <div class="input-group">
         <div class="col-xs-3">

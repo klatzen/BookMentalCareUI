@@ -45,8 +45,8 @@ import {Router} from '@angular/router';
             <td>{{Room.TYPE}}</td>
             <td>{{Room.ROOMNO}}</td>
             <td *ngIf="Room.DEPARTMENT">{{Room.DEPARTMENT.NAME}} </td>
-            <td><button [routerLink]="['/room',Room.ID]" class="btn btn-secondary">Edit</button></td>
-            <td *ngIf="startTime != '' && endTime != ''"><button (click)="createBooking(Room)" class="btn btn-secondary" id="delete-btn">Create Booking</button></td>
+            <td><button *ngIf="showBtn" [routerLink]="['/room',Room.ID]" class="btn btn-secondary">Edit</button></td>
+            <td *ngIf="!showBtn"><button (click)="createBooking(Room)" class="btn btn-secondary" id="delete-btn">Create Booking</button></td>
         </tr>
     </tbody>
     </table>
@@ -57,13 +57,15 @@ import {Router} from '@angular/router';
 export class RoomListComponent{
         _Rooms = [];
         userFilter: any = { TYPE: '' };
-        startTime: any= '';
-        endTime:any = '';
+        startTime: any= ' ';
+        endTime:any = ' ';
+        showBtn:boolean = true;
         constructor(private RoomService : RoomService, private cookieService : CookieService, private router : Router){
             this._Rooms = RoomService.findRooms();
         }      
 
         createRoom(){
+            this.showBtn = false;
             this._Rooms = this.RoomService.findAvailRooms(this.startTime,this.endTime);
         }
         
