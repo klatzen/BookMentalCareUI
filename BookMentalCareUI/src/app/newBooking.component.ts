@@ -31,6 +31,7 @@ import {EmployeeListComponent} from './employeeList.component'
             <div class="col-sm-offset-2 col-sm-10">
             <span class="input-group-btn input-space">
                 <button (click)="showEmployees()" class="btn btn-secondary">Show Employee(s)</button> <button (click)="showPatients()" class="btn btn-secondary" id="delete-btn">Show Patient</button> <button (click)="showRessources()" class="btn btn-secondary" id="delete-btn">Show Ressource(s)</button>
+                <button [routerLink]="['/rooms']"  class="btn btn-secondary">Cancel booking</button>
                 <div *ngIf="route == '/booking'">
                     <button *ngIf="booking.PATIENT && booking.EMPLOYEES.length > 0" (click)="CompleteBooking()" class="btn btn-secondary"> Complete Booking</button>
                 </div>
@@ -48,21 +49,22 @@ import {EmployeeListComponent} from './employeeList.component'
             <p><b>Booked Room:</b> ID {{booking.Room.ID}}, Type: {{booking.Room.TYPE}}</p>
             </div>
 
-            <div *ngIf="booking.PATIENT">
-            <p><b>Patient added to booking</b> {{booking.PATIENT.FNAME}} {{booking.PATIENT.LNAME}}, {{booking.PATIENT.MEDREGNO}} <button (click)="removePatient(booking.PATIENT)" class="btn btn-secondary pull-right" id="remove-btn">X</button></p>
+            <div *ngIf="booking.PATIENT"> 
+            
+            <p><b>Patient added to booking</b> {{booking.PATIENT.FNAME}} {{booking.PATIENT.LNAME}}, {{booking.PATIENT.MEDREGNO}} <button (click)="removePatient(booking.PATIENT)" class="btn btn-secondary " id="delete-btn">X</button></p>
             </div>
 
             <div *ngIf="!(booking.EMPLOYEES.length == 0)">
             <p><b>Employees added to booking</b></p>
             <ul *ngFor="let emp of booking.EMPLOYEES">
-                <li>Name: {{emp.FNAME}} {{emp.LNAME}}, Initials: {{emp.INITIALS}} <button (click)="removeEmployee(emp)" class="btn btn-secondary pull-right" id="remove-btn">X</button></li>
+                <li>Name: {{emp.FNAME}} {{emp.LNAME}}, Initials: {{emp.INITIALS}} <button (click)="removeEmployee(emp)" class="btn btn-secondary" id="delete-btn">X</button></li>
             </ul>
             </div>
 
             <div *ngIf="!(booking.RESSOURCES.length == 0)">
             <p><b>Ressources added to booking</b></p>
             <ul *ngFor="let res of booking.RESSOURCES">
-                <li>Name: {{res.Ressource.Name}} <button (click)="removeRessource(res)" class="btn btn-secondary pull-right" id="remove-btn">X</button></li>
+                <li>Name: {{res.Ressource.Name}} <button (click)="removeRessource(res)" class="btn btn-secondary" id="delete-btn">X</button></li>
             </ul>
             </div>
 
