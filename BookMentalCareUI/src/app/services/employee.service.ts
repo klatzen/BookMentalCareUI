@@ -45,7 +45,8 @@ export class EmployeeService{
     saveEmployee(tempEmployee){
         this.http.post('http://localhost:2026/api/Employee',tempEmployee).subscribe(()=>"",()=> this.alertService.showAlert(true,"Der opstod en fejl - prøv igen","danger"),
         ()=> {this.alertService.showAlert(true,"Data er gemt..","success")
-        this.router.navigate(['/employees']);});
+        this.router.navigate(['/employees']);
+    });
     }
 
     deleteEmployee(id){

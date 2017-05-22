@@ -10,10 +10,10 @@ import {Router} from '@angular/router';
     <div class="form-group">
         
         <label for="startTime">Start Time</label>
-        <input class="form-control" type="date" [(ngModel)]="startTime" name="startTime">
+        <input class="form-control" type="datetime-local" [(ngModel)]="startTime" name="startTime">
         
         <label for="endTime">End Time</label>
-        <input class="form-control" type="date" [(ngModel)]="endTime" name="endTime">
+        <input class="form-control" type="datetime-local" [(ngModel)]="endTime" name="endTime">
 
         <button (click)="createRoom()" class="btn btn-secondary">Check Period</button>
 
@@ -70,6 +70,8 @@ export class RoomListComponent{
         }
         
         createBooking(Room){
+            console.log(this.startTime);
+            
             this.cookieService.putObject("room",Room);
             this.cookieService.put("startTime",this.startTime);
             this.cookieService.put("endTime",this.endTime);
