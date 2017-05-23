@@ -10,12 +10,12 @@ import {DepartmentService} from './services/department.service';
 
         <div class="col-xs-3"> 
         <label for="_Department.NAME">Name</label>
-        <input  [(ngModel)]="_Department.NAME" name="name">
+        <input  class="form-control" [(ngModel)]="_Department.NAME" name="name">
         </div>
         
         <div class="col-xs-3"> 
         <label for="_Department.LOCATION">Location </label>
-        <input  [(ngModel)]="_Department.LOCATION" name="Location">
+        <input  class="form-control" [(ngModel)]="_Department.LOCATION" name="Location">
         </div>
       </div>
       <div class="input-group">

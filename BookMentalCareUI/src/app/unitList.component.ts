@@ -19,7 +19,7 @@ import {CookieService} from 'angular2-cookie/core';
                 <td>{{unit.Id}}</td>
                 <td>{{unit.SerialNo}}</td>
                 <td>{{unit.RessourceId}}</td>
-                <button [routerLink]="['/editUnit',unit.Id]" class="btn btn-secondary">Redigér/Slet</button>
+                <button [routerLink]="['/editUnit',unit.Id]" class="btn btn-secondary">Edit</button>
             </tr>
             
         </tbody>

@@ -7,7 +7,7 @@ import {DepartmentService} from './services/department.service';
     template: `
     <form class="form-inline">
 
-    <div class="col-xs-3">
+    <div class="col-xs-3" id="space-ontop">
         <label> Search</label>
         <input class="form-control"  [(ngModel)]="userFilter.NAME" placeholder="department name" name="search">
         </div>

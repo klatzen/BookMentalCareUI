@@ -31,7 +31,7 @@ import {EmployeeListComponent} from './employeeList.component'
             <div class="col-sm-offset-2 col-sm-10">
             <span class="input-group-btn input-space">
                 <button (click)="showEmployees()" class="btn btn-secondary">Show Employee(s)</button> <button (click)="showPatients()" class="btn btn-secondary" id="delete-btn">Show Patient</button> <button (click)="showRessources()" class="btn btn-secondary" id="delete-btn">Show Ressource(s)</button>
-                <button [routerLink]="['/rooms']"  class="btn btn-secondary">Cancel booking</button>
+                <button [routerLink]="['/rooms']"  class="btn btn-secondary" id="delete-btn">Cancel booking</button>
                 <div *ngIf="route == '/booking'">
                     <button *ngIf="booking.PATIENT && booking.EMPLOYEES.length > 0" (click)="CompleteBooking()" class="btn btn-secondary"> Complete Booking</button>
                 </div>

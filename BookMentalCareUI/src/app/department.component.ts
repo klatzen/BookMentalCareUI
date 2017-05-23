@@ -8,7 +8,7 @@ import { Modal } from 'angular2-modal/plugins/bootstrap';
     selector: 'dep',
     template: ` 
      <div *ngIf="_Department != null">
-     <form class="form-inline">
+     <form class="form-horizontal">
      <div class="form-group">
      
         <div class="col-xs-3"> 
