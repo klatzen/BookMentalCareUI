@@ -73,7 +73,6 @@ export class RessourceListComponent {
     }
 
     ngOnChanges(changes: SimpleChanges) {
-        console.log(changes.removeUnit);
         if(changes.removeUnit.currentValue != undefined){
              let res = this._AvalibleRessources.find(x => x.Id == this.removeUnit.RessourceId);
             if (res === undefined) {
